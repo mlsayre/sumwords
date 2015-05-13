@@ -1,3 +1,13 @@
 @media screen and (min-width: 481px) {
-
+  .gameboard {
+    max-width: 1280px;
+    border: 2px inset grey;
+    margin: 16px auto 0;
+  }
+  .boardsquare {
+    border: 1px outset grey;
+    width: 70px;
+    height: 70px;
+    background-color: blanchedalmond;
+    }
 }

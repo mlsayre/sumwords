@@ -5,9 +5,25 @@
     margin: 16px auto 0;
   }
   .boardsquare {
-    border: 1px outset grey;
-    width: 70px;
-    height: 70px;
+    border: 1px inset white;
+    width: 64px;
+    height: 64px;
     background-color: blanchedalmond;
-    }
+  }
+  .tw {
+    border-radius: 10%;
+    background-color: red;
+    border-color: red;
+    display: block;
+    color: white;
+    font-size: 36px;
+  }
+  .dw {
+    border-radius: 10%;
+    background-color: pink;
+    border-color: pink;
+    display: block;
+    color: white;
+    font-size: 36px;
+  }
 }

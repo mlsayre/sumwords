@@ -11,15 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511061527) do
+ActiveRecord::Schema.define(version: 20150514155839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "games", force: :cascade do |t|
     t.string   "letters"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.string   "upperleftspace"
+    t.string   "upperrightspace"
+    t.string   "lowerleftspace"
+    t.string   "lowerrightspace"
+    t.string   "randspace01"
+    t.string   "randspace02"
+    t.string   "randspace03"
+    t.string   "randspace04"
+    t.string   "randspace05"
+    t.string   "randspace06"
+    t.string   "randspace07"
+    t.string   "randspace08"
+    t.string   "randspace09"
+    t.string   "randspace10"
+    t.string   "randspace11"
+    t.string   "randspace12"
+    t.string   "randspace13"
+    t.string   "randspace14"
+    t.string   "randspace15"
+    t.string   "randspace16"
   end
 
   create_table "users", force: :cascade do |t|

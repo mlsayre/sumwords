@@ -10,6 +10,70 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @upperleftspace = @game.upperleftspace
+    @upperrightspace = @game.upperrightspace
+    @lowerleftspace = @game.lowerleftspace
+    @lowerrightspace = @game.lowerrightspace
+    @randspace01 = @game.randspace01
+    @randspace02 = @game.randspace02
+    @randspace03 = @game.randspace03
+    @randspace04 = @game.randspace04
+    @randspace05 = @game.randspace05
+    @randspace06 = @game.randspace06
+    @randspace07 = @game.randspace07
+    @randspace08 = @game.randspace08
+    @randspace09 = @game.randspace09
+    @randspace10 = @game.randspace10
+    @randspace11 = @game.randspace11
+    @randspace12 = @game.randspace12
+    @randspace13 = @game.randspace13
+    @randspace14 = @game.randspace14
+    @randspace15 = @game.randspace15
+    @randspace16 = @game.randspace16
+    @letter01 = @game.letters[0]
+    @letter02 = @game.letters[1]
+    @letter03 = @game.letters[2]
+    @letter04 = @game.letters[3]
+    @letter05 = @game.letters[4]
+    @letter06 = @game.letters[5]
+    @letter07 = @game.letters[6]
+    @letter08 = @game.letters[7]
+    @letter09 = @game.letters[8]
+    @letter10 = @game.letters[9]
+
+    def letterpoints(letter)
+      if letter == "L" || letter == "S" || letter == "U" ||
+         letter == "N" || letter == "R" || letter == "T" ||
+         letter == "O" || letter == "A" || letter == "I" ||
+         letter == "E"
+        1
+      elsif letter == "G" || letter == "D"
+        2
+      elsif letter == "B" || letter == "C" || letter == "M" || letter == "P"
+        3
+      elsif letter == "F" || letter == "H" || letter == "V" || letter == "W" || letter == "Y"
+        4
+      elsif letter == "K"
+        5
+      elsif letter == "J" || letter == "X"
+        8
+      elsif letter == "Q" || letter == "Z"
+        10
+      end
+    end
+
+    @letter01points = letterpoints(@letter01)
+    @letter02points = letterpoints(@letter02)
+    @letter03points = letterpoints(@letter03)
+    @letter04points = letterpoints(@letter04)
+    @letter05points = letterpoints(@letter05)
+    @letter06points = letterpoints(@letter06)
+    @letter07points = letterpoints(@letter07)
+    @letter08points = letterpoints(@letter08)
+    @letter09points = letterpoints(@letter09)
+    @letter10points = letterpoints(@letter10)
+
+
   end
 
   # GET /games/new
@@ -25,6 +89,42 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
+
+    # randomize corners
+    cornerrand = rand(1..2)
+    if cornerrand == 1
+      @upperleftspace = " dw"
+      @lowerrightspace = " dw"
+    elsif cornerrand == 2
+      @upperrightspace = " dw"
+      @lowerleftspace = " dw"
+    end
+    @game.update(:upperleftspace => @upperleftspace, :upperrightspace => @upperrightspace,
+      :lowerleftspace => @lowerleftspace, :lowerrightspace => @lowerrightspace)
+
+
+    # randomize other board spaces
+    randomtilearray = [" dl", " dl", " dl", " dl", " dl", " tl", " tl", " tl", "", "", "", "", "", "", "", "" ]
+    randomtilearray.shuffle!
+    @game.update(:randspace01 => randomtilearray[0], :randspace02 => randomtilearray[1],
+                 :randspace03 => randomtilearray[2], :randspace04 => randomtilearray[3],
+                 :randspace05 => randomtilearray[4], :randspace06 => randomtilearray[5],
+                 :randspace07 => randomtilearray[6], :randspace08 => randomtilearray[7],
+                 :randspace09 => randomtilearray[8], :randspace10 => randomtilearray[9],
+                 :randspace11 => randomtilearray[10], :randspace12 => randomtilearray[11],
+                 :randspace13 => randomtilearray[12], :randspace14 => randomtilearray[13],
+                 :randspace15 => randomtilearray[14], :randspace16 => randomtilearray[15])
+
+    # pick 10 letters
+    def pickletters
+      @potentialletters = File.new("config/LetterDistribution").readlines.sample(10).join.gsub("\n", "")
+      if @potentialletters.count("AEIOU") <= 3 || @potentialletters.count("AEIOU") >= 6
+        pickletters
+      else
+        @game.update(:letters => @potentialletters)
+      end
+    end
+    pickletters
 
     respond_to do |format|
       if @game.save

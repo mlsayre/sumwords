@@ -4,26 +4,75 @@
     border: 2px inset grey;
     margin: 16px auto 0;
   }
+  table {
+    background-color: darkslategrey;
+    border-radius: 5px;
+  }
   .boardsquare {
     border: 1px inset white;
     width: 64px;
     height: 64px;
     background-color: blanchedalmond;
-  }
-  .tw {
-    border-radius: 10%;
-    background-color: red;
-    border-color: red;
-    display: block;
-    color: white;
-    font-size: 36px;
+    color: beige;
+    font-size: 30px;
+    text-align: center;
   }
   .dw {
     border-radius: 10%;
     background-color: pink;
     border-color: pink;
-    display: block;
-    color: white;
-    font-size: 36px;
+  }
+  .dl {
+    border-radius: 10%;
+    background-color: lightblue;
+    border-color: lightblue;
+  }
+  .tl {
+    border-radius: 10%;
+    background-color: royalblue;
+    border-color: royalblue;
+  }
+  .tilerack1 {
+    background-color: darkred;
+    padding: 4px 0 8px 0;
+    margin: 8px auto 6px;
+    width: 366px;
+    text-align: center;
+    border-bottom: 3px solid brown;
+  }
+  .tilerack2 {
+    background-color: darkred;
+    padding: 4px 0 8px 0;
+    margin: 8px auto 6px;
+    width: 366px;
+    text-align: center;
+    border-bottom: 3px solid brown;
+  }
+  .tileholder {
+    display: inline-block;
+    margin: 0 2px;
+    width: 65px;
+    height: 65px;
+  }
+  .letter {
+    width: 64px;
+    height: 64px;
+    font-size: 56px;
+    background-color: darkorange;
+    text-align: center;
+    border: 1px solid orange;
+    opacity: .92;
+  }
+  .letter p {
+    position: relative;
+    top: -30px;
+    left: 24px;
+  }
+  .letter span {
+    position: relative;
+    top: 23px;
+  }
+  .letter:hover {
+    cursor: pointer;
   }
 }

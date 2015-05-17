@@ -9,7 +9,7 @@
     border-radius: 5px;
   }
   .boardsquare {
-    border: 1px inset white;
+    border: 1px inset darkorange;
     width: 64px;
     height: 64px;
     background-color: blanchedalmond;
@@ -35,8 +35,8 @@
   .tilerack1 {
     background-color: darkred;
     padding: 4px 0 8px 0;
-    margin: 8px auto 6px;
-    width: 366px;
+    margin: 16px auto 6px;
+    width: 396px;
     text-align: center;
     border-bottom: 3px solid brown;
   }
@@ -44,24 +44,26 @@
     background-color: darkred;
     padding: 4px 0 8px 0;
     margin: 8px auto 6px;
-    width: 366px;
+    width: 396px;
     text-align: center;
     border-bottom: 3px solid brown;
   }
   .tileholder {
     display: inline-block;
-    margin: 0 2px;
-    width: 65px;
-    height: 65px;
+    margin: 0 3px;
+    width: 67px;
+    height: 67px;
+    border: 1px solid red;
   }
   .letter {
-    width: 64px;
-    height: 64px;
+    width: 66px;
+    height: 66px;
     font-size: 56px;
     background-color: darkorange;
     text-align: center;
     border: 1px solid orange;
     opacity: .92;
+    overflow: hidden;
   }
   .letter p {
     position: relative;

@@ -4,14 +4,30 @@ $(document).ready(function() {
   $(".tl").text("TL");
 
   $(".letter").draggable({
-    snap: ".boardsquare",
+    snap: ".boardsquare, .tileholder",
     snapMode: "inner",
     zIndex: 100,
     opacity: 0.7,
     revert: "invalid",
     revertDuration: 300,
-    containment: "window"
+    containment: "window",
+    stop: function(){
+      $(this).draggable('option','revert','invalid');
+    }
   });
-  $(".boardsquare").droppable();
-  $(".tileholder").droppable();
+  $('.letter').droppable({
+    greedy: true,
+    tolerance: 'touch',
+    drop: function(event,ui){
+        ui.draggable.draggable('option','revert',true);
+    }
+});
+  $(".boardsquare").droppable({
+    greedy: true,
+    tolerance: "fit"
+  });
+  $(".tileholder").droppable({
+    greedy: true,
+    tolerance: "fit"
+  });
 })

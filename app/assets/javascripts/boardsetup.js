@@ -47,23 +47,24 @@ $(document).ready(function() {
         if ($(this).find("span") == "DL") {
           $(ui.draggable + " span").text("HI")
         }
-        console.log(ui.draggable)
 
       }
-      var stockpoints = parseInt(ui.helper.context.attributes[2].value);
-      if ($(this).text() == "DL") {
-        var multiplier = 2;
-        ui.draggable.find("p").addClass("cornerpointsdl");
-      } else if ($(this).text() == "TL") {
-        var multiplier = 3;
-        ui.draggable.find("p").addClass("cornerpointstl");
-      } else {
-        var multiplier = 1;
-        ui.draggable.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl")
-      }
+      
       function updatepointcorners() {
         $(".boardsquare[data-placedletter!='none']").each(function() {
+          var dataid = $(this).attr("data-placedletter");
+          var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
           var boardsquareid = $(this).attr("id");
+          if ($("#" + boardsquareid).text() == "DL") {
+            var multiplier = 2;
+            $('.letter[data-letter=' + dataid + '] p').addClass("cornerpointsdl");
+          } else if ($("#" + boardsquareid).text() == "TL") {
+            var multiplier = 3;
+            $('.letter[data-letter=' + dataid + '] p').addClass("cornerpointstl");
+          } else {
+            var multiplier = 1;
+            $('.letter[data-letter=' + dataid + '] p').removeClass("cornerpointsdl").removeClass("cornerpointstl")
+          }
           var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
           var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
           var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
@@ -81,8 +82,12 @@ $(document).ready(function() {
           } else {
             var twowaymultiplier = 1
           }
+          
+          
           var modpoints = (stockpoints * multiplier) * twowaymultiplier;
-          ui.draggable.find("p").text(modpoints);
+          console.log(dataid);
+          console.log(modpoints);
+          $('.letter[data-letter=' + dataid + '] p').text(modpoints);
         })
       }
       updatepointcorners();

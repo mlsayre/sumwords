@@ -19,12 +19,37 @@ $(document).ready(function() {
     greedy: true,
     tolerance: 'touch',
     drop: function(event,ui){
-        ui.draggable.draggable('option','revert',true);
-    }
-});
+      ui.draggable.draggable('option','revert', true);
+    },
+
+  });
   $(".boardsquare").droppable({
     greedy: true,
-    tolerance: "fit"
+    tolerance: "fit",
+    drop: function(event,ui){
+      var letterAdd = ui.helper.context.attributes[1].value;
+      if ($(this).attr("data-placedletter") == "none") {
+        $(".boardsquare").each(function() {
+          if ($(this).attr("data-placedletter") == letterAdd) {
+            $(this).attr("data-placedletter", "none");
+          }
+        });
+        $(this).attr("data-placedletter", letterAdd);
+      }
+      var origpoints = ui.helper.context.attributes[2].value;
+      if ($(this).attr("data-placedletterpoints") == "none") {
+        $(".boardsquare").each(function() {
+          if ($(this).attr("data-placedletterpoints") == origpoints) {
+            $(this).attr("data-placedletterpoints", "none");
+          }
+        });
+        $(this).attr("data-placedletterpoints", origpoints);
+      }
+    },
+    // out: function(event,ui){
+    //   var letterAdd = ui.helper.context.attributes[1].value;
+    //   $(this).removeAttr("data-placedletter");
+    // }
   });
   $(".tileholder").droppable({
     greedy: true,

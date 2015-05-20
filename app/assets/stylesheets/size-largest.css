@@ -77,4 +77,16 @@
   .letter:hover {
     cursor: pointer;
   }
+  .cornerpointsdl {
+    color: lightblue;
+    font-size: .28em;
+    top: -32px !important;
+    font-weight: 700;
+  }
+  .cornerpointstl {
+    color: royalblue;
+    font-size: .28em;
+    top: -32px !important;
+    font-weight: 700;
+  }
 }

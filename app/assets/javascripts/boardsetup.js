@@ -62,21 +62,26 @@ $(document).ready(function() {
         ui.draggable.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl")
       }
       function updatepointcorners() {
-        $(".boardsquare").each(function() {
+        $(".boardsquare[data-placedletter!='none']").each(function() {
           var boardsquareid = $(this).attr("id");
           var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
           var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
           var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
           var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
-          if ((($("#" + neighborR).attr("data-placedletter") != "none") ||
-             ($("#" + neighborL).attr("data-placedletter") != "none")) &&
-             (($("#" + neighborT).attr("data-placedletter") != "none") ||
-             ($("#" + neighborB).attr("data-placedletter") != "none"))) {
+          console.log("squareid: " + boardsquareid)
+          console.log("neighborR: " + neighborR)
+          console.log("neighborL: " + neighborL)
+          console.log("neighborT: " + neighborT)
+          console.log("neighborB: " + neighborB)
+          if ((($("#" + neighborR).attr("data-placedletter") !== "none") ||
+             ($("#" + neighborL).attr("data-placedletter") !== "none")) &&
+             (($("#" + neighborT).attr("data-placedletter") !== "none") ||
+             ($("#" + neighborB).attr("data-placedletter") !== "none"))) {
             var twowaymultiplier = 2
           } else {
             var twowaymultiplier = 1
           }
-          var modpoints = stockpoints * (multiplier * twowaymultiplier);
+          var modpoints = (stockpoints * multiplier) * twowaymultiplier;
           ui.draggable.find("p").text(modpoints);
         })
       }

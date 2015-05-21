@@ -49,9 +49,9 @@ $(document).ready(function() {
         }
 
       }
-      
+
       function updatepointcorners() {
-        $(".boardsquare[data-placedletter!='none']").each(function() {
+        $(".boardsquare[data-placedletter!='none'], .tileholder").each(function() {
           var dataid = $(this).attr("data-placedletter");
           var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
           var boardsquareid = $(this).attr("id");
@@ -65,30 +65,25 @@ $(document).ready(function() {
             var multiplier = 1;
             $('.letter[data-letter=' + dataid + '] p').removeClass("cornerpointsdl").removeClass("cornerpointstl")
           }
-          var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
-          var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
-          var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
-          var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
-          console.log("squareid: " + boardsquareid)
-          console.log("neighborR: " + neighborR)
-          console.log("neighborL: " + neighborL)
-          console.log("neighborT: " + neighborT)
-          console.log("neighborB: " + neighborB)
-          if ((($("#" + neighborR).attr("data-placedletter") !== "none") ||
-             ($("#" + neighborL).attr("data-placedletter") !== "none")) &&
-             (($("#" + neighborT).attr("data-placedletter") !== "none") ||
-             ($("#" + neighborB).attr("data-placedletter") !== "none"))) {
-            var twowaymultiplier = 2
-          } else {
-            var twowaymultiplier = 1
-          }
-          
-          
-          var modpoints = (stockpoints * multiplier) * twowaymultiplier;
-          console.log(dataid);
-          console.log(modpoints);
+          // var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
+          // var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
+          // var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
+          // var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
+
+          // if ((($("#" + neighborR).attr("data-placedletter") !== "none") ||
+          //    ($("#" + neighborL).attr("data-placedletter") !== "none")) &&
+          //    (($("#" + neighborT).attr("data-placedletter") !== "none") ||
+          //    ($("#" + neighborB).attr("data-placedletter") !== "none"))) {
+          //   var twowaymultiplier = 2
+          // } else {
+          //   var twowaymultiplier = 1
+          // }
+
+
+          var modpoints = stockpoints * multiplier; // * twowaymultiplier;
+
           $('.letter[data-letter=' + dataid + '] p').text(modpoints);
-        })
+        });
       }
       updatepointcorners();
     },
@@ -99,6 +94,11 @@ $(document).ready(function() {
   });
   $(".tileholder").droppable({
     greedy: true,
-    tolerance: "fit"
+    tolerance: "fit",
+    drop: function(event,ui){
+      var origpoints = parseInt(ui.helper.context.attributes[2].value);
+      ui.draggable.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
+      ui.draggable.find("p").text(origpoints);
+    }
   });
 })

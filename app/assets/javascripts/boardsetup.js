@@ -44,14 +44,14 @@ $(document).ready(function() {
           }
         });
         $(this).attr("data-placedletterpoints", origpoints);
-        if ($(this).find("span") == "DL") {
-          $(ui.draggable + " span").text("HI")
-        }
+        // if ($(this).find("span") == "DL") {
+        //   $(ui.draggable + " span").text("HI")
+        // }
 
       }
 
       function updatepointcorners() {
-        $(".boardsquare[data-placedletter!='none'], .tileholder").each(function() {
+        $(".boardsquare[data-placedletter!='none']").each(function() {
           var dataid = $(this).attr("data-placedletter");
           var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
           var boardsquareid = $(this).attr("id");
@@ -93,12 +93,28 @@ $(document).ready(function() {
     // }
   });
   $(".tileholder").droppable({
-    greedy: true,
+    greedy: false,
     tolerance: "fit",
     drop: function(event,ui){
-      var origpoints = parseInt(ui.helper.context.attributes[2].value);
-      ui.draggable.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
-      ui.draggable.find("p").text(origpoints);
+      var tileorigpoints = parseInt(ui.draggable.context.attributes[2].value);
+      ui.helper.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
+      ui.helper.find("p").text(tileorigpoints);
+      var letterAdd = ui.helper.context.attributes[1].value;
+      $(".boardsquare").each(function() {
+        if ($(this).attr("data-placedletter") == letterAdd) {
+          $(this).attr("data-placedletter", "none");
+        }
+      });
+      var origpoints = ui.helper.context.attributes[2].value;
+      $(".boardsquare").each(function() {
+        if ($(this).attr("data-placedletterpoints") == origpoints) {
+          $(this).attr("data-placedletterpoints", "none");
+        }
+      });
+        // if ($(this).find("span") == "DL") {
+        //   $(ui.draggable + " span").text("HI")
+        // }
+
     }
   });
 })

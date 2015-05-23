@@ -1,6 +1,11 @@
-@media screen and (min-width: 481px) {
+@media screen and (min-width: 504px) {
+  .gamearea {
+    width: 503px;
+    margin: 0 auto;
+  }
   .gameboard {
-    max-width: 1280px;
+    width: 503px;
+    height: 503px;
     border: 2px inset grey;
     margin: 16px auto 0;
   }
@@ -10,8 +15,8 @@
   }
   .boardsquare {
     border: 1px inset darkorange;
-    width: 64px;
-    height: 64px;
+    width: 65px;
+    height: 65px;
     background-color: blanchedalmond;
     color: beige;
     font-size: 30px;
@@ -32,10 +37,31 @@
     background-color: royalblue;
     border-color: royalblue;
   }
+  .gamemessages {
+    text-align: center;
+    margin: 0 0 -28px;
+    padding: 6px;
+  }
+  .gamemessages span {
+    font-size: 15px;
+  }
+  .letterracks {
+    display: inline-block;
+  }
+  .ui {
+    display: inline-block;
+    position: relative;
+    bottom: 98px;
+  }
+  .button.submit, .button.reset {
+    display: block;
+    width: 90%;
+    margin-bottom: 10px;
+  }
   .tilerack1 {
     background-color: darkred;
     padding: 4px 0 8px 0;
-    margin: 20px auto 6px;
+    margin: 28px 0 6px;
     width: 396px;
     text-align: center;
     border-bottom: 3px solid brown;
@@ -43,7 +69,7 @@
   .tilerack2 {
     background-color: darkred;
     padding: 4px 0 8px 0;
-    margin: 8px auto 6px;
+    margin: 8px 0 6px;
     width: 396px;
     text-align: center;
     border-bottom: 3px solid brown;

@@ -135,9 +135,66 @@ $(document).ready(function() {
 
   function getpoints() {
     var words = [];
-    $(".boardsquare[id^=r5]").each(function() {
-      var letter = $(this).attr("data-placedletter");
-      words.push(letter);
-    });
+    var validwords = [];
+
+    for (var i=1; i <= 7; i++) {
+      $(".boardsquare[id^=r" + i + "]").each(function() {
+        var letter = $(this).attr("data-placedletter").charAt(0);
+        if (letter !== "n") {
+          if ($(this).hasClass("dl")) {
+            var letterpoint = letter + 2;
+          } else if ($(this).hasClass("tl")) {
+            var letterpoint = letter + 3;
+          } else if ($(this).hasClass("dw")) {
+            var letterpoint = letter + 8;
+          } else {
+            var letterpoint = letter;
+          }
+        } else {
+          letter = " ";
+          var letterpoint = letter;
+        }
+        words.push(letterpoint);
+      });
+      words.unshift(" ");
+      words.push(" ");
+      $(".boardsquare[id$=c" + i + "]").each(function() {
+        var letter = $(this).attr("data-placedletter").charAt(0);
+        if (letter !== "n") {
+          if ($(this).hasClass("dl")) {
+            var letterpoint = letter + 2;
+          } else if ($(this).hasClass("tl")) {
+            var letterpoint = letter + 3;
+          } else if ($(this).hasClass("dw")) {
+            var letterpoint = letter + 8;
+          } else {
+            var letterpoint = letter;
+          }
+        } else {
+          letter = " ";
+          var letterpoint = letter;
+        }
+        words.push(letterpoint);
+      });
+      words.unshift(" ");
+      words.push(" ");
+    };
+    words = words.join("");
+    words = words.split(/\s+/g);
+    console.log(words);
+    $.each(words, function(index, item) {
+      console.log(item)
+      var itemwordlength = item.replace(/\d+/g, "").length;
+      console.log(itemwordlength)
+      if (itemwordlength > 1) {
+        validwords.push(item);
+        console.log(validwords)
+      }
+    })
+    console.log(validwords)
   }
+
+  $(".button.submit").click(function() {
+    getpoints();
+  })
 })

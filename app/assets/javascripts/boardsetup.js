@@ -136,6 +136,7 @@ $(document).ready(function() {
   function getpoints() {
     var words = [];
     var validwords = [];
+    var boardtotal = 0;
 
     for (var i=1; i <= 7; i++) {
       $(".boardsquare[id^=r" + i + "]").each(function() {
@@ -181,17 +182,70 @@ $(document).ready(function() {
     };
     words = words.join("");
     words = words.split(/\s+/g);
-    console.log(words);
     $.each(words, function(index, item) {
-      console.log(item)
       var itemwordlength = item.replace(/\d+/g, "").length;
-      console.log(itemwordlength)
       if (itemwordlength > 1) {
         validwords.push(item);
-        console.log(validwords)
       }
     })
     console.log(validwords)
+
+    function getPointsForWord(word) {
+      var wordtotal = 0;
+      for (var letterindex = 0; letterindex < word.length; letterindex++) {
+        var letter = word[letterindex];
+        var afterletter = word[letterindex + 1];
+        var lettervalue = 0;
+        var lettervaluefinal;
+        var pointmodifier;
+        if (letter == "L" || letter == "S" || letter == "U" ||
+           letter == "N" || letter == "R" || letter == "T" ||
+           letter == "O" || letter == "A" || letter == "I" ||
+           letter == "E") {
+          lettervalue = 1
+        } else if (letter == "G" || letter == "D") {
+          lettervalue = 2
+        } else if (letter == "B" || letter == "C" || letter == "M" || letter == "P") {
+          lettervalue = 3
+        } else if (letter == "F" || letter == "H" || letter == "V" || letter == "W" || letter == "Y") {
+          lettervalue = 4
+        } else if (letter == "K") {
+          lettervalue = 5
+        } else if (letter == "J" || letter == "X") {
+          lettervalue = 8
+        } else if (letter == "Q" || letter == "Z") {
+          lettervalue = 10
+        } else {
+          lettervalue = 0
+        }
+
+
+        if (afterletter == "2") {
+          pointmodifier = 2
+        } else if (afterletter == "3") {
+          pointmodifier = 3
+        } else {
+          pointmodifier = 1
+        }
+        lettervaluefinal = lettervalue * pointmodifier;
+        wordtotal = wordtotal + lettervaluefinal;
+      }
+      if (word.indexOf("8") > -1) {
+        var wordmodifier = 2;
+      } else {
+        var wordmodifier = 1
+      }
+      var wordtotalfinal = wordtotal * wordmodifier;
+      return wordtotalfinal;
+    }
+
+    for (var wordindex = 0; wordindex < validwords.length; wordindex++) {
+      var wordpoints = getPointsForWord(validwords[wordindex]);
+      console.log(wordpoints)
+      boardtotal = boardtotal + wordpoints;
+    }
+    $(".gamemessages span").text(boardtotal);
+
   }
 
   $(".button.submit").click(function() {

@@ -42,13 +42,23 @@ class GamesController < ApplicationController
     @letter10 = @game.letters[9]
 
     @allwords = File.new("config/EnglishWords").readlines
-    @wholealphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
-      "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-    @givenletters = [ @letter01, @letter02, @letter03, @letter04, @letter05, @letter06, @letter07, @letter08, @letter09, @letter10 ]
-    @letterstoremove = @wholealphabet - @givenletters
-    #@availablewords = @allwords.each do |word|
+    wholealphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+      "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    givenletters = [ @letter01, @letter02, @letter03, @letter04, @letter05, @letter06, @letter07, @letter08, @letter09, @letter10 ]
+    givenletters.map! {|letter| letter.downcase}
+    letterstoremove = wholealphabet - givenletters
 
+    # remove words that contain letters player doesn't have
+    removelettercount = letterstoremove.count - 1
+    for i in 0..removelettercount
+      @allwords.reject! { |word| word.include?(letterstoremove[i]) }
+    end
 
+    # remove words that contain too many of the given letters
+    for i in 0..9
+      lettersinarray = givenletters.count(givenletters[i])
+      @allwords.reject! { |word| word.count(givenletters[i]) > lettersinarray }
+    end
 
     def letterpoints(letter)
       if letter == "L" || letter == "S" || letter == "U" ||

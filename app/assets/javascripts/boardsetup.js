@@ -1,8 +1,8 @@
 $(document).ready(function() {
+  var pointsforbingo = 30;
   $(".dw").text("DW");
   $(".dl").text("DL");
   $(".tl").text("TL");
-  var validwords = [];
 
   $(".letter").draggable({
     snap: ".boardsquare, .tileholder",
@@ -140,6 +140,7 @@ $(document).ready(function() {
 
   function getpoints() {
     var words = [];
+    var validwords = [];
     var boardtotal = 0;
 
     for (var i=1; i <= 7; i++) {
@@ -239,7 +240,13 @@ $(document).ready(function() {
       } else {
         var wordmodifier = 1
       }
-      var wordtotalfinal = wordtotal * wordmodifier;
+      var wordonlyletters = word.replace(/\d+/g, "")
+      if (wordonlyletters.length == 7) {
+        var bingopoints = pointsforbingo;
+      } else {
+        var bingopoints = 0
+      }
+      var wordtotalfinal = (wordtotal * wordmodifier) + bingopoints;
       return wordtotalfinal;
     }
 

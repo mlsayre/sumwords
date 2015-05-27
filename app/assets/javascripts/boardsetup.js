@@ -2,6 +2,7 @@ $(document).ready(function() {
   $(".dw").text("DW");
   $(".dl").text("DL");
   $(".tl").text("TL");
+  var validwords = [];
 
   $(".letter").draggable({
     snap: ".boardsquare, .tileholder",
@@ -86,6 +87,10 @@ $(document).ready(function() {
         });
       }
       updatepointcorners();
+      $(".gamemessages span").text(function() {
+        $(this).css("color", "yellow");
+        return getpoints();
+      });
     },
     // out: function(event,ui){
     //   var letterAdd = ui.helper.context.attributes[1].value;
@@ -135,7 +140,6 @@ $(document).ready(function() {
 
   function getpoints() {
     var words = [];
-    var validwords = [];
     var boardtotal = 0;
 
     for (var i=1; i <= 7; i++) {
@@ -244,11 +248,10 @@ $(document).ready(function() {
       console.log(wordpoints)
       boardtotal = boardtotal + wordpoints;
     }
-    $(".gamemessages span").text(boardtotal);
-
+    return boardtotal;
   }
 
   $(".button.submit").click(function() {
-    getpoints();
+    $(".gamemessages span").text(getpoints());
   })
 })

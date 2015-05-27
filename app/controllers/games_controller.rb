@@ -41,6 +41,15 @@ class GamesController < ApplicationController
     @letter09 = @game.letters[8]
     @letter10 = @game.letters[9]
 
+    @allwords = File.new("config/EnglishWords").readlines
+    @wholealphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
+      "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+    @givenletters = [ @letter01, @letter02, @letter03, @letter04, @letter05, @letter06, @letter07, @letter08, @letter09, @letter10 ]
+    @letterstoremove = @wholealphabet - @givenletters
+    #@availablewords = @allwords.each do |word|
+
+
+
     def letterpoints(letter)
       if letter == "L" || letter == "S" || letter == "U" ||
          letter == "N" || letter == "R" || letter == "T" ||

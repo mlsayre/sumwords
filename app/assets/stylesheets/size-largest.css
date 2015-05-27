@@ -39,11 +39,15 @@
   }
   .gamemessages {
     text-align: center;
-    margin: 0 0 -28px;
-    padding: 6px;
+    margin: -4px 0 -34px;
   }
   .gamemessages span {
-    font-size: 15px;
+    font-size: 22px;
+  }
+  .gamemessages p {
+    display: inline-block;
+    font-size: 22px;
+    line-height: .2;
   }
   .letterracks {
     display: inline-block;

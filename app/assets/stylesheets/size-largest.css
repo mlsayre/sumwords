@@ -43,6 +43,7 @@
   }
   .gamemessages span {
     font-size: 22px;
+    color: green;
   }
   .gamemessages p {
     display: inline-block;
@@ -61,6 +62,14 @@
     display: block;
     width: 90%;
     margin-bottom: 10px;
+  }
+  .button.confirmsubmit {
+    position: absolute;
+    top: -34px;
+    left: -72px;
+    padding: 8px;
+    width: 156px;
+    display: none;
   }
   .tilerack1 {
     background-color: darkred;

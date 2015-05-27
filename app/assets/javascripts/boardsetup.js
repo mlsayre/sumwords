@@ -136,6 +136,10 @@ $(document).ready(function() {
       $(this).attr("data-placedletter", "none");
       $(this).attr("data-placedletterpoints", "none");
     });
+    $(".gamemessages span").text(function() {
+        $(this).css("color", "green");
+        return 0;
+      });
   })
 
   function getpoints() {
@@ -257,8 +261,18 @@ $(document).ready(function() {
     }
     return boardtotal;
   }
-
+  var submitstatus = "closed"
   $(".button.submit").click(function() {
-    $(".gamemessages span").text(getpoints());
+    if (submitstatus == "closed") {
+
+      $(".confirmsubmit span").text(getpoints());
+      $(".button.confirmsubmit").slideToggle(120);
+      $(this).text("Cancel");
+      submitstatus = "open";
+    } else {
+      $(".button.confirmsubmit").slideToggle(120);
+      $(this).text("Submit");
+      submitstatus = "closed";
+    }
   })
 })

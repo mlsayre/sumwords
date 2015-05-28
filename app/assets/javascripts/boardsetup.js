@@ -1,5 +1,6 @@
 $(document).ready(function() {
   var pointsforbingo = 30;
+  var validwords = [];
   $(".dw").text("DW");
   $(".dl").text("DL");
   $(".tl").text("TL");
@@ -144,7 +145,7 @@ $(document).ready(function() {
 
   function getpoints() {
     var words = [];
-    var validwords = [];
+    validwords = [];
     var boardtotal = 0;
 
     for (var i=1; i <= 7; i++) {
@@ -197,7 +198,7 @@ $(document).ready(function() {
         validwords.push(item);
       }
     })
-    console.log(validwords)
+    //console.log(validwords)
 
     function getPointsForWord(word) {
       var wordtotal = 0;
@@ -256,16 +257,21 @@ $(document).ready(function() {
 
     for (var wordindex = 0; wordindex < validwords.length; wordindex++) {
       var wordpoints = getPointsForWord(validwords[wordindex]);
-      console.log(wordpoints)
+      //console.log(wordpoints)
       boardtotal = boardtotal + wordpoints;
     }
+    $(".confirmsubmit span").text(boardtotal);
     return boardtotal;
   }
   var submitstatus = "closed"
   $(".button.submit").click(function() {
     if (submitstatus == "closed") {
-
-      $(".confirmsubmit span").text(getpoints());
+      $.ajax({
+        url: "/games/checkwords",
+        type: "POST",
+        data: { 'potentialwords' : validwords }
+      });
+      console.log(validwords);
       $(".button.confirmsubmit").slideToggle(120);
       $(this).text("Cancel");
       submitstatus = "open";

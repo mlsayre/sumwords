@@ -41,25 +41,6 @@ class GamesController < ApplicationController
     @letter09 = @game.letters[8]
     @letter10 = @game.letters[9]
 
-    @allwords = File.new("config/EnglishWords").readlines
-    wholealphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
-      "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    givenletters = [ @letter01, @letter02, @letter03, @letter04, @letter05, @letter06, @letter07, @letter08, @letter09, @letter10 ]
-    givenletters.map! {|letter| letter.downcase}
-    letterstoremove = wholealphabet - givenletters
-
-    # remove words that contain letters player doesn't have
-    removelettercount = letterstoremove.count - 1
-    for i in 0..removelettercount
-      @allwords.reject! { |word| word.include?(letterstoremove[i]) }
-    end
-
-    # remove words that contain too many of the given letters
-    for i in 0..9
-      lettersinarray = givenletters.count(givenletters[i])
-      @allwords.reject! { |word| word.count(givenletters[i]) > lettersinarray }
-    end
-
     def letterpoints(letter)
       if letter == "L" || letter == "S" || letter == "U" ||
          letter == "N" || letter == "R" || letter == "T" ||
@@ -92,7 +73,29 @@ class GamesController < ApplicationController
     @letter09points = letterpoints(@letter09)
     @letter10points = letterpoints(@letter10)
 
+  end
 
+  def checkwords
+    flash[:notice] = "Checkwords found successfully"
+    render :nothing => true
+    # @allwords = File.new("config/EnglishWords").readlines
+    # wholealphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+    #   "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    # givenletters = [ @letter01, @letter02, @letter03, @letter04, @letter05, @letter06, @letter07, @letter08, @letter09, @letter10 ]
+    # givenletters.map! {|letter| letter.downcase}
+    # letterstoremove = wholealphabet - givenletters
+
+    # # remove words that contain letters player doesn't have
+    # removelettercount = letterstoremove.count - 1
+    # for i in 0..removelettercount
+    #   @allwords.reject! { |word| word.include?(letterstoremove[i]) }
+    # end
+
+    # # remove words that contain too many of the given letters
+    # for i in 0..9
+    #   lettersinarray = givenletters.count(givenletters[i])
+    #   @allwords.reject! { |word| word.count(givenletters[i]) > lettersinarray }
+    # end
   end
 
   # GET /games/new

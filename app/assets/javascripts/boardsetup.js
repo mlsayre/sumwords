@@ -125,6 +125,8 @@ $(document).ready(function() {
   });
 
   $(".button.reset").click(function() {
+    validwords = [];
+    $(".confirmsubmit span").text("0");
     $(".letter").animate({
       "top" : 0,
       "left" : 0

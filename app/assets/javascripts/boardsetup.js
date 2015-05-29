@@ -266,13 +266,21 @@ $(document).ready(function() {
     return boardtotal;
   }
   var submitstatus = "closed"
+  var letterstoplay = [];
+  $(".letter").each(function() {
+    letterstoplay.push($(this).find("span").text());
+  })
   $(".button.submit").click(function() {
     if (submitstatus == "closed") {
       $.ajax({
         url: "/games/checkwords",
         type: "POST",
-        data: { 'potentialwords' : validwords }
-      });
+        data: { 'potentialwords' : validwords,
+                'lettersgiven' : letterstoplay }
+      })
+        .done(function(data) {
+          console.log(data)
+        })
       console.log(validwords);
       $(".button.confirmsubmit").slideToggle(120);
       $(this).text("Cancel");

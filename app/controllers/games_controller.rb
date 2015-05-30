@@ -100,12 +100,18 @@ class GamesController < ApplicationController
     receivedwords.map! {|word| word.gsub(/\d+/, "")}
     receivedwords.map! {|word| word.downcase}
 
-    removeallwordscount = @allwords.count - 1
-    for i in 0..removeallwordscount
-      receivedwords.reject! { |word| word.include?(@allwords[i]) }
+    invalidwords = []
+    validwords = []
+    removewordscount = receivedwords.count - 1
+    for i in 0..removewordscount
+      if @allwords.include?(receivedwords[i])
+        validwords.push(receivedwords[i])
+      else
+        invalidwords.push(receivedwords[i])
+      end
     end
 
-    render :json => receivedwords
+    render :json => [invalidwords, validwords]
   end
 
   # GET /games/new

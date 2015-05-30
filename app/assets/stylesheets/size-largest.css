@@ -71,6 +71,17 @@
     width: 156px;
     display: none;
   }
+  .unabletosubmit {
+    position: absolute;
+    top: -25px;
+    left: -97px;
+    padding: 2px;
+    width: 194px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid red;
+    display: none;
+  }
   .tilerack1 {
     background-color: darkred;
     padding: 4px 0 8px 0;

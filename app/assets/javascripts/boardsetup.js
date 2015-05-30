@@ -1,6 +1,8 @@
 $(document).ready(function() {
   var pointsforbingo = 30;
   var validwords = [];
+  var badwords = [];
+  var goodwords = [];
   $(".dw").text("DW");
   $(".dl").text("DL");
   $(".tl").text("TL");
@@ -271,24 +273,44 @@ $(document).ready(function() {
     letterstoplay.push($(this).find("span").text());
   })
   $(".button.submit").click(function() {
+    badwords = [];
+    goodwords = [];
     if (submitstatus == "closed") {
       $.ajax({
         url: "/games/checkwords",
         type: "POST",
+        dataType:'json',
         data: { 'potentialwords' : validwords,
                 'lettersgiven' : letterstoplay }
       })
         .done(function(data) {
-          console.log(data)
+          badwords = data[0];
+          goodwords = data[1];
+          if (badwords.length > 0) {
+            console.log(badwords)
+            submitattemptbad(badwords, goodwords);
+          } else {
+            submitattemptgood(goodwords);
+          }
         })
-      console.log(validwords);
-      $(".button.confirmsubmit").slideToggle(120);
-      $(this).text("Cancel");
-      submitstatus = "open";
     } else {
       $(".button.confirmsubmit").slideToggle(120);
       $(this).text("Submit");
       submitstatus = "closed";
     }
   })
+
+  function submitattemptbad(badones, goodones) {
+    $(".gamemessages span").css("color", "red");
+    $(".unabletosubmit span").text(badones[0]);
+    $(".unabletosubmit").slideDown(100);
+    setTimeout(function() {$(".unabletosubmit").slideUp(1200)}, 7000);
+    console.log(badones[0])
+  }
+  function submitattemptgood(goodones) {
+    $(".gamemessages span").css("color", "green");
+    $(".button.confirmsubmit").slideToggle(120);
+    $(".button.submit").text("Cancel");
+    submitstatus = "open";
+  }
 })

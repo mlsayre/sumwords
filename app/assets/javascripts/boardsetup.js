@@ -301,10 +301,20 @@ $(document).ready(function() {
   })
 
   function submitattemptbad(badones, goodones) {
+    var allbadones = badones.join(", ")
+    if (badones.length > 1) {
+      $(".unabletosubmit h3").text("Invalid Words");
+    } else {
+      $(".unabletosubmit h3").text("Invalid Word");
+    }
     $(".gamemessages span").css("color", "red");
-    $(".unabletosubmit span").text(badones[0]);
+    $(".unabletosubmit span").text(allbadones);
     $(".unabletosubmit").slideDown(100);
-    setTimeout(function() {$(".unabletosubmit").slideUp(1200)}, 7000);
+    $("#page-cover").show();
+    $(".unabletosubmit").click(function() {
+      $(".unabletosubmit").slideUp(150);
+      $("#page-cover").hide();
+    })
     console.log(badones[0])
   }
   function submitattemptgood(goodones) {

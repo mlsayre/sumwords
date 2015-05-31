@@ -72,15 +72,39 @@
     display: none;
   }
   .unabletosubmit {
-    position: absolute;
-    top: -25px;
-    left: -97px;
+    position: fixed;
+    z-index: 500001;
+    top: 28%;
+    left: calc(50% - 97px);
+    background-color: rgba(0,0,0,.8);
     padding: 2px;
     width: 194px;
     font-size: 14px;
     text-align: center;
     border: 1px solid red;
     display: none;
+  }
+  .unabletosubmit h3 {
+    margin: 1px 0 10px;
+    text-decoration: underline;
+  }
+  .unabletosubmit span {
+    margin-top: 6px;
+    font-size: 18px;
+  }
+  .unabletosubmit p {
+    margin: 6px 0 0;
+    font-size: 11px;
+  }
+  #page-cover {
+    z-index: 500000;
+    display: none;
+    background-color: rgba(0,0,0,.7);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
   }
   .tilerack1 {
     background-color: darkred;

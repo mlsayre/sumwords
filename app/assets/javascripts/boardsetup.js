@@ -3,6 +3,7 @@ $(document).ready(function() {
   var validwords = [];
   var badwords = [];
   var goodwords = [];
+  var strayletter = false;
   $(".dw").text("DW");
   $(".dl").text("DL");
   $(".tl").text("TL");
@@ -55,6 +56,7 @@ $(document).ready(function() {
       }
 
       function updatepointcorners() {
+        strayletter = false
         $(".boardsquare[data-placedletter!='none']").each(function() {
           var dataid = $(this).attr("data-placedletter");
           var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
@@ -69,10 +71,19 @@ $(document).ready(function() {
             var multiplier = 1;
             $('.letter[data-letter=' + dataid + '] p').removeClass("cornerpointsdl").removeClass("cornerpointstl")
           }
-          // var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
-          // var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
-          // var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
-          // var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
+          var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
+          var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
+          var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
+          var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
+
+          if (($("#" + neighborR).attr("data-placedletter") == "none") OR UNDEFINED &&
+             ($("#" + neighborL).attr("data-placedletter") == "none") &&
+             ($("#" + neighborT).attr("data-placedletter") == "none") ||
+             ($("#" + neighborB).attr("data-placedletter") == "none")) {
+            var twowaymultiplier = 2
+          } else {
+            var twowaymultiplier = 1
+          }
 
           // if ((($("#" + neighborR).attr("data-placedletter") !== "none") ||
           //    ($("#" + neighborL).attr("data-placedletter") !== "none")) &&
@@ -268,11 +279,16 @@ $(document).ready(function() {
     return boardtotal;
   }
   var submitstatus = "closed"
-  var letterstoplay = [];
-  $(".letter").each(function() {
-    letterstoplay.push($(this).find("span").text());
-  })
+
   $(".button.submit").click(function() {
+    if ($("#r4xc4").attr("data-placedletter") == "none") {
+      $(".gamemessages span").css("color", "red");
+      $(".unabletosubmit h3").text("Invalid Move");
+      $(".unabletosubmit span").text("Center tile must contain letter.");
+      $(".unabletosubmit").slideDown(100);
+      $("#page-cover").show();
+      return
+    }
     badwords = [];
     goodwords = [];
     if (submitstatus == "closed") {
@@ -281,7 +297,7 @@ $(document).ready(function() {
         type: "POST",
         dataType:'json',
         data: { 'potentialwords' : validwords,
-                'lettersgiven' : letterstoplay }
+                'id' : parseInt(document.location.pathname.replace(/[^0-9]/g,'')) }
       })
         .done(function(data) {
           badwords = data[0];
@@ -303,7 +319,7 @@ $(document).ready(function() {
   function submitattemptbad(badones, goodones) {
     var allbadones = badones.join(", ")
     if (badones.length > 1) {
-      $(".unabletosubmit h3").text("Invalid Words");
+      $(".unabletosubmit h3").text(badones.length + " Invalid Words");
     } else {
       $(".unabletosubmit h3").text("Invalid Word");
     }
@@ -311,10 +327,6 @@ $(document).ready(function() {
     $(".unabletosubmit span").text(allbadones);
     $(".unabletosubmit").slideDown(100);
     $("#page-cover").show();
-    $(".unabletosubmit").click(function() {
-      $(".unabletosubmit").slideUp(150);
-      $("#page-cover").hide();
-    })
     console.log(badones[0])
   }
   function submitattemptgood(goodones) {
@@ -323,4 +335,8 @@ $(document).ready(function() {
     $(".button.submit").text("Cancel");
     submitstatus = "open";
   }
+  $(".unabletosubmit").click(function() {
+    $(".unabletosubmit").slideUp(150);
+    $("#page-cover").hide();
+  })
 })

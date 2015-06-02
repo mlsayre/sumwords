@@ -76,11 +76,12 @@ class GamesController < ApplicationController
   end
 
   def checkwords
+    @game = Game.find(params[:id])
     @allwords = File.new("config/EnglishWords").readlines
     @allwords.map! {|word| word.gsub!("\n", "")}
     wholealphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
       "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    givenletters = (params[:lettersgiven])
+    givenletters = @game.letters.split("")
     givenletters.map! {|letter| letter.downcase}
     letterstoremove = wholealphabet - givenletters
 

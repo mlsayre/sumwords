@@ -55,49 +55,6 @@ $(document).ready(function() {
 
       }
 
-      function updatepointcorners() {
-        strayletter = false
-        $(".boardsquare[data-placedletter!='none']").each(function() {
-          var dataid = $(this).attr("data-placedletter");
-          var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
-          var boardsquareid = $(this).attr("id");
-          if ($("#" + boardsquareid).text() == "DL") {
-            var multiplier = 2;
-            $('.letter[data-letter=' + dataid + '] p').addClass("cornerpointsdl");
-          } else if ($("#" + boardsquareid).text() == "TL") {
-            var multiplier = 3;
-            $('.letter[data-letter=' + dataid + '] p').addClass("cornerpointstl");
-          } else {
-            var multiplier = 1;
-            $('.letter[data-letter=' + dataid + '] p').removeClass("cornerpointsdl").removeClass("cornerpointstl")
-          }
-          var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
-          var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
-          var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
-          var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
-
-          if ( (($("#" + neighborR).attr("data-placedletter") == "none") || ($("#" + neighborR).attr("data-placedletter") == undefined)) &&
-               (($("#" + neighborL).attr("data-placedletter") == "none") || ($("#" + neighborL).attr("data-placedletter") == undefined)) &&
-               (($("#" + neighborT).attr("data-placedletter") == "none") || ($("#" + neighborT).attr("data-placedletter") == undefined)) &&
-               (($("#" + neighborB).attr("data-placedletter") == "none") || ($("#" + neighborB).attr("data-placedletter") == undefined)) ) {
-            strayletter = true
-          }
-
-          // if ((($("#" + neighborR).attr("data-placedletter") !== "none") ||
-          //    ($("#" + neighborL).attr("data-placedletter") !== "none")) &&
-          //    (($("#" + neighborT).attr("data-placedletter") !== "none") ||
-          //    ($("#" + neighborB).attr("data-placedletter") !== "none"))) {
-          //   var twowaymultiplier = 2
-          // } else {
-          //   var twowaymultiplier = 1
-          // }
-
-
-          var modpoints = stockpoints * multiplier; // * twowaymultiplier;
-
-          $('.letter[data-letter=' + dataid + '] p').text(modpoints);
-        });
-      }
       updatepointcorners();
       $(".gamemessages span").text(function() {
         $(this).css("color", "yellow");
@@ -128,10 +85,11 @@ $(document).ready(function() {
           $(this).attr("data-placedletterpoints", "none");
         }
       });
-        // if ($(this).find("span") == "DL") {
-        //   $(ui.draggable + " span").text("HI")
-        // }
-
+      updatepointcorners();
+      $(".gamemessages span").text(function() {
+        $(this).css("color", "yellow");
+        return getpoints();
+      });
     }
   });
 
@@ -155,6 +113,50 @@ $(document).ready(function() {
         return 0;
       });
   })
+
+  function updatepointcorners() {
+    strayletter = false
+    $(".boardsquare[data-placedletter!='none']").each(function() {
+      var dataid = $(this).attr("data-placedletter");
+      var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
+      var boardsquareid = $(this).attr("id");
+      if ($("#" + boardsquareid).text() == "DL") {
+        var multiplier = 2;
+        $('.letter[data-letter=' + dataid + '] p').addClass("cornerpointsdl");
+      } else if ($("#" + boardsquareid).text() == "TL") {
+        var multiplier = 3;
+        $('.letter[data-letter=' + dataid + '] p').addClass("cornerpointstl");
+      } else {
+        var multiplier = 1;
+        $('.letter[data-letter=' + dataid + '] p').removeClass("cornerpointsdl").removeClass("cornerpointstl")
+      }
+      var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
+      var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
+      var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
+      var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
+
+      if ( (($("#" + neighborR).attr("data-placedletter") == "none") || ($("#" + neighborR).attr("data-placedletter") == undefined)) &&
+           (($("#" + neighborL).attr("data-placedletter") == "none") || ($("#" + neighborL).attr("data-placedletter") == undefined)) &&
+           (($("#" + neighborT).attr("data-placedletter") == "none") || ($("#" + neighborT).attr("data-placedletter") == undefined)) &&
+           (($("#" + neighborB).attr("data-placedletter") == "none") || ($("#" + neighborB).attr("data-placedletter") == undefined)) ) {
+        strayletter = true
+      }
+
+      // if ((($("#" + neighborR).attr("data-placedletter") !== "none") ||
+      //    ($("#" + neighborL).attr("data-placedletter") !== "none")) &&
+      //    (($("#" + neighborT).attr("data-placedletter") !== "none") ||
+      //    ($("#" + neighborB).attr("data-placedletter") !== "none"))) {
+      //   var twowaymultiplier = 2
+      // } else {
+      //   var twowaymultiplier = 1
+      // }
+
+
+      var modpoints = stockpoints * multiplier; // * twowaymultiplier;
+
+      $('.letter[data-letter=' + dataid + '] p').text(modpoints);
+    });
+  }
 
   function getpoints() {
     var words = [];
@@ -278,23 +280,33 @@ $(document).ready(function() {
   }
   var submitstatus = "closed"
 
+  function errorOnSubmission(errormessage) {
+    $(".gamemessages span").css("color", "red");
+    $(".unabletosubmit h3").text("Invalid Move");
+    $(".unabletosubmit span").text(errormessage);
+    $(".unabletosubmit").slideDown(100);
+    $("#page-cover").show();
+  }
+
   $(".button.submit").click(function() {
+    // check to see if no letters have been played
+    if ($(".boardsquare[data-placedletter!='none']").length == 0) {
+      errorOnSubmission("Can't submit an empty board.");
+      return
+    }
+    // check to see if only center tile is played
+    if (($(".boardsquare[data-placedletter!='none']").length == 1) && ($("#r4xc4").attr("data-placedletter") !== "none")) {
+      errorOnSubmission("Please play more than one letter.");
+      return
+    }
     // check to make sure center square is played
     if ($("#r4xc4").attr("data-placedletter") == "none") {
-      $(".gamemessages span").css("color", "red");
-      $(".unabletosubmit h3").text("Invalid Move");
-      $(".unabletosubmit span").text("The center tile must contain a letter.");
-      $(".unabletosubmit").slideDown(100);
-      $("#page-cover").show();
+      errorOnSubmission("The center tile must contain a letter.");
       return
     }
     // check to make sure all words are connected
     if (strayletter == true) {
-      $(".gamemessages span").css("color", "red");
-      $(".unabletosubmit h3").text("Invalid Move");
-      $(".unabletosubmit span").text("Words must all be connected.");
-      $(".unabletosubmit").slideDown(100);
-      $("#page-cover").show();
+      errorOnSubmission("Words must all be connected.");
       return
     }
     // then submit words for validation

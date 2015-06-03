@@ -76,13 +76,11 @@ $(document).ready(function() {
           var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
           var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
 
-          if (($("#" + neighborR).attr("data-placedletter") == "none") OR UNDEFINED &&
-             ($("#" + neighborL).attr("data-placedletter") == "none") &&
-             ($("#" + neighborT).attr("data-placedletter") == "none") ||
-             ($("#" + neighborB).attr("data-placedletter") == "none")) {
-            var twowaymultiplier = 2
-          } else {
-            var twowaymultiplier = 1
+          if ( (($("#" + neighborR).attr("data-placedletter") == "none") || ($("#" + neighborR).attr("data-placedletter") == undefined)) &&
+               (($("#" + neighborL).attr("data-placedletter") == "none") || ($("#" + neighborL).attr("data-placedletter") == undefined)) &&
+               (($("#" + neighborT).attr("data-placedletter") == "none") || ($("#" + neighborT).attr("data-placedletter") == undefined)) &&
+               (($("#" + neighborB).attr("data-placedletter") == "none") || ($("#" + neighborB).attr("data-placedletter") == undefined)) ) {
+            strayletter = true
           }
 
           // if ((($("#" + neighborR).attr("data-placedletter") !== "none") ||
@@ -281,14 +279,25 @@ $(document).ready(function() {
   var submitstatus = "closed"
 
   $(".button.submit").click(function() {
+    // check to make sure center square is played
     if ($("#r4xc4").attr("data-placedletter") == "none") {
       $(".gamemessages span").css("color", "red");
       $(".unabletosubmit h3").text("Invalid Move");
-      $(".unabletosubmit span").text("Center tile must contain letter.");
+      $(".unabletosubmit span").text("The center tile must contain a letter.");
       $(".unabletosubmit").slideDown(100);
       $("#page-cover").show();
       return
     }
+    // check to make sure all words are connected
+    if (strayletter == true) {
+      $(".gamemessages span").css("color", "red");
+      $(".unabletosubmit h3").text("Invalid Move");
+      $(".unabletosubmit span").text("Words must all be connected.");
+      $(".unabletosubmit").slideDown(100);
+      $("#page-cover").show();
+      return
+    }
+    // then submit words for validation
     badwords = [];
     goodwords = [];
     if (submitstatus == "closed") {

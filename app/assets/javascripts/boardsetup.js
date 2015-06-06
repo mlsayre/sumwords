@@ -332,7 +332,7 @@ $(document).ready(function() {
         })
     } else {
       $(".button.confirmsubmit").slideToggle(120);
-      $(this).text("Submit");
+      $(".button.submit span").text("Submit");
       submitstatus = "closed";
     }
   })
@@ -353,7 +353,7 @@ $(document).ready(function() {
   function submitattemptgood(goodones) {
     $(".gamemessages span").css("color", "green");
     $(".button.confirmsubmit").slideToggle(120);
-    $(".button.submit").text("Cancel");
+    $(".button.submit span").text("Cancel");
     submitstatus = "open";
   }
   $(".unabletosubmit").click(function() {

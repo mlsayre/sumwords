@@ -3,7 +3,7 @@ $(document).ready(function() {
   var validwords = [];
   var badwords = [];
   var goodwords = [];
-  var strayletter = false;
+  var playedspaces = [];
   $(".dw").text("DW");
   $(".dl").text("DL");
   $(".tl").text("TL");
@@ -115,7 +115,6 @@ $(document).ready(function() {
   })
 
   function updatepointcorners() {
-    strayletter = false
     $(".boardsquare[data-placedletter!='none']").each(function() {
       var dataid = $(this).attr("data-placedletter");
       var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
@@ -130,17 +129,10 @@ $(document).ready(function() {
         var multiplier = 1;
         $('.letter[data-letter=' + dataid + '] p').removeClass("cornerpointsdl").removeClass("cornerpointstl")
       }
-      var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
-      var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
-      var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
-      var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
-
-      if ( (($("#" + neighborR).attr("data-placedletter") == "none") || ($("#" + neighborR).attr("data-placedletter") == undefined)) &&
-           (($("#" + neighborL).attr("data-placedletter") == "none") || ($("#" + neighborL).attr("data-placedletter") == undefined)) &&
-           (($("#" + neighborT).attr("data-placedletter") == "none") || ($("#" + neighborT).attr("data-placedletter") == undefined)) &&
-           (($("#" + neighborB).attr("data-placedletter") == "none") || ($("#" + neighborB).attr("data-placedletter") == undefined)) ) {
-        strayletter = true
-      }
+      // var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
+      // var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
+      // var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
+      // var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
 
       // if ((($("#" + neighborR).attr("data-placedletter") !== "none") ||
       //    ($("#" + neighborL).attr("data-placedletter") !== "none")) &&
@@ -304,8 +296,11 @@ $(document).ready(function() {
       errorOnSubmission("The center tile must contain a letter.");
       return
     }
-    // check to make sure all words are connected
-    if (strayletter == true) {
+    // make sure all words are connected
+    playedspaces = [];
+    checkContinuity($(".boardsquare[data-placedletter!='none']:first").attr("id"));
+    console.log(playedspaces);
+    if (playedspaces.length < $(".boardsquare[data-placedletter!='none']").length) {
       errorOnSubmission("Words must all be connected.");
       return
     }
@@ -333,6 +328,7 @@ $(document).ready(function() {
     } else {
       $(".button.confirmsubmit").slideToggle(120);
       $(".button.submit span").text("Submit");
+      $("#submit-cover").hide();
       submitstatus = "closed";
     }
   })
@@ -353,6 +349,7 @@ $(document).ready(function() {
   function submitattemptgood(goodones) {
     $(".gamemessages span").css("color", "green");
     $(".button.confirmsubmit").slideToggle(120);
+    $("#submit-cover").show();
     $(".button.submit span").text("Cancel");
     submitstatus = "open";
   }
@@ -360,6 +357,41 @@ $(document).ready(function() {
     $(".unabletosubmit").slideUp(150);
     $("#page-cover").hide();
   });
+
+  function checkContinuity(tile) {
+    var neighborR = tile.substring(0,4) + ((parseInt(tile.charAt(4)) + 1).toString());
+    var neighborL = tile.substring(0,4) + ((parseInt(tile.charAt(4)) - 1).toString());
+    var neighborT = tile.substring(0,1) + ((parseInt(tile.charAt(1)) - 1).toString()) + tile.substring(2,5);
+    var neighborB = tile.substring(0,1) + ((parseInt(tile.charAt(1)) + 1).toString()) + tile.substring(2,5);
+
+    if (playedspaces.indexOf(tile) == -1) {
+      playedspaces.push(tile);
+    }
+    if (($("#" + neighborR).attr("data-placedletter") !== "none") && ($("#" + neighborR).attr("data-placedletter") !== undefined)) {
+      if (playedspaces.indexOf(neighborR) == -1) {
+        playedspaces.push(neighborR);
+        checkContinuity(neighborR);
+      }
+    }
+    if (($("#" + neighborL).attr("data-placedletter") !== "none") && ($("#" + neighborL).attr("data-placedletter") !== undefined)) {
+      if (playedspaces.indexOf(neighborL) == -1) {
+        playedspaces.push(neighborL);
+        checkContinuity(neighborL);
+      }
+    }
+    if (($("#" + neighborT).attr("data-placedletter") !== "none") && ($("#" + neighborT).attr("data-placedletter") !== undefined)) {
+      if (playedspaces.indexOf(neighborT) == -1) {
+        playedspaces.push(neighborT);
+        checkContinuity(neighborT);
+      }
+    }
+    if (($("#" + neighborB).attr("data-placedletter") !== "none") && ($("#" + neighborB).attr("data-placedletter") !== undefined)) {
+      if (playedspaces.indexOf(neighborB) == -1) {
+        playedspaces.push(neighborB);
+        checkContinuity(neighborB);
+      }
+    }
+  }
 
   // $(window).resize(function() {
   //   $(".letter").each( function() {

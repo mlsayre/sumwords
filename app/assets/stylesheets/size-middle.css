@@ -66,6 +66,9 @@
     margin-bottom: 9px;
     height: 35px;
   }
+  .button.submit {
+    z-index: 41;
+  }
   .button.submit span, .button.reset span {
     font-size: 13px;
     position: relative;
@@ -78,6 +81,7 @@
     padding: 4px 1px;
     width: 126px;
     display: none;
+    z-index: 41;
   }
   .unabletosubmit {
     position: fixed;
@@ -108,6 +112,16 @@
     z-index: 500000;
     display: none;
     background-color: rgba(0,0,0,.7);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  #submit-cover {
+    z-index: 40;
+    display: none;
+    background-color: rgba(0,0,0,.2);
     position: fixed;
     width: 100%;
     height: 100%;

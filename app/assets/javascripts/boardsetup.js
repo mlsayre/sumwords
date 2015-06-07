@@ -359,5 +359,23 @@ $(document).ready(function() {
   $(".unabletosubmit").click(function() {
     $(".unabletosubmit").slideUp(150);
     $("#page-cover").hide();
-  })
+  });
+
+  // $(window).resize(function() {
+  //   $(".letter").each( function() {
+  //     var dataid = $(this).attr("data-letter");
+  //     if ($(".boardsquare[data-placedletter='" + dataid + "']")) {
+  //       var target = $(".boardsquare[data-placedletter='" + dataid + "']")
+  //       if (dataid == target.attr("data-placedletter")) {
+  //         var position = {}
+  //         position = target.position($(this));
+  //         $(this).animate({
+  //           "top" : 0 - position.top,
+  //           "left" : 0 - position.left
+  //         }, 300);
+  //         console.log(position)
+  //       }
+  //     }
+  //   });
+  // });
 })

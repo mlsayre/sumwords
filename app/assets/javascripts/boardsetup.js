@@ -367,30 +367,18 @@ $(document).ready(function() {
     if (playedspaces.indexOf(tile) == -1) {
       playedspaces.push(tile);
     }
-    if (($("#" + neighborR).attr("data-placedletter") !== "none") && ($("#" + neighborR).attr("data-placedletter") !== undefined)) {
-      if (playedspaces.indexOf(neighborR) == -1) {
-        playedspaces.push(neighborR);
-        checkContinuity(neighborR);
+    function checkNeighbor(neighbor) {
+      if (($("#" + neighbor).attr("data-placedletter") !== "none") && ($("#" + neighbor).attr("data-placedletter") !== undefined)) {
+        if (playedspaces.indexOf(neighbor) == -1) {
+          playedspaces.push(neighbor);
+          checkContinuity(neighbor);
+        }
       }
     }
-    if (($("#" + neighborL).attr("data-placedletter") !== "none") && ($("#" + neighborL).attr("data-placedletter") !== undefined)) {
-      if (playedspaces.indexOf(neighborL) == -1) {
-        playedspaces.push(neighborL);
-        checkContinuity(neighborL);
-      }
-    }
-    if (($("#" + neighborT).attr("data-placedletter") !== "none") && ($("#" + neighborT).attr("data-placedletter") !== undefined)) {
-      if (playedspaces.indexOf(neighborT) == -1) {
-        playedspaces.push(neighborT);
-        checkContinuity(neighborT);
-      }
-    }
-    if (($("#" + neighborB).attr("data-placedletter") !== "none") && ($("#" + neighborB).attr("data-placedletter") !== undefined)) {
-      if (playedspaces.indexOf(neighborB) == -1) {
-        playedspaces.push(neighborB);
-        checkContinuity(neighborB);
-      }
-    }
+    checkNeighbor(neighborR);
+    checkNeighbor(neighborL);
+    checkNeighbor(neighborT);
+    checkNeighbor(neighborB);
   }
 
   // $(window).resize(function() {

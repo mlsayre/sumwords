@@ -79,7 +79,7 @@ $(document).ready(function() {
           $(this).attr("data-placedletter", "none");
         }
       });
-      var origpoints = ui.helper.context.attributes[2].value;
+      var origpoints = parseInt(ui.helper.context.attributes[2].value);
       $(".boardsquare").each(function() {
         if ($(this).attr("data-placedletterpoints") == origpoints) {
           $(this).attr("data-placedletterpoints", "none");

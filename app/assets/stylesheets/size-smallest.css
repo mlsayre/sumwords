@@ -1,25 +1,25 @@
 @media screen and (max-width: 359px) {
   .gamearea {
-    width: 320px;
+    width: 314px;
     margin: 0 auto;
   }
   .gameboard {
-    width: 503px;
-    height: 503px;
+    width: 312px;
+    height: 312px;
     border: 2px inset grey;
-    margin: 16px auto 0;
+    margin: 8px auto 0;
   }
   table {
     background-color: darkslategrey;
     border-radius: 5px;
   }
   .boardsquare {
-    border: 1px inset darkorange;
-    width: 65px;
-    height: 65px;
+    /*border: 1px inset darkorange;*/
+    width: 39px;
+    height: 39px;
     background-color: blanchedalmond;
     color: beige;
-    font-size: 30px;
+    font-size: 23px;
     text-align: center;
   }
   .dw {
@@ -39,42 +39,53 @@
   }
   .gamemessages {
     text-align: center;
-    margin: -4px 0 -34px;
+    margin: -7px 0 -34px;
   }
   .gamemessages span {
-    font-size: 22px;
+    font-size: 15px;
     color: green;
   }
   .gamemessages p {
     display: inline-block;
-    font-size: 22px;
+    font-size: 15px;
     line-height: .2;
   }
   .letterracks {
     display: inline-block;
+    position: relative;
+    left: 2px;
   }
   .ui {
     display: inline-block;
     position: relative;
-    bottom: 98px;
+    bottom: 16px;
+    left: 2px;
   }
   .button.submit, .button.reset {
     display: block;
-    width: 90%;
-    margin-bottom: 10px;
+    margin-bottom: 9px;
+    padding: 19px 10px;
+  }
+  .button.submit {
+    z-index: 41;
+  }
+  .button.submit span, .button.reset span {
+    font-size: 13px;
   }
   .button.confirmsubmit {
     position: absolute;
-    top: -34px;
-    left: -72px;
-    padding: 8px;
-    width: 156px;
+    top: -18px;
+    width: 126px;
     display: none;
+    z-index: 41;
+    left: -150px;
+    font-size: 11px;
+    padding: 2px 0px;
   }
   .unabletosubmit {
     position: fixed;
     z-index: 500001;
-    top: 28%;
+    top: 17%;
     left: calc(50% - 97px);
     background-color: rgba(0,0,0,.8);
     padding: 2px;
@@ -106,33 +117,43 @@
     top: 0;
     left: 0;
   }
+  #submit-cover {
+    z-index: 40;
+    display: none;
+    background-color: rgba(0,0,0,.2);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
   .tilerack1 {
     background-color: darkred;
-    padding: 4px 0 8px 0;
+    padding: 4px 0 1px 0;
     margin: 28px 0 6px;
-    width: 396px;
+    width: 240px;
     text-align: center;
     border-bottom: 3px solid brown;
   }
   .tilerack2 {
     background-color: darkred;
-    padding: 4px 0 8px 0;
+    padding: 4px 0 1px 0;
     margin: 8px 0 6px;
-    width: 396px;
+    width: 240px;
     text-align: center;
     border-bottom: 3px solid brown;
   }
   .tileholder {
     display: inline-block;
-    margin: 0 3px;
-    width: 67px;
-    height: 67px;
+    margin: 0 1px;
+    width: 40px;
+    height: 40px;
     border: 1px solid red;
   }
   .letter {
-    width: 66px;
-    height: 66px;
-    font-size: 56px;
+    width: 40px;
+    height: 40px;
+    font-size: 32px;
     background-color: darkorange;
     text-align: center;
     border: 1px solid orange;
@@ -141,25 +162,25 @@
   }
   .letter p {
     position: relative;
-    top: -30px;
-    left: 24px;
+    top: -34px;
+    left: 13px;
   }
   .letter span {
     position: relative;
-    top: 23px;
+    top: 13px;
   }
   .letter:hover {
     cursor: pointer;
   }
   .cornerpointsdl {
     color: lightblue;
-    font-size: .28em;
+    font-size: .33em;
     top: -32px !important;
     font-weight: 700;
   }
   .cornerpointstl {
     color: royalblue;
-    font-size: .28em;
+    font-size: .33em;
     top: -32px !important;
     font-weight: 700;
   }

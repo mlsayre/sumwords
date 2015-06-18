@@ -30,7 +30,7 @@ $(document).ready(function() {
   });
   $(".boardsquare").droppable({
     greedy: true,
-    tolerance: "fit",
+    tolerance: "intersect",
     drop: function(event,ui){
       var letterAdd = ui.helper.context.attributes[1].value;
       if ($(this).attr("data-placedletter") == "none") {
@@ -60,6 +60,15 @@ $(document).ready(function() {
         $(this).css("color", "yellow");
         return getpoints();
       });
+      var $this = $(this);
+      ui.draggable.position({
+        my: "center",
+        at: "center",
+        of: $this,
+        using: function(pos) {
+          $(this).animate(pos, 50, "linear");
+        }
+      });
     },
     // out: function(event,ui){
     //   var letterAdd = ui.helper.context.attributes[1].value;
@@ -68,7 +77,7 @@ $(document).ready(function() {
   });
   $(".tileholder").droppable({
     greedy: false,
-    tolerance: "fit",
+    tolerance: "intersect",
     drop: function(event,ui){
       var tileorigpoints = parseInt(ui.draggable.context.attributes[2].value);
       ui.helper.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
@@ -89,6 +98,15 @@ $(document).ready(function() {
       $(".gamemessages span").text(function() {
         $(this).css("color", "yellow");
         return getpoints();
+      });
+      var $this = $(this);
+      ui.draggable.position({
+        my: "center",
+        at: "center",
+        of: $this,
+        using: function(pos) {
+          $(this).animate(pos, 50, "linear");
+        }
       });
     }
   });

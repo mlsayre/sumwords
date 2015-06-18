@@ -26,7 +26,6 @@ $(document).ready(function() {
     drop: function(event,ui){
       ui.draggable.draggable('option','revert', true);
     },
-
   });
   $(".boardsquare").droppable({
     greedy: true,

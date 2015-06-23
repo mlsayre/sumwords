@@ -154,7 +154,7 @@
   .letter {
     width: 44px;
     height: 44px;
-    font-size: 40px;
+    font-size: 37px;
     background-color: darkorange;
     text-align: center;
     border: 1px solid orange;
@@ -164,11 +164,12 @@
   .letter p {
     position: relative;
     top: -32px;
-    left: 17px;
+    left: 16px;
+    font-size: 11px;
   }
   .letter span {
     position: relative;
-    top: 13px;
+    top: 15px;
   }
   .letter:hover {
     cursor: pointer;

@@ -298,6 +298,7 @@ $(document).ready(function() {
   }
 
   $(".button.submit").click(function() {
+    $(".button.submit").addClass("unclickable");
     // check to see if no letters have been played
     if ($(".boardsquare[data-placedletter!='none']").length == 0) {
       errorOnSubmission("Can't submit an empty board.");
@@ -341,6 +342,7 @@ $(document).ready(function() {
           } else {
             submitattemptgood(goodwords);
           }
+          $(".button.submit").removeClass("unclickable");
         })
     } else {
       $(".button.confirmsubmit").slideToggle(120);
@@ -373,6 +375,7 @@ $(document).ready(function() {
   $(".unabletosubmit").click(function() {
     $(".unabletosubmit").slideUp(150);
     $("#page-cover").hide();
+    $(".button.submit").removeClass("unclickable");
   });
 
   function checkContinuity(tile) {

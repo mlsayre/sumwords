@@ -145,3 +145,10 @@ button, .button {
   width: 100%;
   margin: 0 auto;
 }
+.button.finalcancel:hover {
+  background-color: rgb(226, 0, 0);
+}
+.button.finalcancel {
+  background-color: red;
+  transition: background-color 300ms ease-out;
+}

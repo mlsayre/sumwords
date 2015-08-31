@@ -72,15 +72,18 @@
   .button.submit span, .button.reset span {
     font-size: 13px;
   }
-  .button.confirmsubmit {
-    position: absolute;
-    top: -18px;
-    width: 126px;
+  .confirmsubmit {
+    position: fixed;
+    z-index: 500001;
+    top: 17%;
+    left: calc(50% - 106px);
+    background-color: rgba(0,0,0,.8);
+    padding: 8px;
+    width: 194px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid red;
     display: none;
-    z-index: 41;
-    left: -150px;
-    font-size: 11px;
-    padding: 2px 0px;
   }
   .unabletosubmit {
     position: fixed;

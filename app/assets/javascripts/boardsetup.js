@@ -287,7 +287,6 @@ $(document).ready(function() {
     $(".confirmsubmit span").text(boardtotal);
     return boardtotal;
   }
-  var submitstatus = "closed"
 
   function errorOnSubmission(errormessage) {
     $(".gamemessages span").css("color", "red");
@@ -298,7 +297,6 @@ $(document).ready(function() {
   }
 
   $(".button.submit").click(function() {
-    $(".button.submit").addClass("unclickable");
     // check to see if no letters have been played
     if ($(".boardsquare[data-placedletter!='none']").length == 0) {
       errorOnSubmission("Can't submit an empty board.");
@@ -325,31 +323,23 @@ $(document).ready(function() {
     // then submit words for validation
     badwords = [];
     goodwords = [];
-    if (submitstatus == "closed") {
-      $.ajax({
-        url: "/games/checkwords",
-        type: "POST",
-        dataType:'json',
-        data: { 'potentialwords' : validwords,
-                'id' : parseInt(document.location.pathname.replace(/[^0-9]/g,'')) }
+    $.ajax({
+      url: "/games/checkwords",
+      type: "POST",
+      dataType:'json',
+      data: { 'potentialwords' : validwords,
+              'id' : parseInt(document.location.pathname.replace(/[^0-9]/g,'')) }
+    })
+      .done(function(data) {
+        badwords = data[0];
+        goodwords = data[1];
+        if (badwords.length > 0) {
+          console.log(badwords)
+          submitattemptbad(badwords, goodwords);
+        } else {
+          submitattemptgood(goodwords);
+        }
       })
-        .done(function(data) {
-          badwords = data[0];
-          goodwords = data[1];
-          if (badwords.length > 0) {
-            console.log(badwords)
-            submitattemptbad(badwords, goodwords);
-          } else {
-            submitattemptgood(goodwords);
-          }
-          $(".button.submit").removeClass("unclickable");
-        })
-    } else {
-      $(".button.confirmsubmit").slideToggle(120);
-      $(".button.submit span").text("Submit");
-      $("#submit-cover").hide();
-      submitstatus = "closed";
-    }
   })
 
   function submitattemptbad(badones, goodones) {
@@ -367,15 +357,16 @@ $(document).ready(function() {
   }
   function submitattemptgood(goodones) {
     $(".gamemessages span").css("color", "green");
-    $(".button.confirmsubmit").slideToggle(120);
-    $("#submit-cover").show();
-    $(".button.submit span").text("Cancel");
-    submitstatus = "open";
+    $(".confirmsubmit").slideToggle(120);
+    $("#page-cover").show();
+    $(".finalcancel").click(function() {
+      $(".confirmsubmit").slideUp(120);
+      $("#page-cover").hide();
+    })
   }
   $(".unabletosubmit").click(function() {
     $(".unabletosubmit").slideUp(150);
     $("#page-cover").hide();
-    $(".button.submit").removeClass("unclickable");
   });
 
   function checkContinuity(tile) {

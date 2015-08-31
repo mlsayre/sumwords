@@ -66,14 +66,18 @@
   .button.submit {
     z-index: 41;
   }
-  .button.confirmsubmit {
-    position: absolute;
-    top: -34px;
-    left: -72px;
+  .confirmsubmit {
+    position: fixed;
+    z-index: 500001;
+    top: 28%;
+    left: calc(50% - 106px);
+    background-color: rgba(0,0,0,.8);
     padding: 8px;
-    width: 156px;
+    width: 194px;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid red;
     display: none;
-    z-index: 41;
   }
   .unabletosubmit {
     position: fixed;

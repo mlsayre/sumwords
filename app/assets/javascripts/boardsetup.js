@@ -392,6 +392,43 @@ $(document).ready(function() {
     checkNeighbor(neighborB);
   }
 
+  // when submitting board
+  $(".finalsubmit").click(function() {
+    var finalboardpoints = getpoints();
+    var finaltilepositions = function() {
+      return "final positions here"
+    }
+    $.ajax({
+      url: "/gamedata/gamecompleted",
+      type: "POST",
+      dataType:'json',
+      data: { 'finalpoints' : finalboardpoints,
+              'finalpositions' : finaltilepositions,
+              'game_id' : parseInt(document.location.pathname.replace(/[^0-9]/g,'')) }
+    })
+      .done(function(data) {
+        var completedmessage = data[0];
+        var userloggedin = data[1];
+        if (userloggedin == 0) {
+          $(".confirmsubmit").addClass("clicktoclose");
+          $(".confirmsubmit").text(completedmessage).append("<br><br>Click to close.");
+          $(".clicktoclose").click(function() {
+            $(".confirmsubmit").slideToggle(120);
+            $("#page-cover").hide();
+            $(".confirmsubmit").removeClass("clicktoclose");
+          })
+        } else {
+          $(".confirmsubmit").addClass("clicktohighscores");
+          $(".confirmsubmit").text(completedmessage).append("<br><br>Click to see high scores.");
+          $(".clicktohighscores").click(function() {
+            
+          })
+        }
+      })
+  })
+
+  
+
   // $(window).resize(function() {
   //   $(".letter").each( function() {
   //     var dataid = $(this).attr("data-letter");

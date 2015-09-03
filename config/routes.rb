@@ -6,6 +6,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :gamedata do
+    collection do
+      post 'gamecompleted'
+    end
+  end
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,5 +1,23 @@
 class GamedataController < ApplicationController
 
+  def gamecompleted
+    if current_user
+      @user_id = current_user.id
+      @game_id = (params[:game_id])
+      @finalpoints = (params[:finalpoints])
+      @finaltilepositions = (params[:finalpositions])
+
+      @gamecompletemessage = "Score successfully submitted."
+      @userloggedin = 1
+
+    else
+      @gamecompletemessage = "Join or log in to track your high scores and compare them to other players!"
+      @userloggedin = 0
+
+    render :json => [@gamecompletemessage, @userloggedin]
+
+    end
+  end
 
   private
   # Use callbacks to share common setup or constraints between actions.

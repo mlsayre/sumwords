@@ -396,7 +396,17 @@ $(document).ready(function() {
   $(".finalsubmit").click(function() {
     var finalboardpoints = getpoints();
     var finaltilepositions = function() {
-      return "final positions here"
+      var finaltilearray = [];
+      for (var i = 1; i <= 9; i++) {
+        var tilepos;
+        tilepos = $('*[data-placedletter$="letter0' + i + '"]').attr("id");
+        if (tilepos === undefined) { tilepos = "none"}
+        finaltilearray.push(tilepos);
+      }
+      var lasttilepos = $('*[data-placedletter$="letter10"]').attr("id");
+      if (lasttilepos === undefined) { lasttilepos = "none"}
+      finaltilearray.push(lasttilepos);
+      return finaltilearray;
     }
     $.ajax({
       url: "/gamedata/gamecompleted",

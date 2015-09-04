@@ -7,6 +7,14 @@ class GamedataController < ApplicationController
       @finalpoints = (params[:finalpoints])
       @finaltilepositions = (params[:finalpositions])
 
+      if Gamedata.where('game_id = ?', @game_id).where(:user_id => @user_id).first
+        @gamedata = Gamedata.where('game_id = ?', @game_id).where(:user_id => @user_id).first
+        @gamedata.update_attributes!(:score => @finalpoints, :finaltiles => @finaltilepositions)
+      else
+        # create new entry...
+        @gamedata = Gamedata.where(:user_id => @user_id).where('game_id = ?', @game_id).first
+      end
+
       @gamecompletemessage = "Score successfully submitted."
       @userloggedin = 1
 

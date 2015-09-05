@@ -406,6 +406,7 @@ $(document).ready(function() {
       var lasttilepos = $('*[data-placedletter$="letter10"]').attr("id");
       if (lasttilepos === undefined) { lasttilepos = "none"}
       finaltilearray.push(lasttilepos);
+      finaltilearray.join();
       return finaltilearray;
     }
     $.ajax({
@@ -431,13 +432,13 @@ $(document).ready(function() {
           $(".confirmsubmit").addClass("clicktohighscores");
           $(".confirmsubmit").text(completedmessage).append("<br><br>Click to see high scores.");
           $(".clicktohighscores").click(function() {
-            
+
           })
         }
       })
   })
 
-  
+
 
   // $(window).resize(function() {
   //   $(".letter").each( function() {

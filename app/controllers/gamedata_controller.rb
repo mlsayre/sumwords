@@ -12,7 +12,9 @@ class GamedataController < ApplicationController
         @gamedata.update_attributes!(:score => @finalpoints, :finaltiles => @finaltilepositions)
       else
         # create new entry...
-        @gamedata = Gamedata.where(:user_id => @user_id).where('game_id = ?', @game_id).first
+        @gamedata = Gamedata.new
+        @gamedata.update_attributes!(:game_id => @game_id, :user_id => @user_id,
+          :score => @finalpoints, :finaltiles => @finaltilepositions)
       end
 
       @gamecompletemessage = "Score successfully submitted."
@@ -21,10 +23,10 @@ class GamedataController < ApplicationController
     else
       @gamecompletemessage = "Join or log in to track your high scores and compare them to other players!"
       @userloggedin = 0
+    end
 
     render :json => [@gamecompletemessage, @userloggedin]
 
-    end
   end
 
   private

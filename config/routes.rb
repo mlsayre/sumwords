@@ -19,6 +19,12 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'pages#landing'
 
+  authenticated :user do
+    root :to => 'games#index', as: :authenticated_root
+  end
+
+  match 'main' => 'games#index', via: [:get, :post]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

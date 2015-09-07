@@ -210,4 +210,8 @@
     text-align: center;
     margin-top: 80px;
   }
+  .button.mainplay {
+    margin: 40px auto 0;
+    display: block;
+  }
 }

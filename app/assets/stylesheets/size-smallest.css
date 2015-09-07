@@ -192,13 +192,23 @@
     border: red 1px solid;
     -webkit-backface-visibility: hidden;
     cursor: auto !important;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
   }
   .landingletter p {
-    left: 13px;
+    left: 12px;
+  }
+  .landingletter span {
+    top: 9px;
   }
   .landingtitle {
     display: block;
     text-align: center;
     margin-top: 20px;
+  }
+  .button.mainplay {
+    margin: 30px auto 0;
+    display: block;
   }
 }

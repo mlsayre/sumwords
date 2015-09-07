@@ -127,51 +127,60 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(game_params)
+    if current_user
+      @game = Game.new
 
-    # randomize corners
-    cornerrand = rand(1..2)
-    if cornerrand == 1
-      @upperleftspace = " dw"
-      @lowerrightspace = " dw"
-    elsif cornerrand == 2
-      @upperrightspace = " dw"
-      @lowerleftspace = " dw"
-    end
-    @game.update(:upperleftspace => @upperleftspace, :upperrightspace => @upperrightspace,
-      :lowerleftspace => @lowerleftspace, :lowerrightspace => @lowerrightspace)
-
-
-    # randomize other board spaces
-    randomtilearray = [" dl", " dl", " dl", " dl", " dl", " tl", " tl", " tl", "", "", "", "", "", "", "", "" ]
-    randomtilearray.shuffle!
-    @game.update(:randspace01 => randomtilearray[0], :randspace02 => randomtilearray[1],
-                 :randspace03 => randomtilearray[2], :randspace04 => randomtilearray[3],
-                 :randspace05 => randomtilearray[4], :randspace06 => randomtilearray[5],
-                 :randspace07 => randomtilearray[6], :randspace08 => randomtilearray[7],
-                 :randspace09 => randomtilearray[8], :randspace10 => randomtilearray[9],
-                 :randspace11 => randomtilearray[10], :randspace12 => randomtilearray[11],
-                 :randspace13 => randomtilearray[12], :randspace14 => randomtilearray[13],
-                 :randspace15 => randomtilearray[14], :randspace16 => randomtilearray[15])
-
-    # pick 10 letters
-    def pickletters
-      @potentialletters = File.new("config/LetterDistribution").readlines.sample(10).join.gsub("\n", "")
-      if @potentialletters.count("AEIOU") <= 3 || @potentialletters.count("AEIOU") >= 6
-        pickletters
-      else
-        @game.update(:letters => @potentialletters)
+      # randomize corners
+      cornerrand = rand(1..2)
+      if cornerrand == 1
+        @upperleftspace = " dw"
+        @lowerrightspace = " dw"
+      elsif cornerrand == 2
+        @upperrightspace = " dw"
+        @lowerleftspace = " dw"
       end
-    end
-    pickletters
+      @game.update(:upperleftspace => @upperleftspace, :upperrightspace => @upperrightspace,
+        :lowerleftspace => @lowerleftspace, :lowerrightspace => @lowerrightspace)
 
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to @game, notice: 'Game was successfully created.' }
+
+      # randomize other board spaces
+      randomtilearray = [" dl", " dl", " dl", " dl", " dl", " tl", " tl", " tl", "", "", "", "", "", "", "", "" ]
+      randomtilearray.shuffle!
+      @game.update(:randspace01 => randomtilearray[0], :randspace02 => randomtilearray[1],
+                   :randspace03 => randomtilearray[2], :randspace04 => randomtilearray[3],
+                   :randspace05 => randomtilearray[4], :randspace06 => randomtilearray[5],
+                   :randspace07 => randomtilearray[6], :randspace08 => randomtilearray[7],
+                   :randspace09 => randomtilearray[8], :randspace10 => randomtilearray[9],
+                   :randspace11 => randomtilearray[10], :randspace12 => randomtilearray[11],
+                   :randspace13 => randomtilearray[12], :randspace14 => randomtilearray[13],
+                   :randspace15 => randomtilearray[14], :randspace16 => randomtilearray[15])
+
+      # pick 10 letters
+      def pickletters
+        @potentialletters = File.new("config/LetterDistribution").readlines.sample(10).join.gsub("\n", "")
+        if @potentialletters.count("AEIOU") <= 3 || @potentialletters.count("AEIOU") >= 6
+          pickletters
+        else
+          @game.update(:letters => @potentialletters)
+        end
+      end
+      pickletters
+
+      respond_to do |format|
+        if @game.save
+          format.html { redirect_to @game, notice: 'Game was successfully created.' }
+          format.json { render :show, status: :created, location: @game }
+        else
+          format.html { render :new }
+          format.json { render json: @game.errors, status: :unprocessable_entity }
+        end
+      end
+
+    else
+      @game = Game.limit(1).order("RANDOM()").first
+      respond_to do |format|
+        format.html { redirect_to @game, notice: 'Game was successfully joined.' }
         format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end
   end

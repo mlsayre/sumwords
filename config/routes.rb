@@ -20,10 +20,10 @@ Rails.application.routes.draw do
   root 'pages#landing'
 
   authenticated :user do
-    root :to => 'games#index', as: :authenticated_root
+    root :to => 'games#new', as: :authenticated_root
   end
 
-  match 'main' => 'games#index', via: [:get, :post]
+  match 'main' => 'games#new', via: [:get, :post]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

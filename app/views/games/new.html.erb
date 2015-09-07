@@ -1,5 +1,7 @@
-<h1>New Game</h1>
+<%= form_for(@game) do |f| %>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', games_path %>
+  <div class="actions" style="font-size: 150%;">
+    <%= f.submit "Play", :class => "button mainplay" %>
+  </div>
+  <!-- (4 rounds) -->
+<% end %>

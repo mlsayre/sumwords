@@ -198,4 +198,8 @@
     text-align: center;
     margin-top: 120px;
   }
+  .button.mainplay {
+    margin: 100px auto 0;
+    display: block;
+  }
 }

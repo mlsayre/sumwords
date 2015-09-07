@@ -187,4 +187,18 @@
     top: -32px !important;
     font-weight: 700;
   }
+  .landingletter {
+    display: inline-block;
+    border: red 1px solid;
+    -webkit-backface-visibility: hidden;
+    cursor: auto !important;
+  }
+  .landingletter p {
+    left: 13px;
+  }
+  .landingtitle {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+  }
 }

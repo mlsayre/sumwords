@@ -1,11 +1,19 @@
 <div id="landing-topbar"></div>
+<div class="landingtitle">
+  <div class="letter landingletter" id="landlet1"><span>S</span><p>1</p></div>
+  <div class="letter landingletter" id="landlet2"><span>U</span><p>1</p></div>
+  <div class="letter landingletter" id="landlet3"><span>M</span><p>3</p></div>
+  <div class="letter landingletter" id="landlet4"><span>W</span><p>4</p></div>
+  <div class="letter landingletter" id="landlet5"><span>O</span><p>1</p></div>
+  <div class="letter landingletter" id="landlet6"><span>R</span><p>1</p></div>
+  <div class="letter landingletter" id="landlet7"><span>D</span><p>2</p></div>
+  <div class="letter landingletter" id="landlet8"><span>S</span><p>1</p></div>
 
-<div id="landing-fgtext">SUMWORDS</div>
-
-<div id="landing-signin">
-  <%= link_to "Sign in", new_user_session_path %>
-  or
-  <%= link_to "Sign up", new_user_registration_path %></br>
+  <div id="landing-signin">
+    <%= link_to "Sign in", new_user_session_path %>
+    or
+    <%= link_to "Sign up", new_user_registration_path %></br>
+  </div>
 </div>
 
 <div id="signin-with">Or sign in with:<br>
@@ -15,11 +23,11 @@
     <%= link_to "Twitter", omniauth_authorize_path(:user, :twitter) %>
   </div>
 
-  <div class="login-logos" id="signin-facebook">
+  <!-- <div class="login-logos" id="signin-facebook">
     <%= link_to(image_tag("Facebook-login.png", size: "48", alt: "Facebook login"),
         omniauth_authorize_path(:user, :facebook)) %><br>
     <%= link_to "Facebook", omniauth_authorize_path(:user, :facebook) %>
-  </div>
+  </div> -->
 
   <div class="login-logos" id="signin-google">
     <%= link_to(image_tag("Google-login.PNG", size: "48", alt: "Google login"),

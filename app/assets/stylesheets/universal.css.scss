@@ -155,3 +155,44 @@ button, .button {
 .clicktoclose, clicktohighscores {
   cursor: pointer;
 }
+#signin-with {
+  margin-top: 40px;
+  text-align: center;
+}
+.login-logos {
+  display: inline-block;
+}
+.login-logos :hover {
+  background-color: transparent;
+  filter: brightness(120%);
+  -webkit-filter: brightness(120%);
+  border-radius: 0;
+  transform: rotate(-20deg);
+  transition-duration: 500ms;
+  -webkit-transform: rotate(-20deg);
+  -webkit-transition-duration: 500ms;
+}
+#landlet1 {
+  transform: rotate(random(32)-16deg);
+}
+#landlet2 {
+  transform: rotate(random(32)-16deg);
+}
+#landlet3 {
+  transform: rotate(random(32)-16deg);
+}
+#landlet4 {
+  transform: rotate(random(32)-16deg);
+}
+#landlet5 {
+  transform: rotate(random(32)-16deg);
+}
+#landlet6 {
+  transform: rotate(random(32)-16deg);
+}
+#landlet7 {
+  transform: rotate(random(32)-16deg);
+}
+#landlet8 {
+  transform: rotate(random(32)-16deg);
+}

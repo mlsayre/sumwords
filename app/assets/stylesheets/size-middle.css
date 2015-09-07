@@ -195,9 +195,15 @@
     border: red 1px solid;
     -webkit-backface-visibility: hidden;
     cursor: auto !important;
+    width: 38px;
+    height: 38px;
+    font-size: 32px;
+  }
+  .landingletter span {
+    top: 12px;
   }
   .landingletter p {
-    left: 17px !important;
+    left: 14px !important;
   }
   .landingtitle {
     display: block;

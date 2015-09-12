@@ -20,6 +20,11 @@ class GamedataController < ApplicationController
       @gamecompletemessage = "Score successfully submitted."
       @userloggedin = 1
 
+      # mark game as full if this is the 20th high score
+      if Gamedata.where('game_id = ?', @game_id).count >= 20
+        Game.where(:id => @game_id).update_attributes!(:gamefull => true)
+      end
+
     else
       @gamecompletemessage = "Join or log in to track your high scores and compare them to other players!"
       @userloggedin = 0

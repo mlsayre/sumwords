@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150906070223) do
+ActiveRecord::Schema.define(version: 20150912213724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20150906070223) do
 
   create_table "games", force: :cascade do |t|
     t.string   "letters"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.string   "upperleftspace"
     t.string   "upperrightspace"
     t.string   "lowerleftspace"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20150906070223) do
     t.string   "randspace14"
     t.string   "randspace15"
     t.string   "randspace16"
+    t.boolean  "gamefull",        default: false
   end
 
   create_table "users", force: :cascade do |t|

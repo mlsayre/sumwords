@@ -197,7 +197,7 @@ button, .button {
   transform: rotate(random(32)-16deg);
 }
 .letter {
-  background-image: url(TileBG.jpg);
+  background-image: url(asset-path('TileBG.jpg'));
 }
 .letter.A {
   background-position-x: 12%;

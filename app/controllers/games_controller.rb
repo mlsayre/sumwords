@@ -128,10 +128,12 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     if current_user
-      @gamesavailableids = Gamedata.where.not(:user_id => current_user.id).collect(&:game_id)
+      @allgames = Game.all.collect(&:id)
+      @gamesunavailableids = Gamedata.where(:user_id => current_user.id).collect(&:game_id)
+      @gamesavailableids = @allgames - @gamesunavailableids
       @gamesavailable = Game.where(:id => @gamesavailableids).where(:gamefull => false).all
       if @gamesavailable.count > 0
-        @game =
+        @game = @gamesavailable.first
         respond_to do |format|
           format.html { redirect_to @game, notice: 'Game was successfully joined.' }
           format.json { render :show, status: :created, location: @game }

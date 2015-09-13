@@ -14,7 +14,7 @@ class GamedataController < ApplicationController
         # create new entry...
         @gamedata = Gamedata.new
         @gamedata.update_attributes!(:game_id => @game_id, :user_id => @user_id,
-          :score => @finalpoints, :finaltiles => @finaltilepositions)
+          :score => @finalpoints, :finaltiles => @finaltilepositions, :playername => current_user.username)
       end
 
       @gamecompletemessage = "Score successfully submitted."

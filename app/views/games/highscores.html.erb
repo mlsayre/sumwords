@@ -1,4 +1,22 @@
-<% @gamedata.each do |game| %>
-  <%= game.score %>
-  <%= game.playername %><br>
-<% end %>
+
+
+<div class="highscores">
+  <div style="margin-bottom: 6px; text-align: center;">High Scores - Game <%= @game.id %><br><span style="font-size: 85%"><u>(Top 20)</u></span></div>
+  <% @gamedata.each do |game| %>
+
+      <% if game.playername == current_user.username %>
+        <li style="font-weight: 700; list-style-type: decimal; line-height: 1.2; color: lime;">
+          <span style="font-weight: 700; color: lime;"><%= game.playername %></span>
+          <span style="font-weight: 700; float:right; color: lime;"><%= game.score %></span>
+      <% else %>
+        <li style="list-style-type: decimal; line-height: 1.2;">
+          <%= game.playername %>
+          <span style="float:right"><%= game.score %></span>
+      <% end %>
+    </li>
+  <% end %>
+</div>
+<div class="menulinks">
+  <%= link_to "Return to game", game_path %><br><br>
+  <%= link_to "Main Menu", main_path %>
+</div>

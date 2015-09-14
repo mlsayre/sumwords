@@ -1,7 +1,19 @@
+<div class="menulinks">
+  <% if current_user %>
+    Welcome, <%= current_user.username %>!
+  <% else %>
+    Welcome, guest! Create an account or login using Google, Facebook, or Twitter to keep track of your scores and compare your games to others'.
+  <% end %>
+</div>
+
 <%= form_for(@game) do |f| %>
 
   <div class="actions" style="font-size: 150%;">
     <%= f.submit "Play", :class => "button mainplay" %>
   </div>
-  <!-- (4 rounds) -->
+  <br><br>
+  <div class="menulinks">
+    <%= link_to "Edit your information", edit_user_registration_path %><br><br>
+    <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+  </div>
 <% end %>

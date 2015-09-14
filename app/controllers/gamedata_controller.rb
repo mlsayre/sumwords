@@ -4,20 +4,28 @@ class GamedataController < ApplicationController
     if current_user
       @user_id = current_user.id
       @game_id = (params[:game_id])
-      @finalpoints = (params[:finalpoints])
+      @finalpoints = (params[:finalpoints]).to_i
       @finaltilepositions = (params[:finalpositions])
 
       if Gamedata.where('game_id = ?', @game_id).where(:user_id => @user_id).first
         @gamedata = Gamedata.where('game_id = ?', @game_id).where(:user_id => @user_id).first
-        @gamedata.update_attributes!(:score => @finalpoints, :finaltiles => @finaltilepositions)
+
+        if @gamedata.score <= @finalpoints
+          @gamedata.update_attributes!(:score => @finalpoints, :finaltiles => @finaltilepositions)
+          @gamecompletemessage = "Score successfully submitted."
+        else
+          @gamecompletemessage = "Your current board's high score is not higher than your previous high score."
+        end
+
       else
         # create new entry...
         @gamedata = Gamedata.new
         @gamedata.update_attributes!(:game_id => @game_id, :user_id => @user_id,
           :score => @finalpoints, :finaltiles => @finaltilepositions, :playername => current_user.username)
+        @gamecompletemessage = "Score successfully submitted."
       end
 
-      @gamecompletemessage = "Score successfully submitted."
+
       @userloggedin = 1
 
       # mark game as full if this is the 20th high score

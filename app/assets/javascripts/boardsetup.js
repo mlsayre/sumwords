@@ -432,7 +432,7 @@ $(document).ready(function() {
           $(".confirmsubmit").addClass("clicktohighscores");
           $(".confirmsubmit").text(completedmessage).append("<br><br>Click to see high scores.");
           $(".clicktohighscores").click(function() {
-
+            window.location.href = window.location.href + '/highscores';
           })
         }
       })

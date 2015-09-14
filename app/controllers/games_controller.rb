@@ -221,6 +221,11 @@ class GamesController < ApplicationController
     end
   end
 
+  def highscores
+    @game = Game.find(params[:id])
+    @gamedata = Gamedata.where(:game_id => @game.id).order('score DESC').all
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :games
   resources :games do
     collection do
+      get '/:id/highscores' => 'games#highscores', as: :highscores
       post 'checkwords'
     end
   end

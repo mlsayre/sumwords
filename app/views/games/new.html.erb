@@ -18,8 +18,8 @@
       Games you've played (<%= @playergames.count %>):
       <% @playergames.each do |game| %>
         <li style="list-style-type: none; line-height: 1.2; text-align: left;">
-          <%= link_to "Game #{game.id}", game_path(game) %>
-          <span style="float:right"><%= link_to "High Scores", highscores_games_path(game) %> </span>
+          <%= link_to "Game #{game.game_id}", game_path(game.game_id) %>
+          <span style="float:right"><%= link_to "High Scores", highscores_games_path(game.game_id) %> </span>
         </li>
       <% end %>
     </div>

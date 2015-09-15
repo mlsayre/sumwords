@@ -5,13 +5,15 @@ class GamedataController < ApplicationController
       @user_id = current_user.id
       @game_id = (params[:game_id])
       @finalpoints = (params[:finalpoints]).to_i
+      @finallettersused = (params[:lettersused])
       @finaltilepositions = (params[:finalpositions])
 
       if Gamedata.where('game_id = ?', @game_id).where(:user_id => @user_id).first
         @gamedata = Gamedata.where('game_id = ?', @game_id).where(:user_id => @user_id).first
 
         if @gamedata.score <= @finalpoints
-          @gamedata.update_attributes!(:score => @finalpoints, :finaltiles => @finaltilepositions)
+          @gamedata.update_attributes!(:score => @finalpoints, :finaltiles => @finaltilepositions, 
+            :lettersused => @finallettersused)
           @gamecompletemessage = "Score successfully submitted."
         else
           @gamecompletemessage = "Your current board's high score is not higher than your previous high score."
@@ -21,7 +23,8 @@ class GamedataController < ApplicationController
         # create new entry...
         @gamedata = Gamedata.new
         @gamedata.update_attributes!(:game_id => @game_id, :user_id => @user_id,
-          :score => @finalpoints, :finaltiles => @finaltilepositions, :playername => current_user.username)
+          :score => @finalpoints, :finaltiles => @finaltilepositions, :playername => current_user.username, 
+          :lettersused => @finallettersused)
         @gamecompletemessage = "Score successfully submitted."
       end
 

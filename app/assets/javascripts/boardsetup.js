@@ -395,8 +395,8 @@ $(document).ready(function() {
   // when submitting board
   $(".finalsubmit").click(function() {
     var finalboardpoints = getpoints();
+    var finaltilearray = [];
     var finaltilepositions = function() {
-      var finaltilearray = [];
       for (var i = 1; i <= 9; i++) {
         var tilepos;
         tilepos = $('*[data-placedletter$="letter0' + i + '"]').attr("id");
@@ -409,12 +409,23 @@ $(document).ready(function() {
       finaltilearray.join();
       return finaltilearray;
     }
+    var lettersused = function() {
+      var arrlength = finaltilearray.length;
+      var lettercount = 0;
+      for (var i = 0; i < arrlength; i++) {
+        if (finaltilearray[i] != "none") {
+          lettercount++
+        }
+      }
+      return lettercount;
+    }
     $.ajax({
       url: "/gamedata/gamecompleted",
       type: "POST",
       dataType:'json',
       data: { 'finalpoints' : finalboardpoints,
               'finalpositions' : finaltilepositions,
+              'lettersused' : lettersused,
               'game_id' : parseInt(document.location.pathname.replace(/[^0-9]/g,'')) }
     })
       .done(function(data) {

@@ -317,3 +317,15 @@ button, .button {
   margin: 2px auto;
   text-align: center;
 }
+.playergamelist {
+  font-size: 16px;
+  width: 220px;
+  margin: 2px auto 20px;
+  text-align: center;
+  border: 1px grey solid;
+  padding: 6px;
+}
+.playergamelist li{
+  margin: 4px 0;
+  font-size: 15px;
+}

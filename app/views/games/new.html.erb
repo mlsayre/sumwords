@@ -11,7 +11,20 @@
   <div class="actions" style="font-size: 150%;">
     <%= f.submit "Play", :class => "button mainplay" %>
   </div>
-  <br><br>
+  <br>
+
+  <% if current_user %>
+    <div class="playergamelist">
+      Games you've played (<%= @playergames.count %>):
+      <% @playergames.each do |game| %>
+        <li style="list-style-type: none; line-height: 1.2; text-align: left;">
+          <%= link_to "Game #{game.id}", game_path(game) %>
+          <span style="float:right"><%= link_to "High Scores", highscores_games_path(game) %> </span>
+        </li>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="menulinks">
     <%= link_to "Edit your information", edit_user_registration_path %><br><br>
     <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>

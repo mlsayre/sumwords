@@ -1,4 +1,4 @@
-$(document).ready(function() {
+var ready = function() {
   var pointsforbingo = 30;
   var validwords = [];
   var badwords = [];
@@ -468,4 +468,6 @@ $(document).ready(function() {
   //     }
   //   });
   // });
-})
+};
+$(document).ready(ready);
+$(document).on('page:load', ready);

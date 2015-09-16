@@ -303,6 +303,13 @@ button, .button {
   background-position-x: 6%;
   background-position-y: 80%;
 }
+body {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
 .highscores {
   width: 270px;
   font-size: 18px;

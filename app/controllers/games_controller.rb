@@ -118,6 +118,7 @@ class GamesController < ApplicationController
   def new
     @game = Game.new
     @playergames = Gamedata.where(:user_id => current_user.id).order('game_id DESC').all
+    @playergameslist = @playergames.page(params[:page]).per(12)
   end
 
   # GET /games/1/edit

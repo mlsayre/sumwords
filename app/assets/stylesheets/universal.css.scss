@@ -326,7 +326,7 @@ body {
 }
 .playergamelist {
   font-size: 16px;
-  width: 220px;
+  width: 250px;
   margin: 2px auto 20px;
   text-align: center;
   border: 1px grey solid;
@@ -335,4 +335,11 @@ body {
 .playergamelist li{
   margin: 4px 0;
   font-size: 15px;
+}
+.gameplayed {
+  margin-left: 10px;
+}
+.gameplayedrank {
+  float: right;
+  margin-right: 10px;
 }

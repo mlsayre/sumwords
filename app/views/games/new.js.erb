@@ -1,0 +1,2 @@
+$('span#playergamelist').html('<%= escape_javascript render("playergames") %>');
+$('#paginator').html('<%= escape_javascript(paginate(@playergameslist, :remote => true).to_s) %>');

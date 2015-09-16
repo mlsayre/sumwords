@@ -1,0 +1,6 @@
+<% @playergameslist.each do |game| %>
+        <li style="list-style-type: none; line-height: 1.2; text-align: left;">
+          <span class="gameplayed"><%= link_to "Game #{game.game_id}", game_path(game.game_id) %></span>
+          <span class="gameplayedrank"><%= link_to "#{game.gamerank(game.game_id, current_user.id)}", highscores_games_path(game.game_id) %> </span>
+        </li>
+      <% end %>

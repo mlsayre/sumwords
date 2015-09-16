@@ -58,19 +58,36 @@
   .ui {
     display: inline-block;
     position: relative;
-    bottom: 16px;
-    left: 2px;
-  }
-  .button.submit, .button.reset {
-    display: block;
-    margin-bottom: 9px;
-    padding: 19px 10px;
+    bottom: 5px;
+    width: 59px;
   }
   .button.submit {
+    display: block;
+    width: 57%;
+    height: 28px;
     z-index: 41;
+    background-color: green;
   }
-  .button.submit span, .button.reset span {
-    font-size: 13px;
+  .button.submit:hover {
+    background-color: darkgreen;
+  }
+  .button.submit span {
+    position: relative;
+    top: 8px;
+    right: 2px;
+  }
+  .button.menu, .button.reset {
+    display: block;
+    height: 11px;
+    width: 57%;
+    margin-bottom: 10px;
+  }
+  .button.reset {
+    background-color: rgb(215,0,0);
+    margin-top: -5px;
+  }
+  .button.reset:hover {
+    background-color: darkred;
   }
   .confirmsubmit {
     position: fixed;

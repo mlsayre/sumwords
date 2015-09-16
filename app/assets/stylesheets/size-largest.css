@@ -56,15 +56,33 @@
   .ui {
     display: inline-block;
     position: relative;
-    bottom: 98px;
+    bottom: 8px;
   }
-  .button.submit, .button.reset {
+  .button.submit {
+    display: block;
+    width: 90%;
+    height: 60px;
+    z-index: 41;
+    background-color: green;
+  }
+  .button.submit:hover {
+    background-color: darkgreen;
+  }
+  .button.submit span {
+    position: relative;
+    top: 24px;
+  }
+  .button.menu, .button.reset {
     display: block;
     width: 90%;
     margin-bottom: 10px;
   }
-  .button.submit {
-    z-index: 41;
+  .button.reset {
+    background-color: rgb(215,0,0);
+    margin-top: -4px;
+  }
+  .button.reset:hover {
+    background-color: darkred;
   }
   .confirmsubmit {
     position: fixed;

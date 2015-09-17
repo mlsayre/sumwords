@@ -73,12 +73,14 @@ class GamesController < ApplicationController
     @letter10points = letterpoints(@letter10)
 
     # show high score
-    if Gamedata.where(:game_id => @game.id).first
-      @highscore = Gamedata.where(:game_id => @game.id).order('score DESC').first
-      @lowscore = Gamedata.where(:game_id => @game.id).order('score DESC').last
-    end
-    if Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
-      @playerhighscore = Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
+    if current_user
+      if Gamedata.where(:game_id => @game.id).first
+        @highscore = Gamedata.where(:game_id => @game.id).order('score DESC').first
+        @lowscore = Gamedata.where(:game_id => @game.id).order('score DESC').last
+      end
+      if Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
+        @playerhighscore = Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
+      end
     end
   end
 

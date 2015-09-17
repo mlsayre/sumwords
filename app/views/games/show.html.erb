@@ -142,14 +142,7 @@
       <p>Click anywhere to close.</p>
     </div>
     <div id="menuwindow">
-      <div class="gamemenubuttons">
-        <%= link_to(highscores_games_path(@game.id)) do %>
-          <div class="button seehighscores">High Scores</div>
-        <% end %>
-        <%= link_to(main_path) do %>
-          <div class="button returntomain">Main Menu</div>
-        <% end %>      
-      </div>
+      
       <% if Gamedata.where(:game_id => @game.id).first %>
         <u>Worldwide scores</u><br> 
         High: <%= @highscore.score %> points by <%= @highscore.playername %><br>
@@ -165,7 +158,15 @@
       <% else %>
         Sign in or create an account to keep track of your high scores and compare against others!
       <% end %>
-      <br><br>
+      <div class="gamemenubuttons">
+        <%= link_to(highscores_games_path(@game.id)) do %>
+          <div class="button seehighscores">High Scores</div>
+        <% end %>
+        <%= link_to(main_path) do %>
+          <div class="button returntomain">Main Menu</div>
+        <% end %>      
+      </div>
+      
       <p>Click outside menu to close.</p> 
     </div>
     <div id="page-cover"></div>

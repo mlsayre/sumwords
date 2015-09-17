@@ -343,3 +343,26 @@ body {
   float: right;
   margin-right: 10px;
 }
+#menuwindow {
+  display: none;
+  position: fixed;
+  z-index: 500001;
+  top: 28%;
+  left: calc(50% - 106px);
+  background-color: rgba(0,0,0,.8);
+  padding: 8px;
+  width: 194px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid red;
+}
+#menuwindow a:link {
+  text-decoration: none;
+}
+#menuwindow .button {
+  width: 54px;
+}
+.gamemenubuttons {
+  margin-bottom: 20px;
+}
+

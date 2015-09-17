@@ -72,6 +72,11 @@ class GamesController < ApplicationController
     @letter09points = letterpoints(@letter09)
     @letter10points = letterpoints(@letter10)
 
+    # show high score
+    if Gamedata.where(:game_id => @game.id).first
+      @highscore = Gamedata.where(:game_id => @game.id).order('score DESC').first
+      @lowscore = Gamedata.where(:game_id => @game.id).order('score DESC').last
+    end
   end
 
   def checkwords

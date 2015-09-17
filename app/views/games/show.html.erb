@@ -135,7 +135,23 @@
     <div class="unabletosubmit">
       <h3>Invalid</h3>
       <span>word</span>
-      <p>Click to close.</p>
+      <p>Click anywhere to close.</p>
+    </div>
+    <div id="menuwindow">
+      <div class="gamemenubuttons">
+        <%= link_to(highscores_games_path(@game.id)) do %>
+          <div class="button seehighscores">High Scores</div>
+        <% end %>
+        <%= link_to(root_path) do %>
+          <div class="button returntomain">Main Menu</div>
+        <% end %>      
+      </div>
+      <% if Gamedata.where(:game_id => @game.id).first %>
+        <u>Current high score</u><br> 
+        <%= @highscore.score %> points - <%= @highscore.playername %>
+      <% end %> 
+      <br><br>
+      <p>Click anywhere to close.</p> 
     </div>
     <div id="page-cover"></div>
     <div id="submit-cover"></div>

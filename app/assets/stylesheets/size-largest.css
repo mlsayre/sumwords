@@ -118,7 +118,7 @@
     margin-top: 6px;
     font-size: 18px;
   }
-  .unabletosubmit p {
+  .unabletosubmit p, #menuwindow p {
     margin: 6px 0 0;
     font-size: 11px;
   }

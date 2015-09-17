@@ -449,6 +449,23 @@ var ready = function() {
       })
   })
 
+  $(".button.menu").click(function() {
+    $("#page-cover").show();
+    $("#menuwindow").slideDown(120);
+  });
+
+  $("#page-cover").click(function() {
+    $("#page-cover").hide();
+    if ($("#menuwindow").css("display") != "none") {
+      $("#menuwindow").slideToggle(120);
+    }
+    if ($(".confirmsubmit").css("display") != "none") {
+      $(".confirmsubmit").slideToggle(120);
+    }
+    if ($(".unabletosubmit").css("display") != "none") {
+      $(".unabletosubmit").slideToggle(120);
+    }
+  });
 
 
   // $(window).resize(function() {

@@ -132,6 +132,10 @@
       <div class="button finalsubmit">Submit</div>
       <div class="button finalcancel">Cancel</div>
     </div>
+    <div class="submitmessage"><span></span>
+      <div class='button completedtohs'>High Scores</div><br>
+      <div class='button completedrtg'>Return to Game</div>
+    </div>
     <div class="unabletosubmit">
       <h3>Invalid</h3>
       <span>word</span>
@@ -142,16 +146,27 @@
         <%= link_to(highscores_games_path(@game.id)) do %>
           <div class="button seehighscores">High Scores</div>
         <% end %>
-        <%= link_to(root_path) do %>
+        <%= link_to(main_path) do %>
           <div class="button returntomain">Main Menu</div>
         <% end %>      
       </div>
       <% if Gamedata.where(:game_id => @game.id).first %>
-        <u>Current high score</u><br> 
-        <%= @highscore.score %> points - <%= @highscore.playername %>
-      <% end %> 
+        <u>Worldwide scores</u><br> 
+        High: <%= @highscore.score %> points by <%= @highscore.playername %><br>
+        Low: <%= @lowscore.score %> points by <%= @lowscore.playername %>
+      <% end %> <br><br>
+      <u>Your high score</u><br> 
+      <% if current_user %>
+        <% if @playerhighscore %>
+          <%= @highscore.score %> points
+        <% else %>
+          No score yet...
+        <% end %>
+      <% else %>
+        Sign in or create an account to keep track of your high scores and compare against others!
+      <% end %>
       <br><br>
-      <p>Click anywhere to close.</p> 
+      <p>Click outside menu to close.</p> 
     </div>
     <div id="page-cover"></div>
     <div id="submit-cover"></div>

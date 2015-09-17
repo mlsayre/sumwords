@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   root 'pages#landing'
 
   authenticated :user do
-    root :to => 'games#new', as: :authenticated_root
+    root to: 'games#new', as: :authenticated_root
   end
 
   match 'main' => 'games#new', via: [:get, :post]

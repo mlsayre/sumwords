@@ -432,23 +432,24 @@ var ready = function() {
         var completedmessage = data[0];
         var userloggedin = data[1];
         if (userloggedin == 0) {
-          $(".confirmsubmit").addClass("clicktoclose");
-          $(".confirmsubmit").text(completedmessage).append("<br><br>Click to close.");
-          $(".clicktoclose").click(function() {
-            $(".confirmsubmit").slideToggle(120);
-            $("#page-cover").hide();
-            $(".confirmsubmit").removeClass("clicktoclose");
-          })
+          $(".confirmsubmit").slideToggle(120);
+          $(".submitmessage").slideDown(120);
+          $(".submitmessage span").text(completedmessage);;
         } else {
-          $(".confirmsubmit").addClass("clicktohighscores");
-          $(".confirmsubmit").text(completedmessage).append("<br><br>Click to see high scores.");
-          $(".clicktohighscores").click(function() {
-            window.location.href = window.location.href + '/highscores';
-          })
+          $(".confirmsubmit").slideToggle(120);
+          $(".submitmessage").slideDown(120);
+          $(".submitmessage span").text(completedmessage);
         }
       })
   })
 
+  $(".completedtohs").click(function() {
+    window.location.href = window.location.href + '/highscores';
+  })
+  $(".completedrtg").click(function() {
+    $("#page-cover").hide();
+    $(".submitmessage").slideToggle(120);
+  })
   $(".button.menu").click(function() {
     $("#page-cover").show();
     $("#menuwindow").slideDown(120);

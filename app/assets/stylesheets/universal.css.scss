@@ -343,7 +343,7 @@ body {
   float: right;
   margin-right: 10px;
 }
-#menuwindow {
+#menuwindow, .submitmessage {
   display: none;
   position: fixed;
   z-index: 500001;
@@ -356,7 +356,7 @@ body {
   text-align: center;
   border: 1px solid red;
 }
-#menuwindow a:link {
+#menuwindow a:link, .submitmessage a:link {
   text-decoration: none;
 }
 #menuwindow .button {

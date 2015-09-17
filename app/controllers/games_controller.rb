@@ -77,6 +77,9 @@ class GamesController < ApplicationController
       @highscore = Gamedata.where(:game_id => @game.id).order('score DESC').first
       @lowscore = Gamedata.where(:game_id => @game.id).order('score DESC').last
     end
+    if Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
+      @playerhighscore = Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
+    end
   end
 
   def checkwords

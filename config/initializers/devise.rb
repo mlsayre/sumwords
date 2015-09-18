@@ -259,7 +259,8 @@ Devise.setup do |config|
 
   config.omniauth :twitter, ENV["TWITTER_CONSUMER_KEY"], ENV["TWITTER_CONSUMER_SECRET"]
   config.omniauth :facebook, ENV['FACEBOOK_APP_ID'], ENV['FACEBOOK_SECRET'],
-    :secure_image_url => 'true', :image_size => 'large'
+    :secure_image_url => 'true', :image_size => 'large',
+    scope: 'public_profile', info_fields: 'id,name,link'
   config.omniauth :google_oauth2, ENV["GOOGLE_APP_ID"], ENV["GOOGLE_APP_SECRET"],
     { :image_size => 200 }
 end

@@ -4,7 +4,7 @@ var ready = function() {
   var badwords = [];
   var goodwords = [];
   var playedspaces = [];
-  $(".dw").text("DW");
+  $(".dw").not("#r4xc4").text("DW");
   $(".dl").text("DL");
   $(".tl").text("TL");
 

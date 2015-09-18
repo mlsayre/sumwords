@@ -45,11 +45,11 @@ class User < ActiveRecord::Base
       elsif auth.provider == "facebook"
         user.username = auth.info.first_name[0...12] + rand(1000).to_s
         user.email = auth["info"]["email"]
-        user.avatar = auth["info"]["image"]
+        #user.avatar = auth["info"]["image"]
       else # Google login
         user.username = auth.info.first_name[0...12] + rand(1000).to_s
         user.email = auth["info"]["email"]
-        user.avatar = auth["info"]["image"]
+        #user.avatar = auth["info"]["image"]
       end
 
     end

@@ -73,18 +73,16 @@ class GamesController < ApplicationController
     @letter10points = letterpoints(@letter10)
 
     # show high score
-    if current_user
-      if Gamedata.where(:game_id => @game.id).first
-        @highscore = Gamedata.where(:game_id => @game.id).order('score DESC').first
-        @lowscore = Gamedata.where(:game_id => @game.id).order('score DESC').last
-      end
-      if Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
-        @playerhighscore = Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
-      end
+    if Gamedata.where(:game_id => @game.id).first
+      @highscore = Gamedata.where(:game_id => @game.id).order('score DESC').first
+      @lowscore = Gamedata.where(:game_id => @game.id).order('score DESC').last
+    end
+    if Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
+      @playerhighscore = Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
     end
   end
 
-  def checkwords
+  def getallwords
     @game = Game.find(params[:id])
     @allwords = File.new("config/EnglishWords").readlines
     @allwords.map! {|word| word.gsub!("\n", "")}
@@ -106,22 +104,26 @@ class GamesController < ApplicationController
       @allwords.reject! { |word| word.count(givenletters[i]) > lettersinarray }
     end
 
-    receivedwords = (params[:potentialwords])
-    receivedwords.map! {|word| word.gsub(/\d+/, "")}
-    receivedwords.map! {|word| word.downcase}
+    @allwordsarray = @allwords
 
-    invalidwords = []
-    validwords = []
-    removewordscount = receivedwords.count - 1
-    for i in 0..removewordscount
-      if @allwords.include?(receivedwords[i])
-        validwords.push(receivedwords[i])
-      else
-        invalidwords.push(receivedwords[i])
-      end
-    end
+    render :json => [@allwordsarray]
 
-    render :json => [invalidwords, validwords]
+    # receivedwords = (params[:potentialwords])
+    # receivedwords.map! {|word| word.gsub(/\d+/, "")}
+    # receivedwords.map! {|word| word.downcase}
+
+    # invalidwords = []
+    # validwords = []
+    # removewordscount = receivedwords.count - 1
+    # for i in 0..removewordscount
+    #   if @allwords.include?(receivedwords[i])
+    #     validwords.push(receivedwords[i])
+    #   else
+    #     invalidwords.push(receivedwords[i])
+    #   end
+    # end
+
+    # render :json => [invalidwords, validwords]
   end
 
   # GET /games/new

@@ -4,9 +4,20 @@ var ready = function() {
   var badwords = [];
   var goodwords = [];
   var playedspaces = [];
+  var allwordsarray = [];
   $(".dw").not("#r4xc4").text("DW");
   $(".dl").text("DL");
   $(".tl").text("TL");
+
+  $.ajax({
+      url: "/games/getallwords",
+      type: "POST",
+      dataType:'json',
+      data: { 'id' : parseInt(document.location.pathname.replace(/[^0-9]/g,'')) }
+    })
+      .done(function(data) {
+        allwordsarray = data[0];
+      })
 
   $(".letter").draggable({
     snap: ".boardsquare, .tileholder",
@@ -321,25 +332,29 @@ var ready = function() {
       return
     }
     // then submit words for validation
-    badwords = [];
-    goodwords = [];
-    $.ajax({
-      url: "/games/checkwords",
-      type: "POST",
-      dataType:'json',
-      data: { 'potentialwords' : validwords,
-              'id' : parseInt(document.location.pathname.replace(/[^0-9]/g,'')) }
-    })
-      .done(function(data) {
-        badwords = data[0];
-        goodwords = data[1];
-        if (badwords.length > 0) {
-          console.log(badwords)
-          submitattemptbad(badwords, goodwords);
+    function checkwords(words) {
+      badwords = [];
+      goodwords = [];
+      var preparedwords = [];
+      for (var i = 0; i < words.length; i++) {
+        preparedwords.push(words[i].replace(/[0-9]/g, '').toLowerCase());
+      }
+      var potentialwords = preparedwords;
+      var wordslength = potentialwords.length;
+      for (var i = 0; i < wordslength; i++) {
+        if (allwordsarray.indexOf(potentialwords[i]) > -1) {
+          goodwords.push(potentialwords[i])
         } else {
-          submitattemptgood(goodwords);
+          badwords.push(potentialwords[i])
         }
-      })
+      }
+      if (badwords.length > 0) {
+        submitattemptbad(badwords, goodwords);
+      } else {
+        submitattemptgood(goodwords);
+      }
+    }
+    checkwords(validwords);
   })
 
   function submitattemptbad(badones, goodones) {
@@ -353,7 +368,6 @@ var ready = function() {
     $(".unabletosubmit span").text(allbadones);
     $(".unabletosubmit").slideDown(100);
     $("#page-cover").show();
-    console.log(badones[0])
   }
   function submitattemptgood(goodones) {
     $(".gamemessages span").css("color", "green");

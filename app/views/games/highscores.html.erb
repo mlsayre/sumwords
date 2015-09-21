@@ -1,7 +1,7 @@
 
 
 <div class="highscores">
-  <div style="margin-bottom: 6px; text-align: center;">Top 20 High Scores - Game <%= @game.id %><br><span style="font-size: 85%"><u><br>Player - Score(letters used)</u></span></div>
+  <div style="margin-bottom: 6px; text-align: center;">High Scores - Game <%= @game.id %><br><span style="font-size: 85%"><u><br>Player - Score(letters used)</u></span></div>
   <% @gamedata.each do |game| %>
 
       <% if current_user && game.playername == current_user.username %>

@@ -17,12 +17,12 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-  # You can have the root of your site routed with "root"
-  root 'pages#landing'
-
   authenticated :user do
     root to: 'games#new', as: :authenticated_root
   end
+
+  # You can have the root of your site routed with "root"
+  root 'pages#landing'
 
   match 'main' => 'games#new', via: [:get, :post]
 

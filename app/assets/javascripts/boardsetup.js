@@ -1,5 +1,5 @@
 var ready = function() {
-  var pointsforbingo = 30;
+  var pointsforbingo = 15;
   var validwords = [];
   var badwords = [];
   var goodwords = [];

@@ -43,7 +43,6 @@ class User < ActiveRecord::Base
         user.email = auth.info.nickname + "@twitter.com"
         user.avatar = auth["info"]["image"].sub("_normal", "")
       elsif auth.provider == "facebook"
-        auth.info.all.inspect
         user.username = "FB_User" + rand(10000).to_s
         user.email = "temporary@email.com" + rand(10000).to_s
         user.avatar = auth["info"]["image"]
@@ -55,15 +54,6 @@ class User < ActiveRecord::Base
 
     end
   end
-
-  # def self.from_omniauth(auth)
-  #   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-  #     user.email = auth.info.email
-  #     user.password = Devise.friendly_token[0,20]
-  #     user.username = auth.info.first_name   # assuming the user model has a name
-  #     user.avatar = auth.info.image # assuming the user model has an image
-  #   end
-  # end
 
   def self.new_with_session(params, session)
     if session["devise.user_attributes"]

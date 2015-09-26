@@ -9,15 +9,17 @@ var ready = function() {
   $(".dl").text("DL");
   $(".tl").text("TL");
 
-  $.ajax({
-      url: "/games/getallwords",
-      type: "POST",
-      dataType:'json',
-      data: { 'id' : parseInt(document.location.pathname.replace(/[^0-9]/g,'')) }
-    })
-      .done(function(data) {
-        allwordsarray = data[0];
+  if ($(".gameboard")[0]) {
+    $.ajax({
+        url: "/gamedata/getallwords",
+        type: "POST",
+        dataType:'json',
+        data: { 'id' : parseInt(document.location.pathname.replace(/[^0-9]/g,'')) }
       })
+        .done(function(data) {
+          allwordsarray = data[0];
+        })
+  }
 
   $(".letter").draggable({
     snap: ".boardsquare, .tileholder",

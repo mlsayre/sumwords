@@ -86,56 +86,12 @@ class GamesController < ApplicationController
     end
   end
 
-  def getallwords
-    @game = Game.find(params[:id])
-    @allwords = File.new("config/EnglishWords").readlines
-    @allwords.map! {|word| word.gsub!("\n", "")}
-    wholealphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
-      "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    givenletters = @game.letters.split("")
-    givenletters.map! {|letter| letter.downcase}
-    letterstoremove = wholealphabet - givenletters
-
-    # remove words that contain letters player doesn't have
-    removelettercount = letterstoremove.count - 1
-    for i in 0..removelettercount
-      @allwords.reject! { |word| word.include?(letterstoremove[i]) }
-    end
-
-    # remove words that contain too many of the given letters
-    for i in 0..9
-      lettersinarray = givenletters.count(givenletters[i])
-      @allwords.reject! { |word| word.count(givenletters[i]) > lettersinarray }
-    end
-
-    @allwordsarray = @allwords
-
-    render :json => [@allwordsarray]
-
-    # receivedwords = (params[:potentialwords])
-    # receivedwords.map! {|word| word.gsub(/\d+/, "")}
-    # receivedwords.map! {|word| word.downcase}
-
-    # invalidwords = []
-    # validwords = []
-    # removewordscount = receivedwords.count - 1
-    # for i in 0..removewordscount
-    #   if @allwords.include?(receivedwords[i])
-    #     validwords.push(receivedwords[i])
-    #   else
-    #     invalidwords.push(receivedwords[i])
-    #   end
-    # end
-
-    # render :json => [invalidwords, validwords]
-  end
-
   # GET /games/new
   def new
     @game = Game.new
     if current_user
       @playergames = Gamedata.where(:user_id => current_user.id).order('game_id DESC').all
-      @playergameslist = @playergames.page(params[:page]).per(12)
+      @playergameslist = @playergames.page(params[:page]).per(8)
     end
   end
 

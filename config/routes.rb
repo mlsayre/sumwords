@@ -3,13 +3,13 @@ Rails.application.routes.draw do
   resources :games do
     collection do
       get '/:id/highscores' => 'games#highscores', as: :highscores
-      post 'getallwords'
     end
   end
 
   resources :gamedata do
     collection do
       post 'gamecompleted'
+      post 'getallwords'
     end
   end
 

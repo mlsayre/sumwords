@@ -15,7 +15,7 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <% if current_user.provider != "facebook" %>
+  <% if current_user.provider != "facebook" && current_user.provider != "google_oauth2" %>
     <div class="field">
       <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
       <%= f.password_field :password, autocomplete: "off" %>
@@ -36,6 +36,7 @@
     <%= f.submit "Update" %>
   </div>
 <% end %>
+<!-- <%= image_tag current_user.avatar.url(:small), :style => "border: 1px solid gray; border-radius: 40px; margin-bottom:12px;" %><br> -->
 <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
 
 <%= link_to "Back", :back %>

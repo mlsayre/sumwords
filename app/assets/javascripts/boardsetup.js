@@ -455,6 +455,8 @@ var ready = function() {
           $(".confirmsubmit").slideToggle(120);
           $(".submitmessage").slideDown(120);
           $(".submitmessage span").text(completedmessage);
+          var pathname = window.location.pathname;
+          $("#menuwindow").load(pathname + " #menuwindowcontents");
         }
       })
   })

@@ -220,7 +220,12 @@
     margin: 100px auto 0;
     display: block;
   }
-  #r4xc4 {
-
+  #howtoplay {
+    left: calc(50% - 248px);
+    width: 480px;
+  }
+  .instructionsteps {
+    width: 46%;
+    padding:0 6px;
   }
 }

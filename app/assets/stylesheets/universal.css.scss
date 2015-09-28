@@ -347,7 +347,7 @@ body {
   display: none;
   position: fixed;
   z-index: 500001;
-  top: 28%;
+  top: 20%;
   left: calc(50% - 106px);
   background-color: rgba(0,0,0,.8);
   padding: 8px;
@@ -370,4 +370,25 @@ body {
   background-size: 100%;
   background-position-y: -1px;
 }
-
+#howtoplay {
+  display: none;
+  position: absolute;
+  z-index: 500001;
+  top: 3%;
+  background-color: rgba(0,0,0,.8);
+  padding: 8px;
+  font-size: 14px;
+  text-align: center;
+  border: 1px solid red;
+}
+.instructionsteps {
+  display: inline-block;
+  text-align: left;
+  vertical-align: top;
+  margin: 6px auto;
+}
+.instructionsteps img {
+  display: block;
+  width: 95%;
+  margin: 3px auto 8px;
+}

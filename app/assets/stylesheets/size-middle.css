@@ -227,4 +227,12 @@
     margin: 40px auto 0;
     display: block;
   }
+  #howtoplay {
+    left: calc(50% - 178px);
+    width: 340px;
+  }
+  .instructionsteps {
+    width: 96%;
+    padding:0 3px;
+  }
 }

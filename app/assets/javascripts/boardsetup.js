@@ -470,11 +470,27 @@ var ready = function() {
     $("#page-cover").show();
     $("#menuwindow").slideDown(120);
   });
+  $(".button.howtoplay").click(function() {
+    $("#menuwindow").slideToggle(120);
+    $("#howtoplay").slideDown(120);
+  });
+  $(".button.returntomenu").click(function() {
+    $("#howtoplay").slideToggle(120);
+    $("#menuwindow").slideDown(120);
+  });
+  $(".button.returntogame").click(function() {
+    $("#howtoplay").slideToggle(120);
+    $("#page-cover").hide();
+  });
+
 
   $("#page-cover").click(function() {
     $("#page-cover").hide();
     if ($("#menuwindow").css("display") != "none") {
       $("#menuwindow").slideToggle(120);
+    }
+    if ($("#howtoplay").css("display") != "none") {
+      $("#howtoplay").slideToggle(120);
     }
     if ($(".confirmsubmit").css("display") != "none") {
       $(".confirmsubmit").slideToggle(120);

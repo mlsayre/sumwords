@@ -163,6 +163,7 @@
         <%= link_to(highscores_games_path(@game.id)) do %>
           <div class="button seehighscores">High Scores</div>
         <% end %>
+        <div class="button howtoplay">How to Play</div>
         <%= link_to(main_path) do %>
           <div class="button returntomain">Main Menu</div>
         <% end %>
@@ -177,6 +178,27 @@
     <div class="button reset"><span>Reset</span></div>
   </div>
 
+</div>
+<div id="howtoplay">
+  <div class="instructionsteps">
+    1. You are given ten letters and a 7x7 board with randomly placed special tiles (DL, TL, DW).
+    <%= image_tag "blankboard.png" %>
+  </div>
+  <div class="instructionsteps">
+    2. Place the letter tiles on the board to make a mini-crossword. The goal is to maximize your points.
+    <%= image_tag "madeboard.png" %>
+  </div>
+  <div class="instructionsteps">
+    3. Press the "Submit" button once you've placed (up to) all ten of your tiles to validate your words. If all the words are valid, you can submit to the worldwide high score list. If any words aren't valid, you can adjust the tiles until you create a completely valid board.
+  </div>
+  <div class="instructionsteps">
+    4. Replay a board as often as you want to try to claim the #1 spot! Once a game has 10 players, that game will end and you will be able to see other players' solutions.
+  </div>
+  <div class="instructionsteps">
+    Tips: A bingo (7-letter word) will give you an extra 15 points. Try to place high value letters on double- or triple- letter spots. Learn all the two-letter words!
+  </div><br>
+  <div class="button returntomenu">Return to Menu</div>
+  <div class="button returntogame">Return to Game</div>
 </div>
 <p id="notice"><%= notice %></p>
 

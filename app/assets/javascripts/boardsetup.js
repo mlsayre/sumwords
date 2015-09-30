@@ -467,12 +467,13 @@ var ready = function() {
   $(".completedrtg").click(function() {
     $("#page-cover").hide();
     $(".submitmessage").slideToggle(120);
+    $("body").scrollTop();
   })
   $(".button.menu").click(function() {
     $("#page-cover").show();
     $("#menuwindow").slideDown(120);
   });
-  $(".button.howtoplay").click(function() {
+  $("body").on("click", ".button.howtoplay", function() {
     $("#menuwindow").slideToggle(120);
     $("#howtoplay").slideDown(120);
   });
@@ -501,7 +502,6 @@ var ready = function() {
       $(".unabletosubmit").slideToggle(120);
     }
   });
-
 
   // $(window).resize(function() {
   //   $(".letter").each( function() {

@@ -26,6 +26,10 @@ class GamedataController < ApplicationController
           :score => @finalpoints, :finaltiles => @finaltilepositions, :playername => current_user.username,
           :lettersused => @finallettersused)
         @gamecompletemessage = "Score successfully submitted."
+        # set game to full if new entry is #10
+        if Gamedata.where(:game_id => @game_id).count >= 10
+          Game.find(@game_id).update(:gamefull => true)
+        end
       end
 
 

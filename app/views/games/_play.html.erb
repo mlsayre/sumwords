@@ -1,0 +1,207 @@
+<div class="gamearea">
+  <table class="gameboard">
+    <tr><%= @upperleft %><%= @upperright %>
+      <td class="boardsquare<%= @upperleftspace %>" id="r1xc1" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r1xc2" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace01 %>" id="r1xc3" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r1xc4" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace02 %>" id="r1xc5" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r1xc6" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @upperrightspace %>" id="r1xc7" data-placedletter="none" data-placedletterpoints="none"></td>
+    </tr>
+    <tr>
+      <td class="boardsquare" id="r2xc1" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace03 %>" id="r2xc2" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r2xc3" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r2xc4" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r2xc5" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace04 %>" id="r2xc6" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r2xc7" data-placedletter="none" data-placedletterpoints="none"></td>
+    </tr>
+    <tr>
+      <td class="boardsquare<%= @randspace05 %>" id="r3xc1" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r3xc2" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace06 %>" id="r3xc3" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r3xc4" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace07 %>" id="r3xc5" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r3xc6" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace08 %>" id="r3xc7" data-placedletter="none" data-placedletterpoints="none"></td>
+    </tr>
+    <tr>
+      <td class="boardsquare" id="r4xc1" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r4xc2" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r4xc3" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare dw" id="r4xc4" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r4xc5" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r4xc6" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r4xc7" data-placedletter="none" data-placedletterpoints="none"></td>
+    </tr>
+    <tr>
+      <td class="boardsquare<%= @randspace09 %>" id="r5xc1" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r5xc2" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace10 %>" id="r5xc3" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r5xc4" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace11 %>" id="r5xc5" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r5xc6" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace12 %>" id="r5xc7" data-placedletter="none" data-placedletterpoints="none"></td>
+      </tr>
+    <tr>
+      <td class="boardsquare" id="r6xc1" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace13 %>" id="r6xc2" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r6xc3" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r6xc4" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r6xc5" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace14 %>" id="r6xc6" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r6xc7" data-placedletter="none" data-placedletterpoints="none"></td>
+    </tr>
+    <tr>
+      <td class="boardsquare<%= @lowerleftspace %>" id="r7xc1" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r7xc2" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace15 %>" id="r7xc3" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r7xc4" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @randspace16 %>" id="r7xc5" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare" id="r7xc6" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare<%= @lowerrightspace %>" id="r7xc7" data-placedletter="none" data-placedletterpoints="none"></td>
+    </tr>
+  </table>
+
+  <div class="gamemessages">
+    <p>Points:</p>
+    <span>0</span>
+  </div>
+
+  <div class="letterracks">
+    <div class="tilerack1">
+      <div class="tileholder">
+        <div class="letter <%= @letter01 %>" data-letter="<%= @letter01 %>-letter01" data-letterpointsoriginal="<%= @letter01points %>-letter01"><span><%= @letter01 %></span>
+          <p><%= @letter01points %></p>
+        </div>
+      </div>
+      <div class="tileholder">
+        <div class="letter <%= @letter02 %>" data-letter="<%= @letter02 %>-letter02" data-letterpointsoriginal="<%= @letter02points %>-letter02"><span><%= @letter02 %></span>
+          <p><%= @letter02points %></p>
+        </div>
+      </div>
+      <div class="tileholder">
+        <div class="letter <%= @letter03 %>" data-letter="<%= @letter03 %>-letter03" data-letterpointsoriginal="<%= @letter03points %>-letter03"><span><%= @letter03 %></span>
+          <p><%= @letter03points %></p>
+        </div>
+      </div>
+      <div class="tileholder">
+        <div class="letter <%= @letter04 %>" data-letter="<%= @letter04 %>-letter04" data-letterpointsoriginal="<%= @letter04points %>-letter04"><span><%= @letter04 %></span>
+          <p><%= @letter04points %></p>
+        </div>
+      </div>
+      <div class="tileholder">
+        <div class="letter <%= @letter05 %>" data-letter="<%= @letter05 %>-letter05" data-letterpointsoriginal="<%= @letter05points %>-letter05"><span><%= @letter05 %></span>
+          <p><%= @letter05points %></p>
+        </div>
+      </div>
+    </div>
+    <div class="tilerack2">
+      <div class="tileholder">
+        <div class="letter <%= @letter06 %>" data-letter="<%= @letter06 %>-letter06" data-letterpointsoriginal="<%= @letter06points %>-letter06"><span><%= @letter06 %></span>
+          <p><%= @letter06points %></p>
+        </div>
+      </div>
+      <div class="tileholder">
+        <div class="letter <%= @letter07 %>" data-letter="<%= @letter07 %>-letter07" data-letterpointsoriginal="<%= @letter07points %>-letter07"><span><%= @letter07 %></span>
+          <p><%= @letter07points %></p>
+        </div>
+      </div>
+      <div class="tileholder">
+        <div class="letter <%= @letter08 %>" data-letter="<%= @letter08 %>-letter08" data-letterpointsoriginal="<%= @letter08points %>-letter08"><span><%= @letter08 %></span>
+          <p><%= @letter08points %></p>
+        </div>
+      </div>
+      <div class="tileholder">
+        <div class="letter <%= @letter09 %>" data-letter="<%= @letter09 %>-letter09" data-letterpointsoriginal="<%= @letter09points %>-letter09"><span><%= @letter09 %></span>
+          <p><%= @letter09points %></p>
+        </div>
+      </div>
+      <div class="tileholder">
+        <div class="letter <%= @letter10 %>" data-letter="<%= @letter10 %>-letter10" data-letterpointsoriginal="<%= @letter10points %>-letter10"><span><%= @letter10 %></span>
+          <p><%= @letter10points %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui">
+    <div class="confirmsubmit">Submit board for <span>0</span> points?
+      <div class="button finalsubmit">Submit</div>
+      <div class="button finalcancel">Cancel</div>
+    </div>
+    <div class="submitmessage"><span></span>
+      <div class='button completedtohs'>High Scores</div><br>
+      <div class='button completedrtg'>Return to Game</div>
+    </div>
+    <div class="unabletosubmit">
+      <h3>Invalid</h3>
+      <span>word</span>
+      <p>Click anywhere to close.</p>
+    </div>
+    <div id="menuwindow">
+      <span id="menuwindowcontents">
+        <% if current_user %>
+          <% if Gamedata.where(:game_id => @game.id).first %>
+            <u>Worldwide scores</u><br>
+            High: <%= @highscore.score %> points by <%= @highscore.playername %><br>
+            Low: <%= @lowscore.score %> points by <%= @lowscore.playername %>
+          <% end %> <br><br>
+        <% end %>
+          <u>Your high score</u><br>
+          <% if current_user %>
+            <% if @playerhighscore %>
+              <%= @playerhighscore.score %> points
+            <% else %>
+              No score yet...
+            <% end %>
+          <% else %>
+            Sign in or create an account to keep track of your high scores and compare against others!
+          <% end %>
+        <div class="gamemenubuttons">
+          <%= link_to(highscores_games_path(@game.id)) do %>
+            <div class="button seehighscores">High Scores</div>
+          <% end %>
+          <div class="button howtoplay">How to Play</div>
+          <%= link_to(main_path) do %>
+            <div class="button returntomain">Main Menu</div>
+          <% end %>
+        </div>
+
+        <p>Click outside menu to close.</p>
+      </span>
+    </div>
+    <div id="page-cover"></div>
+    <div id="submit-cover"></div>
+    <div class="button submit"><span>Submit</span></div>
+    <div class="button menu"><span>Menu</span></div>
+    <div class="button reset"><span>Reset</span></div>
+  </div>
+
+</div>
+<div id="howtoplay">
+  <div class="instructionsteps">
+    1. You are given ten letters and a 7x7 board with randomly placed special tiles (DL, TL, DW).
+    <%= image_tag "blankboard.png" %>
+  </div>
+  <div class="instructionsteps">
+    2. Place the letter tiles on the board to make a mini-crossword. The goal is to maximize your points.
+    <%= image_tag "madeboard.png" %>
+  </div>
+  <div class="instructionsteps">
+    3. Press the "Submit" button once you've placed (up to) all ten of your tiles to validate your words. If all the words are valid, you can submit to the worldwide high score list. If any words aren't valid, you can adjust the tiles until you create a completely valid board.
+  </div>
+  <div class="instructionsteps">
+    4. Replay a board as often as you want to try to claim the #1 spot! Once a game has 10 players, that game will end and you will be able to see other players' solutions.
+  </div>
+  <div class="instructionsteps">
+    Tips: A bingo (7-letter word) will give you an extra 15 points. Try to place high value letters on double- or triple- letter spots. Learn all the two-letter words!
+  </div><br>
+  <div class="button returntomenu">Return to Menu</div>
+  <div class="button returntogame">Return to Game</div>
+</div>
+<p id="notice"><%= notice %></p>
+
+<% javascript_include_tag "boardsetup" %>

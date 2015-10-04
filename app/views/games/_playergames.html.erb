@@ -1,6 +1,11 @@
 <% @playergameslist.each do |game| %>
         <li style="list-style-type: none; line-height: 1.2; text-align: left;">
-          <span class="gameplayed"><%= link_to "Game #{game.game_id}", game_path(game.game_id) %></span>
-          <span class="gameplayedrank"><%= link_to "#{game.gamerank(game.game_id, current_user.id)}", highscores_games_path(game.game_id) %> </span>
+          <% if Game.find(game.game_id).gameended == true %>
+            <span class="gameplayed"><%= link_to "Game #{game.game_id} (ended)", game_path(game.game_id), :style => "color: orange" %></span>
+            <span class="gameplayedrank"><%= link_to "#{game.gamerank(game.game_id, current_user.id)}", highscores_games_path(game.game_id), :style => "color: orange" %> </span>
+          <% else %>
+            <span class="gameplayed"><%= link_to "Game #{game.game_id}", game_path(game.game_id) %></span>
+            <span class="gameplayedrank"><%= link_to "#{game.gamerank(game.game_id, current_user.id)}", highscores_games_path(game.game_id) %> </span>
+          <% end %>
         </li>
       <% end %>

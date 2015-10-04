@@ -111,7 +111,7 @@ class GamesController < ApplicationController
       @allgames = Game.all.collect(&:id)
       @gamesunavailableids = Gamedata.where(:user_id => current_user.id).collect(&:game_id)
       @gamesavailableids = @allgames - @gamesunavailableids
-      @gamesavailable = Game.where(:id => @gamesavailableids).where(:gamefull => false).all
+      @gamesavailable = Game.where(:id => @gamesavailableids).where(:gamefull => false).where(:gameended => false).all
       if @gamesavailable.count > 0
         @game = @gamesavailable.first
         respond_to do |format|

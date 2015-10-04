@@ -6,9 +6,9 @@ class PagesController < ApplicationController
     Game.all.each do |game|
       @gamedata = Gamedata.where(:game_id => game.id).all
       @count = @gamedata.count
-      if @gamedata.last
-        @lastdate = @gamedata.last.updated_at
-        if @count > 3 && DateTime.now - @lastdate.to_datetime >= 120 #minutes
+      if @gamedata.order('updated_at ASC').last
+        @lastdate = @gamedata.order('updated_at ASC').last.updated_at
+        if @count > 9 && DateTime.now - @lastdate.to_datetime >= 120 #minutes
           @gamestoend |= [game.id]
         end
       end

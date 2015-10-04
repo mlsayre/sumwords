@@ -8,7 +8,7 @@ class PagesController < ApplicationController
       @count = @gamedata.count
       if @gamedata.order('updated_at ASC').last
         @lastdate = @gamedata.order('updated_at ASC').last.updated_at
-        if @count > 9 && DateTime.now - @lastdate.to_datetime >= 120 #minutes
+        if @count > 9 && (DateTime.now - @lastdate.to_datetime)*24*60.to_i >= 120 #minutes
           @gamestoend |= [game.id]
         end
       end

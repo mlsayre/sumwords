@@ -228,4 +228,11 @@
     width: 46%;
     padding:0 6px;
   }
+  .endgameuserselect {
+    font-size: 18px;
+    margin: -58px 0 -12px;
+    padding: 5px;
+    border-radius: 15px;
+    z-index: 100;
+  }
 }

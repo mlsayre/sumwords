@@ -84,6 +84,11 @@ class GamesController < ApplicationController
     else
       @playerhighscore = 0
     end
+
+    # game over data
+    @endgamedata = Gamedata.where(:game_id => @game.id).order('score DESC').all
+    @endgamenames = @endgamedata.collect(&:playername)
+    @endgamepositions = @endgamedata.collect(&:finaltiles)
   end
 
   # GET /games/new

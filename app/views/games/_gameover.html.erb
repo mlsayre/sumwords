@@ -66,8 +66,14 @@
   </table>
 
   <div class="gamemessages">
-    <p>Points:</p>
-    <span>0</span>
+    <p>
+      <select class="endgameuserselect">
+        <option value="seesolutions">See solutions</option>
+        <% @endgamedata.each do |gamedata| %>
+          <option value="<%= gamedata.playername %>"><%= gamedata.playername %> (<%= gamedata.score %> points)</option>
+        <% end %>
+      </select>
+    </p>
   </div>
 
   <div class="letterracks">
@@ -175,9 +181,9 @@
     </div>
     <div id="page-cover"></div>
     <div id="submit-cover"></div>
-    <div class="button submit"><span>Submit</span></div>
+    <!-- <div class="button submit"><span>Submit</span></div> -->
     <div class="button menu"><span>Menu</span></div>
-    <div class="button reset"><span>Reset</span></div>
+    <!-- <div class="button reset"><span>Reset</span></div> -->
   </div>
 
 </div>
@@ -205,3 +211,43 @@
 <p id="notice"><%= notice %></p>
 
 <% javascript_include_tag "boardsetup" %>
+
+<style>
+.letter {
+  pointer-events: none;
+  transition: .8s;
+  -webkit-transition: .8s;
+}
+</style>
+
+<script>
+$(document).ready(function() {
+  var endgamenames = <%= raw @endgamenames.to_json %>;
+  var endgamepositions = <%= raw @endgamepositions.to_json %>;
+
+  $(".endgameuserselect").change(function() {
+    var playerlength = endgamenames.length;
+    for (var i = 0; i < playerlength; i ++) {
+      if ($(this).val() == endgamenames[i]) {
+        var posarray = endgamepositions[i].split(',');
+        var poslength = posarray.length;
+        for (var j = 0; j < poslength; j++) {
+          if (posarray[j] == "none") {
+            var targetpos = $(".tileholder").eq(j).offset();
+          } else {
+            var targetpos = $("#" + posarray[j]).offset();
+          }
+          var letterpos = $(".letter").eq(j).offset();
+          var originalpos = $(".tileholder").eq(j).offset();
+
+          var moveleft = (originalpos.left - targetpos.left) * -1
+          var movetop = (originalpos.top - targetpos.top) * -1
+
+          $(".letter").eq(j).css("transform", "translate(" + moveleft + "px," + movetop + "px)")
+          var letterpos = $(".letter").eq(j).offset();
+        }
+      }
+    }
+  })
+});
+</script>

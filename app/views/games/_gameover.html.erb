@@ -248,6 +248,22 @@ $(document).ready(function() {
 
           $(".letter").eq(j).css("transform", "translate(" + moveleft + "px," + movetop + "px)")
           var letterpos = $(".letter").eq(j).offset();
+
+          // corner point updates
+          var stockpoints = parseInt($('.letter').eq(j).attr("data-letterpointsoriginal"));
+          if ($("#" + posarray[j]).hasClass("dl")) {
+            var multiplier = 2;
+            $('.letter').eq(j).find('p').removeClass("cornerpointstl").addClass("cornerpointsdl");
+          } else if ($("#" + posarray[j]).hasClass("tl")) {
+            var multiplier = 3;
+            $('.letter').eq(j).find('p').removeClass("cornerpointsdl").addClass("cornerpointstl");
+          } else {
+            var multiplier = 1;
+            $('.letter').eq(j).find('p').removeClass("cornerpointsdl").removeClass("cornerpointstl");
+          }
+
+          var modpoints = stockpoints * multiplier; // * twowaymultiplier;
+          $('.letter').eq(j).find('p').text(modpoints);
         }
       }
     }

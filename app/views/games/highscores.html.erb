@@ -19,6 +19,10 @@
   <% end %>
 </div>
 <div class="menulinks">
-  <%= link_to "Replay Game", game_path %><br><br>
+  <% if @game.gameended == false %>
+    <%= link_to "Replay Game", game_path %><br><br>
+  <% else %>
+    <%= link_to "See solutions", game_path %><br><br>
+  <% end %>
   <%= link_to "Main Menu", main_path %>
 </div>

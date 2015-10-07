@@ -74,8 +74,8 @@ class GamesController < ApplicationController
 
     # show high score
     if Gamedata.where(:game_id => @game.id).first
-      @highscore = Gamedata.where(:game_id => @game.id).order('score DESC').first
-      @lowscore = Gamedata.where(:game_id => @game.id).order('score DESC').last
+      @highscore = Gamedata.where(:game_id => @game.id).order('score DESC, updated_at ASC').first
+      @lowscore = Gamedata.where(:game_id => @game.id).order('score DESC, updated_at ASC').last
     end
     if current_user
       if Gamedata.where(:game_id => @game.id).where(:user_id => current_user.id).first
@@ -86,7 +86,7 @@ class GamesController < ApplicationController
     end
 
     # game over data
-    @endgamedata = Gamedata.where(:game_id => @game.id).order('score DESC').all
+    @endgamedata = Gamedata.where(:game_id => @game.id).order('score DESC, updated_at ASC').all
     @endgamenames = @endgamedata.collect(&:playername)
     @endgamepositions = @endgamedata.collect(&:finaltiles)
   end
@@ -203,7 +203,7 @@ class GamesController < ApplicationController
 
   def highscores
     @game = Game.find(params[:id])
-    @gamedata = Gamedata.where(:game_id => @game.id).order('score DESC').all
+    @gamedata = Gamedata.where(:game_id => @game.id).order('score DESC, updated_at ASC').all
   end
 
   private

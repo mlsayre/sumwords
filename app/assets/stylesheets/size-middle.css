@@ -14,10 +14,10 @@
     border-radius: 5px;
   }
   .boardsquare {
-    border: 1px inset darkorange;
+    border: 1px inset darkgrey;
     width: 41px;
     height: 41px;
-    background-color: blanchedalmond;
+    /*background-color: blanchedalmond;*/
     color: beige;
     font-size: 23px;
     text-align: center;
@@ -192,13 +192,11 @@
     cursor: pointer;
   }
   .cornerpointsdl {
-    color: lightblue;
     font-size: .3em;
     top: -32px !important;
     font-weight: 700;
   }
   .cornerpointstl {
-    color: royalblue;
     font-size: .3em;
     top: -32px !important;
     font-weight: 700;

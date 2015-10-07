@@ -17,7 +17,7 @@
     /*border: 1px inset darkorange;*/
     width: 39px;
     height: 39px;
-    background-color: blanchedalmond;
+    /*background-color: blanchedalmond;*/
     color: beige;
     font-size: 23px;
     text-align: center;
@@ -193,13 +193,11 @@
     cursor: pointer;
   }
   .cornerpointsdl {
-    color: lightblue;
     font-size: .33em;
     top: -32px !important;
     font-weight: 700;
   }
   .cornerpointstl {
-    color: royalblue;
     font-size: .33em;
     top: -32px !important;
     font-weight: 700;

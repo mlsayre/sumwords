@@ -392,3 +392,33 @@ body {
   width: 95%;
   margin: 3px auto 8px;
 }
+.gameboard {
+  background-color: rgb(203, 203, 203);
+}
+.boardsquare {
+  background: url(asset-path('BoardBG.jpg'));
+}
+.dw {
+  background: none;
+  background-color: pink;
+}
+.dl {
+  background: none;
+  background-color: lightblue;
+}
+.tl {
+  background: none;
+  background-color: royalblue;
+}
+.letter span {
+  color: rgba(0,0,0,.8)
+}
+.letter p {
+  color: rgba(0,0,0,.85)
+}
+.letter .cornerpointsdl {
+  color: rgb(60, 150, 179);
+}
+.letter .cornerpointstl {
+  color: royalblue;
+}

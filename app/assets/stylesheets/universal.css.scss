@@ -396,7 +396,8 @@ body {
   background-color: rgb(203, 203, 203);
 }
 .boardsquare {
-  background: url(asset-path('BoardBG.jpg'));
+  /* background: url(asset-path('BoardBG.jpg')); */
+  background-color: whitesmoke;
 }
 .dw {
   background: none;

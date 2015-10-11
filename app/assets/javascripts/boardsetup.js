@@ -22,7 +22,7 @@ var ready = function() {
   }
 
   $(".letter").draggable({
-    snap: ".boardsquare, .tileholder",
+    snap: ".tileholder",
     snapMode: "inner",
     zIndex: 100,
     opacity: 0.7,
@@ -321,10 +321,10 @@ var ready = function() {
       return
     }
     // check to make sure center square is played
-    if ($("#r4xc4").attr("data-placedletter") == "none") {
-      errorOnSubmission("The center tile must contain a letter.");
-      return
-    }
+    // if ($("#r4xc4").attr("data-placedletter") == "none") {
+    //   errorOnSubmission("The center tile must contain a letter.");
+    //   return
+    // }
     // make sure all words are connected
     playedspaces = [];
     checkContinuity($(".boardsquare[data-placedletter!='none']:first").attr("id"));

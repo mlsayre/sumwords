@@ -35,7 +35,7 @@ var ready = function() {
   });
   $('.letter').droppable({
     greedy: true,
-    tolerance: 'touch',
+    tolerance: 'intersect',
     drop: function(event,ui){
       ui.draggable.draggable('option','revert', true);
     },

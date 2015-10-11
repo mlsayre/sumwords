@@ -129,7 +129,7 @@ var ready = function() {
     $(".letter").animate({
       "top" : 0,
       "left" : 0
-    }, 800);
+    }, 500);
     $(".letter").each(function() {
       var origpoints = parseInt($(this).attr("data-letterpointsoriginal"));
       $(this).find("p").text(origpoints).removeClass("cornerpointsdl").removeClass("cornerpointstl");

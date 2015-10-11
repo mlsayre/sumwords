@@ -242,4 +242,14 @@
     position: relative;
     z-index: 100;
   }
+  /*.ui-draggable-dragging {
+    overflow: visible;
+  }
+  .ui-draggable-dragging span {
+    font-size: 54px;
+    top: -28px;
+  }
+  .ui-draggable-draggingp {
+    left: 23px;
+  }*/
 }

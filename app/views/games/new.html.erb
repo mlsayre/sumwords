@@ -30,6 +30,16 @@
   <% end %>
 
   <div class="menulinks">
+    <% if current_user %>
+      Your average ranking:<br>
+      <% if current_user.averageranking != 99 %>
+        <%= current_user.averageranking %> out of 10<br><br>
+      <% else %>
+        You need to be ranked in at least one finished game...<br><br>
+      <% end %>
+    <% end %>
+
+    <%= link_to "See all rankings", rankings_pages_path %><br><br>
     <%= link_to "Edit your information", edit_user_registration_path %><br><br>
     <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
   </div>

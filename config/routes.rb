@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :pages do
     collection do
+      get 'rankings' => 'pages#rankings'
       post 'endgames'
     end
   end

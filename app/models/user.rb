@@ -24,6 +24,38 @@ class User < ActiveRecord::Base
   # Explicitly do not validate
   do_not_validate_attachment_file_type :avatar
 
+  def averageranking
+    allfinishedgames = Game.where(:gameended => true).collect(&:id)
+    possiblegames = Gamedata.where(:game_id => allfinishedgames).where(:user_id => self.id).collect(&:game_id)
+    if allfinishedgames.count > 0 && possiblegames.count > 0
+      userfinishedplaces = []
+      possiblegames.each do |game|
+        rankedgameusers = Gamedata.where(:game_id => game).order('score DESC, updated_at ASC').collect(&:user_id)
+        userplace = rankedgameusers.index(self.id) + 1
+        userfinishedplaces.push(userplace)
+      end
+      (userfinishedplaces.sum.round(2) / userfinishedplaces.count.round(2)).round(2)
+    else
+      99
+    end
+  end
+
+  def averagerankingmin
+    allfinishedgames = Game.where(:gameended => true).collect(&:id)
+    possiblegames = Gamedata.where(:game_id => allfinishedgames).where(:user_id => self.id).collect(&:game_id)
+    if allfinishedgames.count > 2 && possiblegames.count > 2
+      userfinishedplaces = []
+      possiblegames.each do |game|
+        rankedgameusers = Gamedata.where(:game_id => game).order('score DESC, updated_at ASC').collect(&:user_id)
+        userplace = rankedgameusers.index(self.id) + 1
+        userfinishedplaces.push(userplace)
+      end
+      (userfinishedplaces.sum.round(2) / userfinishedplaces.count.round(2)).round(2)
+    else
+      99
+    end
+  end
+
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)

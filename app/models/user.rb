@@ -28,6 +28,8 @@ class User < ActiveRecord::Base
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
       where(conditions).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
+    elsif conditions.has_key?(:reset_password_token)
+      where(reset_password_token: conditions[:reset_password_token]).first
     else
       conditions.permit! if conditions.class.to_s == "ActionController::Parameters"
       where(conditions).first

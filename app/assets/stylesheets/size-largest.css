@@ -233,4 +233,7 @@
     border-radius: 15px;
     z-index: 100;
   }
+  .rackletter {
+    margin: 3px 3px;
+  }
 }

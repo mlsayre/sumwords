@@ -22,13 +22,12 @@ var ready = function() {
   }
 
   $(".letter").draggable({
-    snap: ".tileholder",
-    snapMode: "inner",
     zIndex: 100,
     opacity: 0.7,
     revert: "invalid",
     revertDuration: 300,
     containment: "window",
+    connectToSortable: ".tilerack1",
     stop: function(){
       $(this).draggable('option','revert','invalid');
     }
@@ -87,9 +86,9 @@ var ready = function() {
     //   $(this).removeAttr("data-placedletter");
     // }
   });
-  $(".tileholder").droppable({
+  $(".tilerack1").droppable({
     greedy: false,
-    tolerance: "intersect",
+    tolerance: "touch",
     drop: function(event,ui){
       var tileorigpoints = parseInt(ui.draggable.context.attributes[2].value);
       ui.helper.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
@@ -111,15 +110,17 @@ var ready = function() {
         $(this).css("color", "yellow");
         return getpoints();
       });
-      var $this = $(this);
-      ui.draggable.position({
-        my: "center",
-        at: "center",
-        of: $this,
-        using: function(pos) {
-          $(this).animate(pos, 50, "linear");
-        }
-      });
+
+    }
+  });
+
+  $(".tilerack1").sortable({
+    tolerance: "pointer",
+    out: function( event, ui ) {
+      ui.helper.removeClass("rackletter");
+    },
+    over: function( event, ui ) {
+      ui.helper.addClass("rackletter");
     }
   });
 

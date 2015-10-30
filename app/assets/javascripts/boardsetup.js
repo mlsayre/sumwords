@@ -26,14 +26,14 @@ var ready = function() {
     opacity: 0.7,
     revert: "invalid",
     revertDuration: 300,
-    containment: "window",
+    //containment: "window",
     connectToSortable: ".tilerack1",
     stop: function(){
       $(this).draggable('option','revert','invalid');
     }
   });
   $('.letter').droppable({
-    greedy: true,
+    greedy: false,
     tolerance: 'intersect',
     drop: function(event,ui){
       ui.draggable.draggable('option','revert', true);
@@ -86,8 +86,8 @@ var ready = function() {
     //   $(this).removeAttr("data-placedletter");
     // }
   });
-  $(".tilerack1").droppable({
-    // greedy: false,
+  $(".letterracks").droppable({
+    greedy: false,
     // tolerance: "touch",
     // drop: function(event,ui){
     //   var tileorigpoints = parseInt(ui.draggable.context.attributes[2].value);
@@ -115,33 +115,33 @@ var ready = function() {
   });
 
   $(".tilerack1").sortable({
-    containment: "gamearea",
+    //containment: ".gamearea",
     tolerance: "pointer",
     out: function( event, ui ) {
       ui.helper.removeClass("rackletter");
     },
     over: function( event, ui ) {
       ui.helper.addClass("rackletter");
-      var tileorigpoints = parseInt(ui.draggable.context.attributes[2].value);
-      ui.helper.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
-      ui.helper.find("p").text(tileorigpoints);
-      var letterAdd = ui.helper.context.attributes[1].value;
-      $(".boardsquare").each(function() {
-        if ($(this).attr("data-placedletter") == letterAdd) {
-          $(this).attr("data-placedletter", "none");
-        }
-      });
-      var origpoints = parseInt(ui.helper.context.attributes[2].value);
-      $(".boardsquare").each(function() {
-        if ($(this).attr("data-placedletterpoints") == origpoints) {
-          $(this).attr("data-placedletterpoints", "none");
-        }
-      });
-      updatepointcorners();
-      $(".gamemessages span").text(function() {
-        $(this).css("color", "yellow");
-        return getpoints();
-      });
+      // var tileorigpoints = parseInt(ui.draggable.context.attributes[2].value);
+      // ui.helper.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
+      // ui.helper.find("p").text(tileorigpoints);
+      // var letterAdd = ui.helper.context.attributes[1].value;
+      // $(".boardsquare").each(function() {
+      //   if ($(this).attr("data-placedletter") == letterAdd) {
+      //     $(this).attr("data-placedletter", "none");
+      //   }
+      // });
+      // var origpoints = parseInt(ui.helper.context.attributes[2].value);
+      // $(".boardsquare").each(function() {
+      //   if ($(this).attr("data-placedletterpoints") == origpoints) {
+      //     $(this).attr("data-placedletterpoints", "none");
+      //   }
+      // });
+      // updatepointcorners();
+      // $(".gamemessages span").text(function() {
+      //   $(this).css("color", "yellow");
+      //   return getpoints();
+      // });
     }
   });
 

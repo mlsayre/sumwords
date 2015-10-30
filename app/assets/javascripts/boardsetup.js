@@ -26,7 +26,7 @@ var ready = function() {
     opacity: 0.7,
     revert: "invalid",
     revertDuration: 300,
-    //containment: "window",
+    containment: "window",
     connectToSortable: ".tilerack1",
     stop: function(){
       $(this).draggable('option','revert','invalid');
@@ -86,7 +86,7 @@ var ready = function() {
     //   $(this).removeAttr("data-placedletter");
     // }
   });
-  $(".letterracks").droppable({
+  $(".tilerack1").droppable({
     greedy: false,
     // tolerance: "touch",
     // drop: function(event,ui){

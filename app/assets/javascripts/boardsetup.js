@@ -24,7 +24,7 @@ var ready = function() {
   $(".letter").draggable({
     zIndex: 100,
     opacity: 0.7,
-    revert: "invalid",
+    //revert: "invalid",
     revertDuration: 300,
     //containment: "window",
     connectToSortable: ".tilerack1",
@@ -43,6 +43,7 @@ var ready = function() {
     greedy: true,
     tolerance: "intersect",
     drop: function(event,ui){
+      //ui.helper.removeClass("rackletter");
       var letterAdd = ui.helper.context.attributes[1].value;
       if ($(this).attr("data-placedletter") == "none") {
         $(".boardsquare").each(function() {
@@ -51,7 +52,6 @@ var ready = function() {
           }
         });
         $(this).attr("data-placedletter", letterAdd);
-        ui.helper.removeClass("rackletter");
       }
       var origpoints = ui.helper.context.attributes[2].value;
       if ($(this).attr("data-placedletterpoints") == "none") {
@@ -117,14 +117,18 @@ var ready = function() {
   });
 
   $(".tilerack1").sortable({
-    //items : "> .rackletter",
+    // items : "li .rackletter",
     //containment: ".gamearea",
-    tolerance: "pointer",
-    // out: function( event, ui ) {
-    //   ui.helper.removeClass("rackletter");
+    // tolerance: "pointer",
+    // beforeStop: function( event, ui ) {
+    //   $(".tilerack1").sortable("refresh")
     // },
+    //containment: ".gamearea"
+    // over: function( event, ui ) {
+    //   $(this).sortable("enable");
+    // }
     //over: function( event, ui ) {
-      
+
       // var tileorigpoints = parseInt(ui.draggable.context.attributes[2].value);
       // ui.helper.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
       // ui.helper.find("p").text(tileorigpoints);

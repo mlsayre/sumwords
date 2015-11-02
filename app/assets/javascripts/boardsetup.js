@@ -24,7 +24,7 @@ var ready = function() {
   $(".letter").draggable({
     zIndex: 100,
     opacity: 0.7,
-    //revert: "invalid",
+    revert: "invalid",
     revertDuration: 300,
     //containment: "window",
     connectToSortable: ".tilerack1",
@@ -87,7 +87,7 @@ var ready = function() {
     //   $(this).removeAttr("data-placedletter");
     // }
   });
-  $(".tilerack1").droppable({
+  //$(".tilerack1").droppable({
     //greedy: true,
     //tolerance: "touch",
     //drop: function(event,ui){
@@ -114,12 +114,12 @@ var ready = function() {
       // });
 
     //}
-  });
+  //});
 
   $(".tilerack1").sortable({
     // items : "li .rackletter",
     //containment: ".gamearea",
-    // tolerance: "pointer",
+    //tolerance: "pointer",
     // beforeStop: function( event, ui ) {
     //   $(".tilerack1").sortable("refresh")
     // },

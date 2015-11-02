@@ -123,7 +123,7 @@ var ready = function() {
     // beforeStop: function( event, ui ) {
     //   $(".tilerack1").sortable("refresh")
     // },
-    //containment: ".gamearea"
+    //containment: "window"
     // over: function( event, ui ) {
     //   $(this).sortable("enable");
     // }

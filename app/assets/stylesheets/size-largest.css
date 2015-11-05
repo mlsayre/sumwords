@@ -236,4 +236,14 @@
   .rackletter {
     margin: 3px 3px;
   }
+  .onboard {
+    position: absolute;
+    left: -4px;
+    top: -4px;
+  }
+  .sortable-ghost.onboardGhost {
+    position: absolute;
+    left: -4px;
+    top: -4px;
+  }
 }

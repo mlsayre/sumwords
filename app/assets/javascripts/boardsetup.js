@@ -21,72 +21,72 @@ var ready = function() {
         })
   }
 
-  $(".letter").draggable({
-    zIndex: 100,
-    opacity: 0.7,
-    revert: "invalid",
-    revertDuration: 300,
-    //containment: "window",
-    connectToSortable: ".tilerack1",
-    stop: function(){
-      $(this).draggable('option','revert','invalid');
-    }
-  });
-  $('.letter').droppable({
-    greedy: false,
-    tolerance: 'intersect',
-    drop: function(event,ui){
-      ui.draggable.draggable('option','revert', true);
-    },
-  });
-  $(".boardsquare").droppable({
-    greedy: true,
-    tolerance: "intersect",
-    drop: function(event,ui){
-      //ui.helper.removeClass("rackletter");
-      var letterAdd = ui.helper.context.attributes[1].value;
-      if ($(this).attr("data-placedletter") == "none") {
-        $(".boardsquare").each(function() {
-          if ($(this).attr("data-placedletter") == letterAdd) {
-            $(this).attr("data-placedletter", "none");
-          }
-        });
-        $(this).attr("data-placedletter", letterAdd);
-      }
-      var origpoints = ui.helper.context.attributes[2].value;
-      if ($(this).attr("data-placedletterpoints") == "none") {
-        $(".boardsquare").each(function() {
-          if ($(this).attr("data-placedletterpoints") == origpoints) {
-            $(this).attr("data-placedletterpoints", "none");
-          }
-        });
-        $(this).attr("data-placedletterpoints", origpoints);
-        // if ($(this).find("span") == "DL") {
-        //   $(ui.draggable + " span").text("HI")
-        // }
+  // $(".letter").draggable({
+  //   zIndex: 100,
+  //   opacity: 0.7,
+  //   revert: "invalid",
+  //   revertDuration: 300,
+  //   //containment: "window",
+  //   connectToSortable: ".tilerack1",
+  //   stop: function(){
+  //     $(this).draggable('option','revert','invalid');
+  //   }
+  // });
+  // $('.letter').droppable({
+  //   greedy: false,
+  //   tolerance: 'intersect',
+  //   drop: function(event,ui){
+  //     ui.draggable.draggable('option','revert', true);
+  //   },
+  // });
+  // $(".boardsquare").droppable({
+  //   greedy: true,
+  //   tolerance: "intersect",
+  //   drop: function(event,ui){
+  //     //ui.helper.removeClass("rackletter");
+  //     var letterAdd = ui.helper.context.attributes[1].value;
+  //     if ($(this).attr("data-placedletter") == "none") {
+  //       $(".boardsquare").each(function() {
+  //         if ($(this).attr("data-placedletter") == letterAdd) {
+  //           $(this).attr("data-placedletter", "none");
+  //         }
+  //       });
+  //       $(this).attr("data-placedletter", letterAdd);
+  //     }
+  //     var origpoints = ui.helper.context.attributes[2].value;
+  //     if ($(this).attr("data-placedletterpoints") == "none") {
+  //       $(".boardsquare").each(function() {
+  //         if ($(this).attr("data-placedletterpoints") == origpoints) {
+  //           $(this).attr("data-placedletterpoints", "none");
+  //         }
+  //       });
+  //       $(this).attr("data-placedletterpoints", origpoints);
+  //       // if ($(this).find("span") == "DL") {
+  //       //   $(ui.draggable + " span").text("HI")
+  //       // }
 
-      }
+  //     }
 
-      updatepointcorners();
-      $(".gamemessages span").text(function() {
-        $(this).css("color", "yellow");
-        return getpoints();
-      });
-      var $this = $(this);
-      ui.draggable.position({
-        my: "center",
-        at: "center",
-        of: $this,
-        using: function(pos) {
-          $(this).animate(pos, 50, "linear");
-        }
-      });
-    },
-    // out: function(event,ui){
-    //   var letterAdd = ui.helper.context.attributes[1].value;
-    //   $(this).removeAttr("data-placedletter");
-    // }
-  });
+  //     updatepointcorners();
+  //     $(".gamemessages span").text(function() {
+  //       $(this).css("color", "yellow");
+  //       return getpoints();
+  //     });
+  //     var $this = $(this);
+  //     ui.draggable.position({
+  //       my: "center",
+  //       at: "center",
+  //       of: $this,
+  //       using: function(pos) {
+  //         $(this).animate(pos, 50, "linear");
+  //       }
+  //     });
+  //   },
+  //   // out: function(event,ui){
+  //   //   var letterAdd = ui.helper.context.attributes[1].value;
+  //   //   $(this).removeAttr("data-placedletter");
+  //   // }
+  // });
   //$(".tilerack1").droppable({
     //greedy: true,
     //tolerance: "touch",
@@ -116,7 +116,7 @@ var ready = function() {
     //}
   //});
 
-  $(".tilerack1").sortable({
+  //$(".tilerack1").sortable({
     // items : "li .rackletter",
     //containment: ".gamearea",
     //tolerance: "pointer",
@@ -150,6 +150,36 @@ var ready = function() {
       //   return getpoints();
       // });
     //}
+  //});
+
+  Sortable.create(tilerack, {
+    group: "tiles",
+    animation: 150,
+    chosenClass: "pickedup",
+    onMove: function (evt) {
+      var el = evt.item;
+      //$(el).removeClass("onboard");
+    }
+  });
+
+  Sortable.create(r7xc1, {
+    group: "tiles",
+    animation: 150,
+    ghostClass: ".onboardGhost",
+    onMove: function (evt) {
+      var el = evt.item;
+      $(el).addClass("onboard");
+    }
+  });
+
+  Sortable.create(r7xc2, {
+    group: "tiles",
+    animation: 150,
+    ghostClass: ".onboardGhost",
+    onMove: function (evt) {
+      var el = evt.item;
+      $(el).addClass("onboard");
+    }
   });
 
   $(".button.reset").click(function() {

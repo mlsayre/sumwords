@@ -54,7 +54,7 @@
       <td class="boardsquare<%= @randspace14 %>" id="r6xc6" data-placedletter="none" data-placedletterpoints="none"></td>
       <td class="boardsquare" id="r6xc7" data-placedletter="none" data-placedletterpoints="none"></td>
     </tr>
-    <tr>
+    <tr id="row7">
       <td class="boardsquare<%= @lowerleftspace %>" id="r7xc1" data-placedletter="none" data-placedletterpoints="none"></td>
       <td class="boardsquare" id="r7xc2" data-placedletter="none" data-placedletterpoints="none"></td>
       <td class="boardsquare<%= @randspace15 %>" id="r7xc3" data-placedletter="none" data-placedletterpoints="none"></td>
@@ -71,7 +71,7 @@
   </div>
 
   <div class="letterracks">
-    <div class="tilerack1">
+    <div class="tilerack1" id="tilerack">
       <div class="letter <%= @letter01 %> rackletter" data-letter="<%= @letter01 %>-letter01" data-letterpointsoriginal="<%= @letter01points %>-letter01" id="letter01"><span><%= @letter01 %></span>
         <p><%= @letter01points %></p>
       </div>

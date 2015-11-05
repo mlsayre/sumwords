@@ -396,6 +396,7 @@ body {
   background-color: rgb(203, 203, 203);
 }
 .boardsquare {
+  position: relative;
   /* background: url(asset-path('BoardBG.jpg')); */
   background-color: whitesmoke;
 }
@@ -441,4 +442,6 @@ body {
 .tilerack1 .letter, .tilerack2 .letter {
   display: inline-block;
 }
-
+.pickedup {
+  opacity: .7;
+}

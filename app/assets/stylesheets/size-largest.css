@@ -241,7 +241,7 @@
     left: -4px;
     top: -4px;
   }
-  .sortable-ghost.onboardGhost {
+  .sortable-ghost {
     position: absolute;
     left: -4px;
     top: -4px;

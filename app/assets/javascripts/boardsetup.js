@@ -155,32 +155,47 @@ var ready = function() {
   Sortable.create(tilerack, {
     group: "tiles",
     animation: 150,
-    chosenClass: "pickedup",
+    chosenClass: "onrack",
+    onAdd: function (evt) {
+      var el = evt.item;
+      $(el).removeClass("onboard");
+      $(el).removeClass("onrack");
+    },
     onMove: function (evt) {
       var el = evt.item;
-      //$(el).removeClass("onboard");
+      if (evt.to !== tilerack) {
+        $(".onrack").addClass("onboard").removeClass("onrack");
+      } else if (evt.to == tilerack) {
+        $(".tilerack1 .onboard").addClass("onrack").removeClass("onboard");
+      }
     }
   });
 
-  Sortable.create(r7xc1, {
-    group: "tiles",
-    animation: 150,
-    ghostClass: ".onboardGhost",
-    onMove: function (evt) {
-      var el = evt.item;
-      $(el).addClass("onboard");
-    }
-  });
+  var boardsquares = [r1xc1, r1xc2, r1xc3, r1xc4, r1xc5, r1xc6, r1xc7,
+                      r2xc1, r2xc2, r2xc3, r2xc4, r2xc5, r2xc6, r2xc7,
+                      r3xc1, r3xc2, r3xc3, r3xc4, r3xc5, r3xc6, r3xc7,
+                      r4xc1, r4xc2, r4xc3, r4xc4, r4xc5, r4xc6, r4xc7,
+                      r5xc1, r5xc2, r5xc3, r5xc4, r5xc5, r5xc6, r5xc7,
+                      r6xc1, r6xc2, r6xc3, r6xc4, r6xc5, r6xc6, r6xc7,
+                      r7xc1, r7xc2, r7xc3, r7xc4, r7xc5, r7xc6, r7xc7];
 
-  Sortable.create(r7xc2, {
-    group: "tiles",
-    animation: 150,
-    ghostClass: ".onboardGhost",
-    onMove: function (evt) {
-      var el = evt.item;
-      $(el).addClass("onboard");
-    }
-  });
+  for (var i = 0; i <= boardsquares.length; i++) {
+    Sortable.create(boardsquares[i], {
+      group: "tiles",
+      animation: 0,
+      onAdd: function (evt) {
+        var el = evt.item;
+        $(el).addClass("onboard");
+      },
+      onMove: function (evt) {
+        if (evt.to == tilerack) {
+          $(".sortable-ghost").addClass("onrack").removeClass("sortable-ghost");
+        } else if (evt.to !== tilerack) {
+          $(".onrack").addClass("sortable-ghost").removeClass("onrack");
+        }
+      }
+    });
+  }
 
   $(".button.reset").click(function() {
     validwords = [];

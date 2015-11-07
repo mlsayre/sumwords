@@ -442,6 +442,14 @@ body {
 .tilerack1 .letter, .tilerack2 .letter {
   display: inline-block;
 }
-.pickedup {
+.sortable-chosen {
   opacity: .7;
+}
+.onrack {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.boardsquare .letter {
+  opacity: .92;
 }

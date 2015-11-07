@@ -453,3 +453,8 @@ body {
 .boardsquare .letter {
   opacity: .92;
 }
+.faded {
+  opacity: .5 !important;
+  background-color: lightgreen !important;
+  background: none;
+}

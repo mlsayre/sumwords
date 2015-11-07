@@ -152,25 +152,6 @@ var ready = function() {
     //}
   //});
 
-  Sortable.create(tilerack, {
-    group: "tiles",
-    animation: 150,
-    chosenClass: "onrack",
-    onAdd: function (evt) {
-      var el = evt.item;
-      $(el).removeClass("onboard");
-      $(el).removeClass("onrack");
-    },
-    onMove: function (evt) {
-      var el = evt.item;
-      if (evt.to !== tilerack) {
-        $(".onrack").addClass("onboard").removeClass("onrack");
-      } else if (evt.to == tilerack) {
-        $(".tilerack1 .onboard").addClass("onrack").removeClass("onboard");
-      }
-    }
-  });
-
   var boardsquares = [r1xc1, r1xc2, r1xc3, r1xc4, r1xc5, r1xc6, r1xc7,
                       r2xc1, r2xc2, r2xc3, r2xc4, r2xc5, r2xc6, r2xc7,
                       r3xc1, r3xc2, r3xc3, r3xc4, r3xc5, r3xc6, r3xc7,
@@ -179,19 +160,49 @@ var ready = function() {
                       r6xc1, r6xc2, r6xc3, r6xc4, r6xc5, r6xc6, r6xc7,
                       r7xc1, r7xc2, r7xc3, r7xc4, r7xc5, r7xc6, r7xc7];
 
-  for (var i = 0; i <= boardsquares.length; i++) {
+  Sortable.create(tilerack, {
+    group: "tiles",
+    animation: 150,
+    chosenClass: "onrack",
+    onAdd: function (evt) {
+      var el = evt.item;
+      $(el).removeClass("onboard").removeClass("onrack").removeClass("faded");
+    },
+    onStop: function (evt) {
+      $(".faded").removeClass("faded");
+    },
+    onMove: function (evt) {
+      var el = evt.dragged;
+      var dest = evt.to;
+      if ($(dest).hasClass("boardsquare")) {
+        $(el).addClass("onboard faded").removeClass("onrack");
+        if ($(dest).has(".letter").length) {
+          console.log("can't place here!")
+        }
+      } else if ($(dest).hasClass("tilerack1")) {
+        $(el).addClass("onrack").removeClass("onboard").removeClass("faded");
+      }
+    }
+  });
+
+  for (var i = 0; i < boardsquares.length; i++) {
     Sortable.create(boardsquares[i], {
       group: "tiles",
       animation: 0,
       onAdd: function (evt) {
         var el = evt.item;
-        $(el).addClass("onboard");
+        $(el).addClass("onboard").removeClass("faded");
+      },
+      onStop: function (evt) {
+        $(".faded").removeClass("faded");
       },
       onMove: function (evt) {
-        if (evt.to == tilerack) {
-          $(".sortable-ghost").addClass("onrack").removeClass("sortable-ghost");
-        } else if (evt.to !== tilerack) {
-          $(".onrack").addClass("sortable-ghost").removeClass("onrack");
+        var el = evt.dragged;
+        var dest = evt.to;
+        if (dest == tilerack) {
+          $(el).addClass("onrack").removeClass("sortable-ghost").removeClass("faded");
+        } else if (dest !== tilerack) {
+          $(el).addClass("sortable-ghost faded").removeClass("onrack");
         }
       }
     });

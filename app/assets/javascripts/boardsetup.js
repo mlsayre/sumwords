@@ -232,7 +232,28 @@ var ready = function() {
     chosenClass: "onrack",
     onAdd: function (evt) {
       var el = evt.item;
+      var fromspace = evt.from;
       $(el).removeClass("onboard").removeClass("onrack").removeClass("faded");
+
+      $(fromspace).attr("data-placedletter", "none").attr("data-placedletterpoints", "none");
+      // var letterAdd = el.attributes[1].value;
+      //   if ($(targ).attr("data-placedletter") == "none") {
+      //     $(".boardsquare").each(function() {
+      //       if ($(this).attr("data-placedletter") == letterAdd) {
+      //         $(this).attr("data-placedletter", "none");
+      //       }
+      //     });
+      //     $(targ).attr("data-placedletter", letterAdd);
+      //   }
+      //   var origpoints = el.attributes[2].value;
+      //   if ($(targ).attr("data-placedletterpoints") == "none") {
+      //     $(".boardsquare").each(function() {
+      //       if ($(this).attr("data-placedletterpoints") == origpoints) {
+      //         $(this).attr("data-placedletterpoints", "none");
+      //       }
+      //     });
+      //     $(targ).attr("data-placedletterpoints", origpoints);
+      //   }
     },
     onStart: function (evt) {
       for (var i = 0; i < bslength; i++) {
@@ -246,6 +267,11 @@ var ready = function() {
       for (var i = 0; i < bslength; i++) {
         boardsortables[i].options.disabled = false
       }
+      updatepointcorners();
+        $(".gamemessages span").text(function() {
+          $(this).css("color", "yellow");
+          return getpoints();
+        });
     },
     onMove: function (evt) {
       var el = evt.dragged;
@@ -285,34 +311,26 @@ var ready = function() {
       var dataid = $(this).attr("data-placedletter");
       var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
       var boardsquareid = $(this).attr("id");
-      if ($("#" + boardsquareid).text() == "DL") {
+      if ($("#" + boardsquareid).text().substring(0,2) == "DL") {
         var multiplier = 2;
-        $('.letter[data-letter=' + dataid + '] p').addClass("cornerpointsdl");
-      } else if ($("#" + boardsquareid).text() == "TL") {
+        $(this).find(".letter p").addClass("cornerpointsdl");
+      } else if ($("#" + boardsquareid).text().substring(0,2) == "TL") {
         var multiplier = 3;
-        $('.letter[data-letter=' + dataid + '] p').addClass("cornerpointstl");
+        $(this).find(".letter p").addClass("cornerpointstl");
       } else {
         var multiplier = 1;
-        $('.letter[data-letter=' + dataid + '] p').removeClass("cornerpointsdl").removeClass("cornerpointstl")
+        $(this).find(".letter p").removeClass("cornerpointsdl").removeClass("cornerpointstl")
       }
-      // var neighborR = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) + 1).toString());
-      // var neighborL = boardsquareid.substring(0,4) + ((parseInt(boardsquareid.charAt(4)) - 1).toString());
-      // var neighborT = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) - 1).toString()) + boardsquareid.substring(2,5);
-      // var neighborB = boardsquareid.substring(0,1) + ((parseInt(boardsquareid.charAt(1)) + 1).toString()) + boardsquareid.substring(2,5);
-
-      // if ((($("#" + neighborR).attr("data-placedletter") !== "none") ||
-      //    ($("#" + neighborL).attr("data-placedletter") !== "none")) &&
-      //    (($("#" + neighborT).attr("data-placedletter") !== "none") ||
-      //    ($("#" + neighborB).attr("data-placedletter") !== "none"))) {
-      //   var twowaymultiplier = 2
-      // } else {
-      //   var twowaymultiplier = 1
-      // }
-
 
       var modpoints = stockpoints * multiplier; // * twowaymultiplier;
 
-      $('.letter[data-letter=' + dataid + '] p').text(modpoints);
+      $(this).find(".letter p").text(modpoints);
+    });
+
+    $(".tilerack1 .letter").each(function() {
+      var stockpoints = parseInt($(this).attr("data-letterpointsoriginal"));
+      $(this).find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl")
+      $(this).find("p").text(stockpoints);
     });
   }
 
@@ -452,7 +470,12 @@ var ready = function() {
       return
     }
     // check to see if only center tile is played
-    if (($(".boardsquare[data-placedletter!='none']").length == 1) && ($("#r4xc4").attr("data-placedletter") !== "none")) {
+    // if (($(".boardsquare[data-placedletter!='none']").length == 1) && ($("#r4xc4").attr("data-placedletter") !== "none")) {
+    //   errorOnSubmission("Please play more than one letter.");
+    //   return
+    // }
+    // check to see if only one
+    if ($(".boardsquare[data-placedletter!='none']").length == 1) {
       errorOnSubmission("Please play more than one letter.");
       return
     }

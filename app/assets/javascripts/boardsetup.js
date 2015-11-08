@@ -167,8 +167,31 @@ var ready = function() {
       group: "tiles",
       animation: 0,
       onAdd: function (evt) {
+        console.log(evt)
         var el = evt.item;
+        var targ = evt.target;
         $(el).addClass("onboard").removeClass("faded");
+
+        var letterAdd = el.attributes[1].value;
+        if ($(targ).attr("data-placedletter") == "none") {
+          $(".boardsquare").each(function() {
+            if ($(this).attr("data-placedletter") == letterAdd) {
+              $(this).attr("data-placedletter", "none");
+            }
+          });
+          $(targ).attr("data-placedletter", letterAdd);
+        }
+        var origpoints = el.attributes[2].value;
+        if ($(targ).attr("data-placedletterpoints") == "none") {
+          $(".boardsquare").each(function() {
+            if ($(this).attr("data-placedletterpoints") == origpoints) {
+              $(this).attr("data-placedletterpoints", "none");
+            }
+          });
+          $(targ).attr("data-placedletterpoints", origpoints);
+        }
+
+
       },
       onStart: function (evt) {
         var excludeself = $(".boardsquare").index(evt.srcElement);
@@ -184,6 +207,11 @@ var ready = function() {
         for (var i = 0; i < bslength; i++) {
           boardsortables[i].options.disabled = false
         }
+        updatepointcorners();
+        $(".gamemessages span").text(function() {
+          $(this).css("color", "yellow");
+          return getpoints();
+        });
       },
       onMove: function (evt) {
         var el = evt.dragged;
@@ -253,6 +281,7 @@ var ready = function() {
 
   function updatepointcorners() {
     $(".boardsquare[data-placedletter!='none']").each(function() {
+      console.log($(this))
       var dataid = $(this).attr("data-placedletter");
       var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
       var boardsquareid = $(this).attr("id");

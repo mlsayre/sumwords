@@ -58,13 +58,14 @@
   .ui {
     display: inline-block;
     position: relative;
-    bottom: 5px;
-    width: 59px;
+    bottom: 15px;
+    right: 2px;
+    width: 58px;
   }
   .button.submit {
     display: block;
     width: 57%;
-    height: 28px;
+    height: 14px;
     z-index: 41;
     background-color: green;
   }
@@ -73,7 +74,7 @@
   }
   .button.submit span {
     position: relative;
-    top: 8px;
+    top: 2px;
     right: 2px;
   }
   .button.menu, .button.reset {
@@ -152,8 +153,11 @@
     padding: 4px 0 1px 0;
     margin: 28px 0 6px;
     width: 240px;
+    height: 98px;
     text-align: center;
     border-bottom: 3px solid brown;
+    vertical-align: bottom;
+    display: inline-block;
   }
   .tilerack2 {
     background-color: darkred;
@@ -242,5 +246,18 @@
     bottom: 1px;
     position: relative;
     z-index: 100;
+  }
+  .rackletter {
+    margin: 1px 1px;
+  }
+  .onboard {
+    position: absolute;
+    left: -1px;
+    top: -1px;
+  }
+  .sortable-ghost {
+    position: absolute;
+    left: -1px;
+    top: -1px;
   }
 }

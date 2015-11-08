@@ -160,41 +160,30 @@ var ready = function() {
                       r6xc1, r6xc2, r6xc3, r6xc4, r6xc5, r6xc6, r6xc7,
                       r7xc1, r7xc2, r7xc3, r7xc4, r7xc5, r7xc6, r7xc7];
 
-  Sortable.create(tilerack, {
-    group: "tiles",
-    animation: 150,
-    chosenClass: "onrack",
-    onAdd: function (evt) {
-      var el = evt.item;
-      $(el).removeClass("onboard").removeClass("onrack").removeClass("faded");
-    },
-    onStop: function (evt) {
-      $(".faded").removeClass("faded");
-    },
-    onMove: function (evt) {
-      var el = evt.dragged;
-      var dest = evt.to;
-      if ($(dest).hasClass("boardsquare")) {
-        $(el).addClass("onboard faded").removeClass("onrack");
-        if ($(dest).has(".letter").length) {
-          console.log("can't place here!")
-        }
-      } else if ($(dest).hasClass("tilerack1")) {
-        $(el).addClass("onrack").removeClass("onboard").removeClass("faded");
-      }
-    }
-  });
-
+  var boardsortables = [];
   for (var i = 0; i < boardsquares.length; i++) {
-    Sortable.create(boardsquares[i], {
+
+    boardsortables[i] = new Sortable(boardsquares[i], {
       group: "tiles",
       animation: 0,
       onAdd: function (evt) {
         var el = evt.item;
         $(el).addClass("onboard").removeClass("faded");
       },
-      onStop: function (evt) {
+      onStart: function (evt) {
+        var excludeself = $(".boardsquare").index(evt.srcElement);
+        for (var i = 0; i < bslength; i++) {
+          if (boardsortables[i].el.firstElementChild) {
+            boardsortables[i].options.disabled = true;
+          }
+          boardsortables[excludeself].options.disabled = false;
+        }
+      },
+      onEnd: function (evt) {
         $(".faded").removeClass("faded");
+        for (var i = 0; i < bslength; i++) {
+          boardsortables[i].options.disabled = false
+        }
       },
       onMove: function (evt) {
         var el = evt.dragged;
@@ -207,6 +196,39 @@ var ready = function() {
       }
     });
   }
+  var bslength = boardsortables.length;
+
+  var racksortable = new Sortable(tilerack, {
+    group: "tiles",
+    animation: 150,
+    chosenClass: "onrack",
+    onAdd: function (evt) {
+      var el = evt.item;
+      $(el).removeClass("onboard").removeClass("onrack").removeClass("faded");
+    },
+    onStart: function (evt) {
+      for (var i = 0; i < bslength; i++) {
+        if (boardsortables[i].el.firstElementChild) {
+          boardsortables[i].options.disabled = true;
+        }
+      }
+    },
+    onEnd: function (evt) {
+      $(".faded").removeClass("faded");
+      for (var i = 0; i < bslength; i++) {
+        boardsortables[i].options.disabled = false
+      }
+    },
+    onMove: function (evt) {
+      var el = evt.dragged;
+      var dest = evt.to;
+      if ($(dest).hasClass("boardsquare")) {
+        $(el).addClass("onboard faded").removeClass("onrack");
+      } else if (!$(dest).hasClass("boardsquare")) {
+        $(el).addClass("onrack").removeClass("onboard").removeClass("faded");
+      }
+    }
+  });
 
   $(".button.reset").click(function() {
     validwords = [];
@@ -413,7 +435,7 @@ var ready = function() {
     // make sure all words are connected
     playedspaces = [];
     checkContinuity($(".boardsquare[data-placedletter!='none']:first").attr("id"));
-    console.log(playedspaces);
+    //console.log(playedspaces);
     if (playedspaces.length < $(".boardsquare[data-placedletter!='none']").length) {
       errorOnSubmission("Words must all be connected.");
       return

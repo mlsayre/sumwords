@@ -58,14 +58,15 @@
   .ui {
     display: inline-block;
     position: relative;
-    bottom: 8px;
+    bottom: 15px;
   }
   .button.submit {
     display: block;
     width: 57%;
-    height: 30px;
+    height: 31px;
     z-index: 41;
     background-color: green;
+    margin-bottom: -2px;
   }
   .button.submit:hover {
     background-color: darkgreen;
@@ -76,9 +77,13 @@
   }
   .button.menu, .button.reset {
     display: block;
-    height: 15px;
+    height: 11px;
     width: 57%;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+  }
+  .button.menu span, .button.reset span {
+    position: relative;
+    bottom: 1px;
   }
   .button.reset {
     background-color: rgb(215,0,0);
@@ -150,8 +155,11 @@
     padding: 4px 0 1px 0;
     margin: 28px 0 6px;
     width: 266px;
+    height: 108px;
     text-align: center;
     border-bottom: 3px solid brown;
+    vertical-align: bottom;
+    display: inline-block;
   }
   .tilerack2 {
     background-color: darkred;
@@ -180,7 +188,7 @@
   }
   .letter p {
     position: relative;
-    top: -32px;
+    top: -31px;
     left: 16px;
     font-size: 11px;
   }
@@ -242,14 +250,17 @@
     position: relative;
     z-index: 100;
   }
-  /*.ui-draggable-dragging {
-    overflow: visible;
+  .rackletter {
+    margin: 2px 2px;
   }
-  .ui-draggable-dragging span {
-    font-size: 54px;
-    top: -28px;
+  .onboard {
+    position: absolute;
+    left: -2px;
+    top: -2px;
   }
-  .ui-draggable-draggingp {
-    left: 23px;
-  }*/
+  .sortable-ghost {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+  }
 }

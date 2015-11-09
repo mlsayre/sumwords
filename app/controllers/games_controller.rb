@@ -96,6 +96,7 @@ class GamesController < ApplicationController
     if current_user
       @playergames = Gamedata.where(:user_id => current_user.id).order('game_id DESC').all
       @playergameslist = @playergames.page(params[:page]).per(8)
+
     end
   end
 

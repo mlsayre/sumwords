@@ -15,8 +15,11 @@
 
   <% if current_user %>
     <div class="playergamelist">
-      Your games and ranks<br>
-      <u>(<%= @playergames.count %> games total)</u>
+      <%= @playergames.count %> games total
+      <div style="list-style-type: none; line-height: 1.2; text-align: left;">
+
+            <span class="gameplayed" style="font-size: 12px;"><u>Your Games</u></span>
+            <span class="gameplayedrank" style="font-size: 12px; position:relative; top:3px;"><u>Your Ranks</u></span>
 
       <span id="playergamelist">
         <%= render 'playergames' %>
@@ -29,7 +32,7 @@
     </div>
   <% end %>
 
-  <div class="menulinks">
+  <div>
     <% if current_user %>
       Your average ranking:<br>
       <% if current_user.averageranking != 99 %>

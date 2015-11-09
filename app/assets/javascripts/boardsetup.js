@@ -21,137 +21,6 @@ var ready = function() {
         })
   }
 
-  // $(".letter").draggable({
-  //   zIndex: 100,
-  //   opacity: 0.7,
-  //   revert: "invalid",
-  //   revertDuration: 300,
-  //   //containment: "window",
-  //   connectToSortable: ".tilerack1",
-  //   stop: function(){
-  //     $(this).draggable('option','revert','invalid');
-  //   }
-  // });
-  // $('.letter').droppable({
-  //   greedy: false,
-  //   tolerance: 'intersect',
-  //   drop: function(event,ui){
-  //     ui.draggable.draggable('option','revert', true);
-  //   },
-  // });
-  // $(".boardsquare").droppable({
-  //   greedy: true,
-  //   tolerance: "intersect",
-  //   drop: function(event,ui){
-  //     //ui.helper.removeClass("rackletter");
-  //     var letterAdd = ui.helper.context.attributes[1].value;
-  //     if ($(this).attr("data-placedletter") == "none") {
-  //       $(".boardsquare").each(function() {
-  //         if ($(this).attr("data-placedletter") == letterAdd) {
-  //           $(this).attr("data-placedletter", "none");
-  //         }
-  //       });
-  //       $(this).attr("data-placedletter", letterAdd);
-  //     }
-  //     var origpoints = ui.helper.context.attributes[2].value;
-  //     if ($(this).attr("data-placedletterpoints") == "none") {
-  //       $(".boardsquare").each(function() {
-  //         if ($(this).attr("data-placedletterpoints") == origpoints) {
-  //           $(this).attr("data-placedletterpoints", "none");
-  //         }
-  //       });
-  //       $(this).attr("data-placedletterpoints", origpoints);
-  //       // if ($(this).find("span") == "DL") {
-  //       //   $(ui.draggable + " span").text("HI")
-  //       // }
-
-  //     }
-
-  //     updatepointcorners();
-  //     $(".gamemessages span").text(function() {
-  //       $(this).css("color", "yellow");
-  //       return getpoints();
-  //     });
-  //     var $this = $(this);
-  //     ui.draggable.position({
-  //       my: "center",
-  //       at: "center",
-  //       of: $this,
-  //       using: function(pos) {
-  //         $(this).animate(pos, 50, "linear");
-  //       }
-  //     });
-  //   },
-  //   // out: function(event,ui){
-  //   //   var letterAdd = ui.helper.context.attributes[1].value;
-  //   //   $(this).removeAttr("data-placedletter");
-  //   // }
-  // });
-  //$(".tilerack1").droppable({
-    //greedy: true,
-    //tolerance: "touch",
-    //drop: function(event,ui){
-      //ui.helper.addClass("rackletter");
-      // var tileorigpoints = parseInt(ui.draggable.context.attributes[2].value);
-      // ui.helper.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
-      // ui.helper.find("p").text(tileorigpoints);
-      // var letterAdd = ui.helper.context.attributes[1].value;
-      // $(".boardsquare").each(function() {
-      //   if ($(this).attr("data-placedletter") == letterAdd) {
-      //     $(this).attr("data-placedletter", "none");
-      //   }
-      // });
-      // var origpoints = parseInt(ui.helper.context.attributes[2].value);
-      // $(".boardsquare").each(function() {
-      //   if ($(this).attr("data-placedletterpoints") == origpoints) {
-      //     $(this).attr("data-placedletterpoints", "none");
-      //   }
-      // });
-      // updatepointcorners();
-      // $(".gamemessages span").text(function() {
-      //   $(this).css("color", "yellow");
-      //   return getpoints();
-      // });
-
-    //}
-  //});
-
-  //$(".tilerack1").sortable({
-    // items : "li .rackletter",
-    //containment: ".gamearea",
-    //tolerance: "pointer",
-    // beforeStop: function( event, ui ) {
-    //   $(".tilerack1").sortable("refresh")
-    // },
-    //containment: "window"
-    // over: function( event, ui ) {
-    //   $(this).sortable("enable");
-    // }
-    //over: function( event, ui ) {
-
-      // var tileorigpoints = parseInt(ui.draggable.context.attributes[2].value);
-      // ui.helper.find("p").removeClass("cornerpointsdl").removeClass("cornerpointstl");
-      // ui.helper.find("p").text(tileorigpoints);
-      // var letterAdd = ui.helper.context.attributes[1].value;
-      // $(".boardsquare").each(function() {
-      //   if ($(this).attr("data-placedletter") == letterAdd) {
-      //     $(this).attr("data-placedletter", "none");
-      //   }
-      // });
-      // var origpoints = parseInt(ui.helper.context.attributes[2].value);
-      // $(".boardsquare").each(function() {
-      //   if ($(this).attr("data-placedletterpoints") == origpoints) {
-      //     $(this).attr("data-placedletterpoints", "none");
-      //   }
-      // });
-      // updatepointcorners();
-      // $(".gamemessages span").text(function() {
-      //   $(this).css("color", "yellow");
-      //   return getpoints();
-      // });
-    //}
-  //});
-
   var boardsquares = [r1xc1, r1xc2, r1xc3, r1xc4, r1xc5, r1xc6, r1xc7,
                       r2xc1, r2xc2, r2xc3, r2xc4, r2xc5, r2xc6, r2xc7,
                       r3xc1, r3xc2, r3xc3, r3xc4, r3xc5, r3xc6, r3xc7,
@@ -160,7 +29,7 @@ var ready = function() {
                       r6xc1, r6xc2, r6xc3, r6xc4, r6xc5, r6xc6, r6xc7,
                       r7xc1, r7xc2, r7xc3, r7xc4, r7xc5, r7xc6, r7xc7];
 
-  var boardsortables = [];
+  boardsortables = [];
   for (var i = 0; i < boardsquares.length; i++) {
 
     boardsortables[i] = new Sortable(boardsquares[i], {
@@ -226,7 +95,7 @@ var ready = function() {
   }
   var bslength = boardsortables.length;
 
-  var racksortable = new Sortable(tilerack, {
+  racksortable = new Sortable(tilerack, {
     group: "tiles",
     animation: 150,
     chosenClass: "onrack",
@@ -236,24 +105,6 @@ var ready = function() {
       $(el).removeClass("onboard").removeClass("onrack").removeClass("faded");
 
       $(fromspace).attr("data-placedletter", "none").attr("data-placedletterpoints", "none");
-      // var letterAdd = el.attributes[1].value;
-      //   if ($(targ).attr("data-placedletter") == "none") {
-      //     $(".boardsquare").each(function() {
-      //       if ($(this).attr("data-placedletter") == letterAdd) {
-      //         $(this).attr("data-placedletter", "none");
-      //       }
-      //     });
-      //     $(targ).attr("data-placedletter", letterAdd);
-      //   }
-      //   var origpoints = el.attributes[2].value;
-      //   if ($(targ).attr("data-placedletterpoints") == "none") {
-      //     $(".boardsquare").each(function() {
-      //       if ($(this).attr("data-placedletterpoints") == origpoints) {
-      //         $(this).attr("data-placedletterpoints", "none");
-      //       }
-      //     });
-      //     $(targ).attr("data-placedletterpoints", origpoints);
-      //   }
     },
     onStart: function (evt) {
       for (var i = 0; i < bslength; i++) {
@@ -284,13 +135,15 @@ var ready = function() {
     }
   });
 
+
   $(".button.reset").click(function() {
     validwords = [];
     $(".confirmsubmit span").text("0");
-    $(".letter").animate({
-      "top" : 0,
-      "left" : 0
-    }, 500);
+    $(".boardsquare[data-placedletter!='none']").each(function() {
+      $(this).find(".letter").detach().appendTo(".tilerack1").removeClass("onboard").removeClass("faded");
+    });
+    updatepointcorners();
+
     $(".letter").each(function() {
       var origpoints = parseInt($(this).attr("data-letterpointsoriginal"));
       $(this).find("p").text(origpoints).removeClass("cornerpointsdl").removeClass("cornerpointstl");
@@ -662,23 +515,6 @@ var ready = function() {
     }
   });
 
-  // $(window).resize(function() {
-  //   $(".letter").each( function() {
-  //     var dataid = $(this).attr("data-letter");
-  //     if ($(".boardsquare[data-placedletter='" + dataid + "']")) {
-  //       var target = $(".boardsquare[data-placedletter='" + dataid + "']")
-  //       if (dataid == target.attr("data-placedletter")) {
-  //         var position = {}
-  //         position = target.position($(this));
-  //         $(this).animate({
-  //           "top" : 0 - position.top,
-  //           "left" : 0 - position.left
-  //         }, 300);
-  //         console.log(position)
-  //       }
-  //     }
-  //   });
-  // });
 };
 $(document).ready(ready);
 $(document).on('page:load', ready);

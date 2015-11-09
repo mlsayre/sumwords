@@ -1,4 +1,4 @@
-<div class="gamearea">
+<div class="gamearea gameover">
   <table class="gameboard">
     <tr><%= @upperleft %><%= @upperright %>
       <td class="boardsquare<%= @upperleftspace %>" id="r1xc1" data-placedletter="none" data-placedletterpoints="none"></td>
@@ -77,7 +77,7 @@
   </div>
 
   <div class="letterracks">
-    <div class="tilerack1">
+    <div class="tilerack1" id="tilerack">
       <div class="tileholder">
         <div class="letter <%= @letter01 %>" data-letter="<%= @letter01 %>-letter01" data-letterpointsoriginal="<%= @letter01points %>-letter01"><span><%= @letter01 %></span>
           <p><%= @letter01points %></p>

@@ -153,6 +153,15 @@
     vertical-align: bottom;
     display: inline-block;
   }
+  .gameover .tilerack1 {
+    background-color: darkred;
+    padding: 4px 0 8px 0;
+    margin: 28px 0 6px;
+    width: 396px;
+    text-align: center;
+    border-bottom: 3px solid brown;
+    height: auto !important;
+  }
   .tilerack2 {
     background-color: darkred;
     padding: 4px 0 8px 0;

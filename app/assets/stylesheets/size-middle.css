@@ -197,9 +197,12 @@
   }
   .letter p {
     position: relative;
-    top: -31px;
-    left: 16px;
+    top: -27px;
+    left: 22px;
     font-size: 11px;
+    line-height: 1;
+    width: 20px;
+    text-align: right;
   }
   .letter span {
     position: relative;
@@ -210,12 +213,10 @@
   }
   .cornerpointsdl {
     font-size: .3em;
-    top: -32px !important;
     font-weight: 700;
   }
   .cornerpointstl {
     font-size: .3em;
-    top: -32px !important;
     font-weight: 700;
   }
   .landingletter {

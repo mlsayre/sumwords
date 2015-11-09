@@ -190,7 +190,9 @@
   .letter p {
     position: relative;
     top: -30px;
-    left: 24px;
+    left: 42px;
+    width: 20px;
+    text-align: right;
   }
   .letter span {
     position: relative;

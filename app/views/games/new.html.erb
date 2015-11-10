@@ -24,7 +24,7 @@
       <span id="playergamelist">
         <%= render 'playergames' %>
       </span>
-      <div id="paginator"  style="margin-top: 10px;">
+      <div id="paginator"  style="margin-top: 10px; text-align: middle;">
         <%= paginate @playergameslist, :remote => true %>
       </div>
 
@@ -32,7 +32,7 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="menulinks">
     <% if current_user %>
       Your average ranking:<br>
       <% if current_user.averageranking != 99 %>

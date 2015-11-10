@@ -163,7 +163,7 @@ var ready = function() {
       $(".boardsquare[data-placedletter!='none']").each(function() {
         //console.log($(this))
         var dataid = $(this).attr("data-placedletter");
-        var stockpoints = parseInt($('.letter[data-letter=' + dataid + ']').attr("data-letterpointsoriginal"));
+        var stockpoints = parseInt($(this).find('.letter').attr("data-letterpointsoriginal"));
         var boardsquareid = $(this).attr("id");
         if ($("#" + boardsquareid).text().substring(0,2) == "DL") {
           var multiplier = 2;
@@ -177,7 +177,7 @@ var ready = function() {
         }
 
         var modpoints = stockpoints * multiplier; // * twowaymultiplier;
-
+        console.log(stockpoints + " " + multiplier)
         $(this).find(".letter p").text(modpoints);
       });
 

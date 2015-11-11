@@ -31,7 +31,7 @@
       <td class="boardsquare" id="r4xc1" data-placedletter="none" data-placedletterpoints="none"></td>
       <td class="boardsquare" id="r4xc2" data-placedletter="none" data-placedletterpoints="none"></td>
       <td class="boardsquare" id="r4xc3" data-placedletter="none" data-placedletterpoints="none"></td>
-      <td class="boardsquare dw" id="r4xc4" data-placedletter="none" data-placedletterpoints="none"></td>
+      <td class="boardsquare dw" id="r4xc4" data-placedletter="none" data-placedletterpoints="none">DW</td>
       <td class="boardsquare" id="r4xc5" data-placedletter="none" data-placedletterpoints="none"></td>
       <td class="boardsquare" id="r4xc6" data-placedletter="none" data-placedletterpoints="none"></td>
       <td class="boardsquare" id="r4xc7" data-placedletter="none" data-placedletterpoints="none"></td>
@@ -148,6 +148,13 @@
           <%= link_to(main_path) do %>
             <div class="button returntomain">Main Menu</div>
           <% end %>
+        </div>
+
+        <div class="changetheme">
+          Change board theme:<br>
+          <div class="themeimage" id="theme-space">
+            <%= image_tag("https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/Robert%27s_Quartet_Final.jpg") %>
+          </div>
         </div>
 
         <p>Click outside menu to close.</p>

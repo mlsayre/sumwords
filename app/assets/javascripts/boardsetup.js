@@ -177,7 +177,6 @@ var ready = function() {
         }
 
         var modpoints = stockpoints * multiplier; // * twowaymultiplier;
-        console.log(stockpoints + " " + multiplier)
         $(this).find(".letter p").text(modpoints);
       });
 
@@ -517,6 +516,12 @@ var ready = function() {
     });
 
   };
+
+  $(".themeimage").click(function() {
+    $("body").removeClass();
+    var theme = $(this).attr("id");
+    $("body").addClass(theme)
+  })
 }
 $(document).ready(ready);
 $(document).on('page:load', ready);

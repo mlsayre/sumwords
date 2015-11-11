@@ -366,9 +366,9 @@ body {
   margin-top: 20px;
 }
 #r4xc4 {
-  background-image: url(asset-path('star.png'));
+  /* background-image: url(asset-path('star.png'));
   background-size: 100%;
-  background-position-y: -1px;
+  background-position-y: -1px; */
 }
 #howtoplay {
   display: none;
@@ -460,4 +460,40 @@ body {
 }
 .hiddenghost {
   display: none;
+}
+.themeimage {
+  display: inline-block;
+  width: 23%;
+  padding: 4px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border: 1px solid grey;
+}
+.themeimage img {
+  width: 100%
+}
+
+/* THEMES ///////////////////////////////////// */
+.theme-space {
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/1280px-Kappa_Andromedae_Star_Chart_No_Labels.jpg);
+}
+.theme-space table{
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/Fond_processing_Final.jpg);
+  background-size: contain;
+}
+.theme-space .boardsquare {
+  background-color: transparent;
+  /* background-color: rgba(245,245,245,.0); */
+}
+.theme-space .tl {
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/Robert%27s_Quartet_Final.jpg);
+  background-size: contain;
+}
+.theme-space .dl {
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/Whirlpool_Galaxy_Final2.jpg);
+  background-size: contain;
+}
+.theme-space .dw {
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/800px-Mars_Valles_Marineris.jpg);
+  background-size: contain;
 }

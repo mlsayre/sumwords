@@ -474,6 +474,8 @@ body {
 }
 
 /* THEMES ///////////////////////////////////// */
+
+/* THEME-SPACE */
 .theme-space {
   background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/1280px-Kappa_Andromedae_Star_Chart_No_Labels.jpg);
 }
@@ -496,4 +498,35 @@ body {
 .theme-space .dw {
   background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/800px-Mars_Valles_Marineris.jpg);
   background-size: contain;
+}
+
+/* THEME-WINTER */
+.theme-winter {
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/1024px-Snow_Scene_at_Shipka_Pass_1.JPG);
+}
+.theme-winter .gamemessages p {
+  color: black;
+}
+.theme-winter table{
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/1024px-Field-with-snow-champ-enneige_Final.jpg);
+  background-size: contain;
+}
+.theme-winter .boardsquare {
+  background-color: transparent;
+  /* background-color: rgba(245,245,245,.0); */
+}
+.theme-winter .tl {
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/snowman-with-trees-final.jpg);
+  background-size: contain;
+  color: black;
+}
+.theme-winter .dl {
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/small-evergreen-in-snow-final.jpg);
+  background-size: contain;
+  color: black;
+}
+.theme-winter .dw {
+  background: url(https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/blue-snowflake--final.jpg);
+  background-size: contain;
+  color: black;
 }

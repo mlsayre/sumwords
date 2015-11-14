@@ -11,7 +11,7 @@ class GamedataController < ApplicationController
       if Gamedata.where('game_id = ?', @game_id).where(:user_id => @user_id).first
         @gamedata = Gamedata.where('game_id = ?', @game_id).where(:user_id => @user_id).first
 
-        if @gamedata.score <= @finalpoints
+        if @gamedata.score < @finalpoints
           @gamedata.update_attributes!(:score => @finalpoints, :finaltiles => @finaltilepositions,
             :lettersused => @finallettersused)
           @gamecompletemessage = "Score successfully submitted."

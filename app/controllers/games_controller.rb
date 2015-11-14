@@ -206,6 +206,14 @@ class GamesController < ApplicationController
     @gamedata = Gamedata.where(:game_id => @game.id).order('score DESC, updated_at ASC').all
   end
 
+  def themechange
+    if current_user
+      @newtheme = (params[:newtheme])
+      User.where(:id => current_user.id).first.update_attributes!(:theme => @newtheme)
+    end
+    render :nothing => true
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game

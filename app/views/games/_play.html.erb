@@ -152,6 +152,9 @@
 
         <div class="changetheme">
           Change board theme:<br>
+          <div class="themeimage" id="theme-default">
+            <%= image_tag("https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/default-final.jpg") %>
+          </div>
           <div class="themeimage" id="theme-space">
             <%= image_tag("https://s3-us-west-2.amazonaws.com/sumwordsavatars/themes/Robert%27s_Quartet_Final.jpg") %>
           </div>
@@ -195,3 +198,11 @@
 <p id="notice"><%= notice %></p>
 
 <% javascript_include_tag "boardsetup" %>
+<% if current_user %>
+  <% @usertheme = current_user.theme %>
+  <script>
+  $(document).ready(function() {
+    $("body").addClass("<%= @usertheme %>")
+  })
+  </script>
+<% end %>

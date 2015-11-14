@@ -521,6 +521,12 @@ var ready = function() {
     $("body").removeClass();
     var theme = $(this).attr("id");
     $("body").addClass(theme)
+    $.ajax({
+        url: "/games/themechange",
+        type: "POST",
+        dataType:'json',
+        data: { 'newtheme' : theme }
+      })
   })
 }
 $(document).ready(ready);

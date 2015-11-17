@@ -135,7 +135,7 @@ class GamesController < ApplicationController
 
 
         # randomize other board spaces
-        randomtilearray = [" dl", " dl", " dl", " dl", " dl", " tl", " tl", " tl", "", "", "", "", "", "", "", "" ]
+        randomtilearray = [" dl", " dl", " dl", " dl", " dl", " tl", " tl", " tl", "tl", "", "", "", "", "", "", "" ]
         randomtilearray.shuffle!
         @game.update(:randspace01 => randomtilearray[0], :randspace02 => randomtilearray[1],
                      :randspace03 => randomtilearray[2], :randspace04 => randomtilearray[3],

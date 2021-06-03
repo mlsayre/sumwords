@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.1'
+ruby '3.0.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'pg'
 gem 'devise'
@@ -12,7 +12,7 @@ gem 'aws-sdk', '~> 1.33.0'
 gem 'paperclip'
 gem 'kaminari'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails'
 # Use sqlite3 as the database for Active Record
 #gem 'sqlite3'
 # Use SCSS for stylesheets

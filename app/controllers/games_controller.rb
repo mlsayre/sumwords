@@ -209,7 +209,7 @@ class GamesController < ApplicationController
   def themechange
     if current_user
       @newtheme = (params[:newtheme])
-      User.where(:id => current_user.id).first.update_attributes!(:theme => @newtheme)
+      User.where(:id => current_user.id).first.update!(:theme => @newtheme)
     end
     render :nothing => true
   end

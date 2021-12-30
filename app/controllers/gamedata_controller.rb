@@ -12,7 +12,7 @@ class GamedataController < ApplicationController
         @gamedata = Gamedata.where('game_id = ?', @game_id).where(:user_id => @user_id).first
 
         if @gamedata.score < @finalpoints
-          @gamedata.update_attributes!(:score => @finalpoints, :finaltiles => @finaltilepositions,
+          @gamedata.update!(:score => @finalpoints, :finaltiles => @finaltilepositions,
             :lettersused => @finallettersused)
           @gamecompletemessage = "Score successfully submitted."
         else
@@ -22,7 +22,7 @@ class GamedataController < ApplicationController
       else
         # create new entry...
         @gamedata = Gamedata.new
-        @gamedata.update_attributes!(:game_id => @game_id, :user_id => @user_id,
+        @gamedata.update!(:game_id => @game_id, :user_id => @user_id,
           :score => @finalpoints, :finaltiles => @finaltilepositions, :playername => current_user.username,
           :lettersused => @finallettersused)
         @gamecompletemessage = "Score successfully submitted."
@@ -37,7 +37,7 @@ class GamedataController < ApplicationController
 
       # mark game as full if this is the 20th high score
       if Gamedata.where('game_id = ?', @game_id).count >= 20
-        Game.where(:id => @game_id).update_attributes!(:gamefull => true)
+        Game.where(:id => @game_id).update!(:gamefull => true)
       end
 
     else

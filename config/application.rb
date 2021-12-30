@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require "rails"
+Warning[:deprecated] = false 
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
@@ -33,3 +34,4 @@ module Sumwords
     # config.active_record.raise_in_transactional_callbacks = true
   end
 end
+

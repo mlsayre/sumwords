@@ -1,4 +1,4 @@
-class AddRandomCornersToGames < ActiveRecord::Migration
+class AddRandomCornersToGames < ActiveRecord::Migration[6.1]
   def change
     add_column :games, :upperleftspace, :string
     add_column :games, :upperrightspace, :string

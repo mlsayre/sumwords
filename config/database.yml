@@ -14,7 +14,7 @@ development:
   encoding: unicode
   database: sumwords_development
   pool: 5
-  username: matt
+  username: msayre
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -24,7 +24,7 @@ test:
   encoding: unicode
   database: sumwords_test
   pool: 5
-  username: matt
+  username: msayre
   min_messages: warning
 
 production:

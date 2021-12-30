@@ -1,85 +1,79 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114062709) do
+ActiveRecord::Schema.define(version: 2015_11_14_062709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "gamedata", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "game_id"
-    t.integer  "score"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.string   "playername"
-    t.string   "finaltiles",  default: "{}"
-    t.integer  "lettersused", default: 0
+    t.integer "user_id"
+    t.integer "game_id"
+    t.integer "score"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "playername"
+    t.string "finaltiles", default: "{}"
+    t.integer "lettersused", default: 0
   end
 
   create_table "games", force: :cascade do |t|
-    t.string   "letters"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "upperleftspace"
-    t.string   "upperrightspace"
-    t.string   "lowerleftspace"
-    t.string   "lowerrightspace"
-    t.string   "randspace01"
-    t.string   "randspace02"
-    t.string   "randspace03"
-    t.string   "randspace04"
-    t.string   "randspace05"
-    t.string   "randspace06"
-    t.string   "randspace07"
-    t.string   "randspace08"
-    t.string   "randspace09"
-    t.string   "randspace10"
-    t.string   "randspace11"
-    t.string   "randspace12"
-    t.string   "randspace13"
-    t.string   "randspace14"
-    t.string   "randspace15"
-    t.string   "randspace16"
-    t.boolean  "gamefull",        default: false
-    t.boolean  "gameended",       default: false
+    t.string "letters"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "upperleftspace"
+    t.string "upperrightspace"
+    t.string "lowerleftspace"
+    t.string "lowerrightspace"
+    t.string "randspace01"
+    t.string "randspace02"
+    t.string "randspace03"
+    t.string "randspace04"
+    t.string "randspace05"
+    t.string "randspace06"
+    t.string "randspace07"
+    t.string "randspace08"
+    t.string "randspace09"
+    t.string "randspace10"
+    t.string "randspace11"
+    t.string "randspace12"
+    t.string "randspace13"
+    t.string "randspace14"
+    t.string "randspace15"
+    t.string "randspace16"
+    t.boolean "gamefull", default: false
+    t.boolean "gameended", default: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",              null: false
-    t.string   "encrypted_password",     default: "",              null: false
-    t.string   "reset_password_token"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,               null: false
+    t.integer "sign_in_count", default: 0, null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "username"
-    t.string   "about"
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
-    t.string   "theme",                  default: "theme-default"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "username"
+    t.string "about"
+    t.string "theme", default: "theme-default"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
